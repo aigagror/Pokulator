@@ -122,7 +122,7 @@
                                         <rect key="frame" x="0.0" y="666" width="374" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Uf-ay-eoe">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="324" y="0.0" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="2Uf-ay-eoe" secondAttribute="height" multiplier="1:1" id="D0t-LM-XS5"/>
                                                 </constraints>
@@ -131,8 +131,8 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="13V-MC-6vv"/>
-                                            <constraint firstItem="2Uf-ay-eoe" firstAttribute="leading" secondItem="O5j-9C-c9H" secondAttribute="leading" id="5f2-WT-Z0F"/>
                                             <constraint firstItem="2Uf-ay-eoe" firstAttribute="top" secondItem="O5j-9C-c9H" secondAttribute="top" id="QFF-Gx-7h2"/>
+                                            <constraint firstAttribute="trailing" secondItem="2Uf-ay-eoe" secondAttribute="trailing" id="j2s-Ga-5Qf"/>
                                             <constraint firstAttribute="bottom" secondItem="2Uf-ay-eoe" secondAttribute="bottom" id="neV-jf-nWy"/>
                                         </constraints>
                                     </view>

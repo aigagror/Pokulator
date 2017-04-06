@@ -72,8 +72,8 @@
 			children = (
 				2C5060681E9341A600B0D6DA /* AppDelegate.swift */,
 				2C50606A1E9341A600B0D6DA /* ViewController.swift */,
-				2C4C2EBD1E95E2290073A377 /* Cards */,
 				2C50606C1E9341A600B0D6DA /* Main.storyboard */,
+				2C4C2EBD1E95E2290073A377 /* Cards */,
 				2C50606F1E9341A600B0D6DA /* Assets.xcassets */,
 				2C5060711E9341A600B0D6DA /* LaunchScreen.storyboard */,
 				2C5060741E9341A600B0D6DA /* Info.plist */,

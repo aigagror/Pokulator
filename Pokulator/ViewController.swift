@@ -11,13 +11,8 @@ import UIKit
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var num_opp: UIPickerView!
-    @IBOutlet weak var flop1: UIImageView!
-    @IBOutlet weak var flop2: UIImageView!
-    @IBOutlet weak var flop3: UIImageView!
-    @IBOutlet weak var turn: UIImageView!
-    @IBOutlet weak var river: UIImageView!
-    @IBOutlet weak var left_hand: UIImageView!
-    @IBOutlet weak var right_hand: UIImageView!
+    
+    var card_view_array = [UIImageView]()
 
     
     
@@ -39,37 +34,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         self.num_opponents = num_opp.selectedRow(inComponent: 0)
         
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
-    // Card selection stuff
-    @IBAction func left_hand_tapped(_ sender: Any) {
-        if self.curr_card_index >= 0 {
-            let c = arc4random_uniform(13) + 1
-            left_hand.image = UIImage(named: "card\(c)")
-            self.curr_card_index += 1
-        }
-    }
-    @IBAction func right_hand_tapped(_ sender: Any) {
-        if self.curr_card_index >= 1 {
-            let c = arc4random_uniform(13) + 1
-            right_hand.image = UIImage(named: "card\(c)")
-            self.curr_card_index += 1
-        }
-    }
-    
-    @IBAction func flop1_tapped(_ sender: Any) {
-        if self.curr_card_index >= 2 {
-            let c = arc4random_uniform(13) + 1
-            flop1.image = UIImage(named: "card\(c)")
-            self.curr_card_index += 1
-        }
     }
     
     
@@ -83,17 +53,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        return 9
     }
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(row)"
+        return "\(row + 1)"
     }
     
     // What to do when user selects something
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.num_opponents = row
+        self.num_opponents = row + 1
     }
 
 

@@ -27,11 +27,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     /// Holds the information for what the cards on the table are
     var cards = Array<Card?>(repeating: nil, count: 6)
     
+    
+    /// Indicates how many opponents there are. Helps determine statistics
+    var num_opponents = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.num_opp.delegate = self
         self.num_opp.dataSource = self
+        
+        self.num_opponents = num_opp.selectedRow(inComponent: 0)
         
     }
 
@@ -41,9 +47,33 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     
-    @IBAction func flop1_button(_ sender: Any) {
-        flop1.image = UIImage(named: "card10")
+    
+    // Card selection stuff
+    @IBAction func left_hand_tapped(_ sender: Any) {
+        if self.curr_card_index >= 0 {
+            let c = arc4random_uniform(13) + 1
+            left_hand.image = UIImage(named: "card\(c)")
+            self.curr_card_index += 1
+        }
     }
+    @IBAction func right_hand_tapped(_ sender: Any) {
+        if self.curr_card_index >= 1 {
+            let c = arc4random_uniform(13) + 1
+            right_hand.image = UIImage(named: "card\(c)")
+            self.curr_card_index += 1
+        }
+    }
+    
+    @IBAction func flop1_tapped(_ sender: Any) {
+        if self.curr_card_index >= 2 {
+            let c = arc4random_uniform(13) + 1
+            flop1.image = UIImage(named: "card\(c)")
+            self.curr_card_index += 1
+        }
+    }
+    
+    
+    
     
     // UIPicker Protocol Stuff...
     // Number of Components
@@ -63,6 +93,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     // What to do when user selects something
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.num_opponents = row
     }
 
 

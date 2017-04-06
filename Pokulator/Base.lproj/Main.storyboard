@@ -74,7 +74,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fs2-mI-Hm7" userLabel="flop1_button">
                                                         <rect key="frame" x="0.0" y="0.0" width="59" height="84"/>
                                                         <connections>
-                                                            <action selector="flop1_button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gCI-zC-AQD"/>
+                                                            <action selector="flop1_tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rgd-lQ-Ysw"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -101,9 +101,6 @@
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gx0-YH-QgC" userLabel="flop2_button">
                                                         <rect key="frame" x="0.0" y="0.0" width="59" height="84"/>
-                                                        <connections>
-                                                            <action selector="flop1_button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bXr-xW-A7x"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -129,9 +126,6 @@
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67x-Se-AWy" userLabel="flop3_button">
                                                         <rect key="frame" x="0.0" y="0.0" width="59.5" height="84"/>
-                                                        <connections>
-                                                            <action selector="flop1_button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ct1-9L-DAD"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -157,9 +151,6 @@
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5Z-46-p2j" userLabel="turn_button">
                                                         <rect key="frame" x="0.0" y="0.0" width="59" height="84"/>
-                                                        <connections>
-                                                            <action selector="flop1_button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xvs-nL-Ul2"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -185,9 +176,6 @@
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhy-T7-bpW" userLabel="river_button">
                                                         <rect key="frame" x="0.0" y="0.0" width="58.5" height="84"/>
-                                                        <connections>
-                                                            <action selector="flop1_button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JqH-K8-mf0"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -224,6 +212,9 @@
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4n-kV-EhE" userLabel="left hand button">
                                                         <rect key="frame" x="0.0" y="0.0" width="81" height="114.5"/>
+                                                        <connections>
+                                                            <action selector="left_hand_tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WVf-2Q-5VM"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -249,6 +240,9 @@
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etd-z6-Fi1" userLabel="right hand button">
                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="114.5"/>
+                                                        <connections>
+                                                            <action selector="right_hand_tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iOa-bJ-PFc"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>

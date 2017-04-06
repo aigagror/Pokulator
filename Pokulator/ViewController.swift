@@ -12,6 +12,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
     @IBOutlet weak var num_opp_picker: UIPickerView!
     @IBOutlet weak var left_hand: UIButton!
+    @IBOutlet var add_card_view: UIView!
+    @IBOutlet weak var visual_effect_view: UIVisualEffectView!
+    var effect:UIVisualEffect!
     
     var card_view_array = [UIImageView]()
 
@@ -35,7 +38,24 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         self.num_opponents = num_opp_picker.selectedRow(inComponent: 0)
         
+        self.effect = self.visual_effect_view.effect
+        self.visual_effect_view.effect = nil
+        self.add_card_view.layer.cornerRadius = 5
         
+    }
+    
+    func animate_in() -> Void {
+        self.view.addSubview(add_card_view)
+        add_card_view.center = self.view.center
+        
+        add_card_view.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+        add_card_view.alpha = 0
+        
+        UIView.animate(withDuration: 0.4) {
+            self.visual_effect_view.effect = self.effect
+            self.add_card_view.alpha = 1
+            self.add_card_view.transform = CGAffineTransform.identity
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +65,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     // Card Selection Stuff...
     @IBAction func left_hand_tapped(_ sender: Any) {
+        animate_in()
         left_hand.setImage(UIImage(named: "2_of_clubs"), for: UIControlState.normal)
     }
     @IBAction func right_hand_tapped(_ sender: Any) {

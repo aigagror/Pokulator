@@ -11,12 +11,14 @@ import UIKit
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var num_opp: UIPickerView!
+    @IBOutlet weak var flop1: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.num_opp.delegate = self
         self.num_opp.dataSource = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,7 +27,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     
-    
+    @IBAction func flop1_button(_ sender: Any) {
+        flop1.image = UIImage(named: "card10")
+    }
     
     // UIPicker Protocol Stuff...
     // Number of Components

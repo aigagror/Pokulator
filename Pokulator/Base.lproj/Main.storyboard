@@ -293,7 +293,13 @@
                     </view>
                     <connections>
                         <outlet property="flop1" destination="bjI-nT-FBh" id="Kep-qq-sQ2"/>
+                        <outlet property="flop2" destination="eXq-Ia-lbW" id="DDH-nW-BKF"/>
+                        <outlet property="flop3" destination="rUQ-wG-ROf" id="VH6-qv-NFS"/>
+                        <outlet property="left_hand" destination="EhK-9P-Fy6" id="jBn-xS-U5W"/>
                         <outlet property="num_opp" destination="sP5-dj-eUF" id="e4H-9c-yoj"/>
+                        <outlet property="right_hand" destination="Y69-ZN-V6G" id="UpY-CG-rq3"/>
+                        <outlet property="river" destination="LY2-NS-Qh6" id="ZBT-6e-WTH"/>
+                        <outlet property="turn" destination="tbM-vF-a9E" id="BCg-e9-aDC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -304,6 +304,7 @@
 				2C5060791E9341A600B0D6DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

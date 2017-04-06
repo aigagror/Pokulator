@@ -133,6 +133,7 @@
                                 <constraints>
                                     <constraint firstItem="Pjn-VX-fDs" firstAttribute="width" secondItem="i5u-eC-0Xv" secondAttribute="width" id="4iC-MS-gW1"/>
                                     <constraint firstItem="MgJ-Ib-Jy8" firstAttribute="width" secondItem="i5u-eC-0Xv" secondAttribute="width" id="mhX-2y-PA8"/>
+                                    <constraint firstItem="Qfu-O5-GIj" firstAttribute="width" secondItem="i5u-eC-0Xv" secondAttribute="width" id="vkH-Pq-weU"/>
                                 </constraints>
                             </stackView>
                         </subviews>

@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "black_joker.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "black_joker@2x.png",
       "scale" : "2x"
     },
     {

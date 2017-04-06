@@ -10,7 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var num_opp: UIPickerView!
+    @IBOutlet weak var num_opp_picker: UIPickerView!
+    @IBOutlet weak var left_hand: UIButton!
     
     var card_view_array = [UIImageView]()
 
@@ -29,10 +30,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.num_opp.delegate = self
-        self.num_opp.dataSource = self
+        self.num_opp_picker.delegate = self
+        self.num_opp_picker.dataSource = self
         
-        self.num_opponents = num_opp.selectedRow(inComponent: 0)
+        self.num_opponents = num_opp_picker.selectedRow(inComponent: 0)
         
         
     }
@@ -42,6 +43,22 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         // Dispose of any resources that can be recreated.
     }
     
+    // Card Selection Stuff...
+    @IBAction func left_hand_tapped(_ sender: Any) {
+        left_hand.setImage(UIImage(named: "2_of_clubs"), for: UIControlState.normal)
+    }
+    @IBAction func right_hand_tapped(_ sender: Any) {
+    }
+    @IBAction func flop1_tapped(_ sender: Any) {
+    }
+    @IBAction func flop2_tapped(_ sender: Any) {
+    }
+    @IBAction func flop3_tapped(_ sender: Any) {
+    }
+    @IBAction func turn_tapped(_ sender: Any) {
+    }
+    @IBAction func river_tapped(_ sender: Any) {
+    }
     
     
     

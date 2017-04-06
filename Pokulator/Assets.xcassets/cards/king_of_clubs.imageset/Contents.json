@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "king_of_clubs.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "king_of_clubs@2x.png",
       "scale" : "2x"
     },
     {

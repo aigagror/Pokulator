@@ -9,6 +9,7 @@
 import Foundation
 
 struct Card {
+    /// The value of the Card [1,13]
     var value: Int
     var suit: Suit
     init(value v: Int, suit s: Suit) {
@@ -33,7 +34,7 @@ struct Card {
         }
     }
     
-    static func getSuit(index: Int) -> Suit? {
+    static func indexToSuit(index: Int) -> Suit {
         switch index {
         case 0:
             return Suit.clubs
@@ -44,7 +45,7 @@ struct Card {
         case 3:
             return Suit.spades
         default:
-            return nil
+            return Suit.clubs
         }
     }
     

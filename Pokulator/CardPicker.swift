@@ -17,6 +17,30 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     /// Holds the information for what the cards on the table are
     private var cards = Array<Card?>(repeating: nil, count: 6)
     
+    /// Attempts to modify the card. May reject if the index is out of bounds of [0,6], or is at an index where previous cards have not been set yet
+    ///
+    /// - Parameter index: index for the card
+    /// - Returns: returns whether or not the card is set for editing
+    func setCardIndex(index: Int) -> Bool {
+        if index > 6 || index < 0 {
+            return false
+        } else {
+            for i in 0...index-1 {
+                if cards[i] == nil {
+                    // need to pick previous cards first
+                    return false
+                }
+            }
+            // can edit this card
+            card_index = index
+            return true
+        }
+    }
+    
+    
+    /// Returns the array of cards
+    ///
+    /// - Returns: an array of Cards
     func getCards() -> Array<Card?> {
         return cards
     }
@@ -24,9 +48,15 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
             if var card = cards[card_index] {
-                card.value = row
+                card.value = row + 1
             } else {
-                cards[card_index] = Card(row, suit: 0)
+                cards[card_index] = Card(value: row + 1, suit: Suit.clubs)
+            }
+        } else {
+            if var card = cards[card_index] {
+                card.suit = Card.indexToSuit(index: row)
+            } else {
+                cards[card_index] = Card(value: 1, suit: row)
             }
         }
         
@@ -50,20 +80,20 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
             } else {
                 switch row {
                 case 0:
-                    return "Ace"
+                    return "A"
                 case 10:
-                    return "Jack"
+                    return "J"
                 case 11:
-                    return "Queen"
+                    return "Q"
                 case 12:
-                    return "King"
+                    return "K"
                 default:
                     return nil
                 }
             }
             
         } else {
-            return String(describing: Card.getSuit(index: row))
+            return Card.indexToSuit(index: row).rawValue
         }
     }
 }

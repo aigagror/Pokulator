@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ViewController: UIViewController {
 
     @IBOutlet weak var num_opp_picker: UIPickerView!
     @IBOutlet weak var left_hand: UIButton!
     @IBOutlet var add_card_view: UIView!
     @IBOutlet weak var card_picker_view: UIPickerView!
-    var card_picker = CardPicker()
+    let card_picker = CardPicker()
+    let opponent_picker = OppponentPicker()
     
 //    @IBOutlet weak var visual_effect_view: UIVisualEffectView!
 //    var effect:UIVisualEffect!
@@ -30,19 +31,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var cards = Array<Card?>(repeating: nil, count: 6)
     
     
-    /// Indicates how many opponents there are. Helps determine statistics
-    var num_opponents = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.num_opp_picker.delegate = self
-        self.num_opp_picker.dataSource = self
+        self.num_opp_picker.delegate = self.opponent_picker
+        self.num_opp_picker.dataSource = self.opponent_picker
         
         self.card_picker_view.delegate = self.card_picker
         self.card_picker_view.dataSource = self.card_picker
-        
-        self.num_opponents = num_opp_picker.selectedRow(inComponent: 0)
         
 //        self.effect = self.visual_effect_view.effect
 //        self.visual_effect_view.effect = nil
@@ -85,29 +81,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBAction func turn_tapped(_ sender: Any) {
     }
     @IBAction func river_tapped(_ sender: Any) {
-    }
-    
-    
-    
-    // UIPicker Protocol Stuff...
-    // Number of Components
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    // The number of rows of data
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 9
-    }
-    
-    // The data to return for the row and component (column) that's being passed in
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(row + 1)"
-    }
-    
-    // What to do when user selects something
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.num_opponents = row + 1
     }
 
 

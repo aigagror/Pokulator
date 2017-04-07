@@ -158,35 +158,10 @@
                                     <constraint firstItem="Qfu-O5-GIj" firstAttribute="width" secondItem="i5u-eC-0Xv" secondAttribute="width" id="vkH-Pq-weU"/>
                                 </constraints>
                             </stackView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiI-I2-Vi7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="s9y-tn-fq5">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWQ-uc-OaT">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="Aqu-0a-W9s">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </view>
-                                            <vibrancyEffect>
-                                                <blurEffect style="light"/>
-                                            </vibrancyEffect>
-                                        </visualEffectView>
-                                    </subviews>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="fiI-I2-Vi7" secondAttribute="bottom" id="3Pl-yw-OQF"/>
-                            <constraint firstItem="fiI-I2-Vi7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="872-cr-vTY"/>
-                            <constraint firstAttribute="trailing" secondItem="fiI-I2-Vi7" secondAttribute="trailing" id="Gtf-UI-WYK"/>
                             <constraint firstAttribute="trailing" secondItem="i5u-eC-0Xv" secondAttribute="trailing" constant="20" id="IEu-nc-e2m"/>
-                            <constraint firstItem="fiI-I2-Vi7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ne6-5v-j9M"/>
                             <constraint firstItem="i5u-eC-0Xv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="gH4-sF-oP9"/>
                             <constraint firstItem="9k8-Nb-k38" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kaH-79-TUy"/>
                             <constraint firstAttribute="trailing" secondItem="9k8-Nb-k38" secondAttribute="trailing" id="kyP-Pl-tOS"/>
@@ -198,16 +173,27 @@
                     </view>
                     <connections>
                         <outlet property="add_card_view" destination="2to-ri-LjW" id="XKP-UN-Qsp"/>
+                        <outlet property="card_picker_view" destination="lRB-Qn-4Pn" id="6A3-KC-LWS"/>
                         <outlet property="left_hand" destination="Q4n-kV-EhE" id="QqZ-0n-AoW"/>
                         <outlet property="num_opp_picker" destination="sP5-dj-eUF" id="xHs-tR-om1"/>
-                        <outlet property="visual_effect_view" destination="fiI-I2-Vi7" id="ApD-HD-tLD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="2to-ri-LjW" userLabel="Add Card View">
-                    <rect key="frame" x="0.0" y="0.0" width="265" height="395"/>
+                    <rect key="frame" x="0.0" y="0.0" width="265" height="119"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <subviews>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRB-Qn-4Pn">
+                            <rect key="frame" x="0.0" y="0.0" width="265" height="119"/>
+                        </pickerView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.63401461093498601" green="0.70626268979798945" blue="0.15843269596812401" alpha="0.86025528169014087" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="lRB-Qn-4Pn" secondAttribute="bottom" id="HjQ-ad-SfM"/>
+                        <constraint firstAttribute="trailing" secondItem="lRB-Qn-4Pn" secondAttribute="trailing" id="UzP-Gd-Rub"/>
+                        <constraint firstItem="lRB-Qn-4Pn" firstAttribute="leading" secondItem="2to-ri-LjW" secondAttribute="leading" id="Ydz-FW-7N7"/>
+                        <constraint firstItem="lRB-Qn-4Pn" firstAttribute="top" secondItem="2to-ri-LjW" secondAttribute="top" id="bch-CN-TOT"/>
+                    </constraints>
                 </view>
             </objects>
             <point key="canvasLocation" x="1017" y="72"/>

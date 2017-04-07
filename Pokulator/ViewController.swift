@@ -13,9 +13,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var num_opp_picker: UIPickerView!
     @IBOutlet weak var left_hand: UIButton!
     @IBOutlet var add_card_view: UIView!
-    @IBOutlet weak var visual_effect_view: UIVisualEffectView!
-    var effect:UIVisualEffect!
+    @IBOutlet weak var card_picker_view: UIPickerView!
+    var card_picker = CardPicker()
     
+//    @IBOutlet weak var visual_effect_view: UIVisualEffectView!
+//    var effect:UIVisualEffect!
+//    
     var card_view_array = [UIImageView]()
 
     
@@ -36,10 +39,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         self.num_opp_picker.delegate = self
         self.num_opp_picker.dataSource = self
         
+        self.card_picker_view.delegate = self.card_picker
+        self.card_picker_view.dataSource = self.card_picker
+        
         self.num_opponents = num_opp_picker.selectedRow(inComponent: 0)
         
-        self.effect = self.visual_effect_view.effect
-        self.visual_effect_view.effect = nil
+//        self.effect = self.visual_effect_view.effect
+//        self.visual_effect_view.effect = nil
         self.add_card_view.layer.cornerRadius = 5
         
     }
@@ -52,7 +58,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         add_card_view.alpha = 0
         
         UIView.animate(withDuration: 0.4) {
-            self.visual_effect_view.effect = self.effect
+//            self.visual_effect_view.effect = self.effect
             self.add_card_view.alpha = 1
             self.add_card_view.transform = CGAffineTransform.identity
         }

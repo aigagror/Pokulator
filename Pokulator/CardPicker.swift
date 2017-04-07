@@ -10,6 +10,28 @@ import Foundation
 import UIKit
 
 class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    /// Indicates which card we're on. (0 is left hand, 2 is flop1 and 6 is river)
+    private var card_index = 0
+    
+    /// Holds the information for what the cards on the table are
+    private var cards = Array<Card?>(repeating: nil, count: 6)
+    
+    func getCards() -> Array<Card?> {
+        return cards
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 0 {
+            if var card = cards[card_index] {
+                card.value = row
+            } else {
+                cards[card_index] = Card(row, suit: 0)
+            }
+        }
+        
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
@@ -41,18 +63,7 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
             }
             
         } else {
-            switch row {
-            case 0:
-                return "\(Suit.clubs.rawValue)"
-            case 1:
-                return "\(Suit.diamonds.rawValue)"
-            case 2:
-                return "\(Suit.hearts.rawValue)"
-            case 3:
-                return "\(Suit.spades.rawValue)"
-            default:
-                return nil
-            }
+            return String(describing: Card.getSuit(index: row))
         }
     }
 }

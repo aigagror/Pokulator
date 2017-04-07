@@ -8,11 +8,45 @@
 
 import Foundation
 
-class Card {
+struct Card {
     var value: Int
     var suit: Suit
     init(value v: Int, suit s: Suit) {
         self.value = v
         self.suit = s
     }
+    
+    init(value v: Int, suit s: Int) {
+        self.value = v
+        
+        switch s {
+        case 0:
+            suit =  Suit.clubs
+        case 1:
+            suit =  Suit.diamonds
+        case 2:
+            suit = Suit.hearts
+        case 3:
+            suit = Suit.spades
+        default:
+            suit = Suit.clubs
+        }
+    }
+    
+    static func getSuit(index: Int) -> Suit? {
+        switch index {
+        case 0:
+            return Suit.clubs
+        case 1:
+            return Suit.diamonds
+        case 2:
+            return Suit.hearts
+        case 3:
+            return Suit.spades
+        default:
+            return nil
+        }
+    }
+    
+    
 }

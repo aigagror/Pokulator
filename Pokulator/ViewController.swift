@@ -27,14 +27,6 @@ class ViewController: UIViewController {
         animate_out()
     }
     
-    
-    /// Indicates which card we're on. (0 is left hand, 2 is flop1 and 6 is river)
-    var curr_card_index = 0
-    
-    /// Holds the information for what the cards on the table are
-    var cards = Array<Card?>(repeating: nil, count: 6)
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

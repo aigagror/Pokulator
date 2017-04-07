@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var num_opp_picker: UIPickerView!
     @IBOutlet weak var left_hand: UIButton!
+    @IBOutlet var blur_effect: UIVisualEffectView!
     @IBOutlet var add_card_view: UIView!
     @IBOutlet weak var card_picker_view: UIPickerView!
     let card_picker = CardPicker()
@@ -22,6 +23,9 @@ class ViewController: UIViewController {
 //    
     var card_view_array = [UIImageView]()
 
+    @IBAction func pop_out(_ sender: Any) {
+        animate_out()
+    }
     
     
     /// Indicates which card we're on. (0 is left hand, 2 is flop1 and 6 is river)
@@ -47,8 +51,12 @@ class ViewController: UIViewController {
     }
     
     func animate_in() -> Void {
+        self.view.addSubview(blur_effect)
+        blur_effect.center = self.view.center
+        blur_effect.frame = self.view.frame
         self.view.addSubview(add_card_view)
         add_card_view.center = self.view.center
+        add_card_view.center.y += 50
         
         add_card_view.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         add_card_view.alpha = 0
@@ -58,6 +66,16 @@ class ViewController: UIViewController {
             self.add_card_view.alpha = 1
             self.add_card_view.transform = CGAffineTransform.identity
         }
+    }
+    
+    func animate_out() -> Void {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.add_card_view.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+            self.add_card_view.alpha = 0
+        }, completion: {(success: Bool) in
+            self.add_card_view.removeFromSuperview()
+            self.blur_effect.removeFromSuperview()
+        })
     }
 
     override func didReceiveMemoryWarning() {

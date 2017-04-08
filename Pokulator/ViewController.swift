@@ -11,10 +11,22 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var num_opp_picker: UIPickerView!
-    @IBOutlet weak var left_hand: UIButton!
     @IBOutlet var blur_effect: UIVisualEffectView!
     @IBOutlet var add_card_view: UIView!
     @IBOutlet weak var card_picker_view: UIPickerView!
+    
+    @IBOutlet weak var left_hand: UIButton!
+    @IBOutlet weak var right_hand: UIButton!
+    @IBOutlet weak var flop1: UIButton!
+    @IBOutlet weak var flop2: UIButton!
+    @IBOutlet weak var flop3: UIButton!
+    @IBOutlet weak var turn: UIButton!
+    @IBOutlet weak var river: UIButton!
+
+    var card_button_array = Array<UIButton>()
+    
+    
+    
     let card_picker = CardPicker()
     let opponent_picker = OppponentPicker()
     
@@ -36,10 +48,29 @@ class ViewController: UIViewController {
         self.card_picker_view.delegate = self.card_picker
         self.card_picker_view.dataSource = self.card_picker
         
+        self.card_button_array.append(left_hand)
+        self.card_button_array.append(right_hand)
+        self.card_button_array.append(flop1)
+        self.card_button_array.append(flop2)
+        self.card_button_array.append(flop3)
+        self.card_button_array.append(turn)
+        self.card_button_array.append(river)
+        
 //        self.effect = self.visual_effect_view.effect
 //        self.visual_effect_view.effect = nil
         self.add_card_view.layer.cornerRadius = 5
         
+    }
+    
+    /// Updates the cards on the screen
+    ///
+    /// - Parameter cards: an array of card optionals
+    func updateCards(cards: Array<Card?>) -> Void {
+        for i in 0...6 {
+            if let card = cards[i] {
+                card_button_array[i].setImage(UIImage(named: card.getFilename()), for: UIControlState.normal)
+            }
+        }
     }
     
     func animate_in() -> Void {
@@ -47,6 +78,8 @@ class ViewController: UIViewController {
         blur_effect.center = self.view.center
         blur_effect.frame = self.view.frame
         self.view.addSubview(add_card_view)
+        card_picker_view.selectRow(0, inComponent: 0, animated: true)
+        card_picker_view.selectRow(0, inComponent: 1, animated: true)
         add_card_view.center = self.view.center
         add_card_view.center.y += 50
         
@@ -67,6 +100,7 @@ class ViewController: UIViewController {
         }, completion: {(success: Bool) in
             self.add_card_view.removeFromSuperview()
             self.blur_effect.removeFromSuperview()
+            self.updateCards(cards: self.card_picker.getCards())
         })
     }
 
@@ -77,20 +111,39 @@ class ViewController: UIViewController {
     
     // Card Selection Stuff...
     @IBAction func left_hand_tapped(_ sender: Any) {
-        animate_in()
-        left_hand.setImage(UIImage(named: "2_of_clubs"), for: UIControlState.normal)
+        if card_picker.setCardIndex(index: 0) {
+            animate_in()
+        }
     }
     @IBAction func right_hand_tapped(_ sender: Any) {
+        if card_picker.setCardIndex(index: 1) {
+            animate_in()
+        }
     }
     @IBAction func flop1_tapped(_ sender: Any) {
+        if card_picker.setCardIndex(index: 2) {
+            animate_in()
+        }
     }
     @IBAction func flop2_tapped(_ sender: Any) {
+        if card_picker.setCardIndex(index: 3) {
+            animate_in()
+        }
     }
     @IBAction func flop3_tapped(_ sender: Any) {
+        if card_picker.setCardIndex(index: 4) {
+            animate_in()
+        }
     }
     @IBAction func turn_tapped(_ sender: Any) {
+        if card_picker.setCardIndex(index: 5) {
+            animate_in()
+        }
     }
     @IBAction func river_tapped(_ sender: Any) {
+        if card_picker.setCardIndex(index: 6) {
+            animate_in()
+        }
     }
 
 

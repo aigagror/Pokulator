@@ -49,5 +49,37 @@ struct Card {
         }
     }
     
+    func getFilename() -> String {
+        var valueString: String
+        switch self.value {
+        case 1:
+            valueString = "ace"
+        case 11:
+            valueString = "jack"
+        case 12:
+            valueString = "queen"
+        case 13:
+            valueString = "king"
+        default:
+            valueString = "\(self.value)"
+        }
+        
+        var suitString: String
+        switch self.suit {
+        case Suit.clubs:
+            suitString = "clubs"
+        case Suit.diamonds:
+            suitString = "diamonds"
+        case Suit.hearts:
+            suitString = "hearts"
+        case Suit.spades:
+            suitString = "spades"
+        default: break
+            
+        }
+        
+        return valueString + "_of_" + suitString
+    }
+    
     
 }

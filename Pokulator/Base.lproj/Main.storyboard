@@ -123,7 +123,7 @@
                                                     <constraint firstAttribute="width" secondItem="Ike-At-TcP" secondAttribute="height" multiplier="1:2" id="QaA-XO-2zk"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4n-kV-EhE" userLabel="left hand button">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4n-kV-EhE" userLabel="left hand">
                                                 <rect key="frame" x="78" y="0.0" width="79.5" height="116"/>
                                                 <color key="backgroundColor" red="0.19088001943005184" green="0.19088001943005184" blue="0.19088001943005184" alpha="0.79753521126760563" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -133,7 +133,7 @@
                                                     <action selector="left_hand_tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ihl-F2-lae"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etd-z6-Fi1" userLabel="right hand button">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etd-z6-Fi1" userLabel="right hand">
                                                 <rect key="frame" x="177.5" y="0.0" width="79.5" height="116"/>
                                                 <color key="backgroundColor" red="0.19088001943005184" green="0.19088001943005184" blue="0.19088001943005184" alpha="0.79753521126760563" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -177,8 +177,14 @@
                         <outlet property="add_card_view" destination="2to-ri-LjW" id="XKP-UN-Qsp"/>
                         <outlet property="blur_effect" destination="Xnr-YY-HnX" id="1Uq-kN-coz"/>
                         <outlet property="card_picker_view" destination="lRB-Qn-4Pn" id="6A3-KC-LWS"/>
-                        <outlet property="left_hand" destination="Q4n-kV-EhE" id="QqZ-0n-AoW"/>
+                        <outlet property="flop1" destination="Fs2-mI-Hm7" id="u0f-ma-YH3"/>
+                        <outlet property="flop2" destination="ro0-YB-uqX" id="WdD-KD-vYX"/>
+                        <outlet property="flop3" destination="TI9-wv-5PP" id="TlW-6D-p5O"/>
+                        <outlet property="left_hand" destination="Q4n-kV-EhE" id="RwE-g6-FV6"/>
                         <outlet property="num_opp_picker" destination="sP5-dj-eUF" id="xHs-tR-om1"/>
+                        <outlet property="right_hand" destination="etd-z6-Fi1" id="7tM-Jx-zgf"/>
+                        <outlet property="river" destination="IQL-dL-swr" id="HkX-Pj-KKg"/>
+                        <outlet property="turn" destination="CSe-Pe-b9B" id="aLi-5b-i6m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

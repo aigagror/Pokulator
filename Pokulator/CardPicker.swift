@@ -15,7 +15,7 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     private var card_index = 0
     
     /// Holds the information for what the cards on the table are
-    private var cards = Array<Card?>(repeating: nil, count: 6)
+    private var cards = Array<Card?>(repeating: nil, count: 7)
     
     /// Attempts to modify the card. May reject if the index is out of bounds of [0,6], or is at an index where previous cards have not been set yet
     ///
@@ -25,14 +25,22 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         if index > 6 || index < 0 {
             return false
         } else {
-            for i in 0...index-1 {
-                if cards[i] == nil {
-                    // need to pick previous cards first
-                    return false
+            if index > 0 {
+                for i in 0...index - 1 {
+                    if cards[i] == nil {
+                        // need to pick previous cards first
+                        return false
+                    }
                 }
             }
+            
             // can edit this card
             card_index = index
+            
+            // set the default card (Ace of clubs) if there is none
+            if cards[index] == nil {
+                cards[index] = Card(value: 1, suit: Suit.clubs)
+            }
             return true
         }
     }
@@ -47,14 +55,14 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
-            if var card = cards[card_index] {
-                card.value = row + 1
+            if cards[card_index] != nil {
+                cards[card_index]!.value = row + 1
             } else {
                 cards[card_index] = Card(value: row + 1, suit: Suit.clubs)
             }
         } else {
-            if var card = cards[card_index] {
-                card.suit = Card.indexToSuit(index: row)
+            if cards[card_index] != nil {
+                cards[card_index]!.suit = Card.indexToSuit(index: row)
             } else {
                 cards[card_index] = Card(value: 1, suit: row)
             }

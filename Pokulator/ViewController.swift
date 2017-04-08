@@ -23,16 +23,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var turn: UIButton!
     @IBOutlet weak var river: UIButton!
 
-    var card_button_array = Array<UIButton>()
-    
+    private var card_button_array = Array<UIButton>()
     
     
     let card_picker = CardPicker()
     let opponent_picker = OppponentPicker()
     
-//    @IBOutlet weak var visual_effect_view: UIVisualEffectView!
-//    var effect:UIVisualEffect!
-//    
     var card_view_array = [UIImageView]()
 
     @IBAction func pop_out(_ sender: Any) {
@@ -42,12 +38,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Setting up the picker views
         self.num_opp_picker.delegate = self.opponent_picker
         self.num_opp_picker.dataSource = self.opponent_picker
         
         self.card_picker_view.delegate = self.card_picker
         self.card_picker_view.dataSource = self.card_picker
         
+        // Setting up card buttons
         self.card_button_array.append(left_hand)
         self.card_button_array.append(right_hand)
         self.card_button_array.append(flop1)
@@ -56,8 +55,7 @@ class ViewController: UIViewController {
         self.card_button_array.append(turn)
         self.card_button_array.append(river)
         
-//        self.effect = self.visual_effect_view.effect
-//        self.visual_effect_view.effect = nil
+        // A little aesthetic stuff to the add card view
         self.add_card_view.layer.cornerRadius = 5
         
     }
@@ -73,6 +71,7 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Animates in the card picker view
     func animate_in() -> Void {
         self.view.addSubview(blur_effect)
         blur_effect.center = self.view.center
@@ -87,12 +86,12 @@ class ViewController: UIViewController {
         add_card_view.alpha = 0
         
         UIView.animate(withDuration: 0.4) {
-//            self.visual_effect_view.effect = self.effect
             self.add_card_view.alpha = 1
             self.add_card_view.transform = CGAffineTransform.identity
         }
     }
     
+    /// Animates out the card picker view
     func animate_out() -> Void {
         UIView.animate(withDuration: 0.3, animations: {
             self.add_card_view.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)

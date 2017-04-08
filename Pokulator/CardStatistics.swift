@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+class CardStatistics {
+    var cards = [Card?]()
+}

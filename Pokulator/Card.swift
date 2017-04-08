@@ -74,11 +74,15 @@ struct Card {
             suitString = "hearts"
         case Suit.spades:
             suitString = "spades"
-        default: break
-            
+        default:
+            break
         }
         
         return valueString + "_of_" + suitString
+    }
+    
+    static func ==(lhs: Card, rhs: Card) -> Bool {
+        return lhs.value == rhs.value && lhs.suit == rhs.suit
     }
     
     

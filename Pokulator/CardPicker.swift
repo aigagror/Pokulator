@@ -37,9 +37,12 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
             // can edit this card
             card_index = index
             
-            // set the default card (Ace of clubs) if there is none
+            // set the default card (Ace of clubs) if there is none and if it's available
             if cards[index] == nil {
-                cards[index] = Card(value: 1, suit: Suit.clubs)
+                let card = Card(value: 1, suit: Suit.clubs)
+                if cardIsAvailable(card: card) {
+                    cards[index] = card
+                }
             }
             return true
         }
@@ -53,18 +56,43 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         return cards
     }
     
+    func cardIsAvailable(card: Card) -> Bool {
+        for c in cards {
+            if let cd = c {
+                if cd == card {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
             if cards[card_index] != nil {
-                cards[card_index]!.value = row + 1
+                var card = cards[card_index]!
+                card.value = row + 1
+                if cardIsAvailable(card: card) {
+                    cards[card_index] = card
+                }
             } else {
-                cards[card_index] = Card(value: row + 1, suit: Suit.clubs)
+                let card = Card(value: row + 1, suit: Suit.clubs)
+                if cardIsAvailable(card: card) {
+                    cards[card_index] = card
+                }
             }
         } else {
             if cards[card_index] != nil {
-                cards[card_index]!.suit = Card.indexToSuit(index: row)
+                var card = cards[card_index]!
+                card.suit = Card.indexToSuit(index: row)
+                if cardIsAvailable(card: card) {
+                    cards[card_index] = card
+                }
             } else {
-                cards[card_index] = Card(value: 1, suit: row)
+                let card = Card(value: 1, suit: row)
+                if cardIsAvailable(card: card) {
+                    cards[card_index] = card
+                }
             }
         }
         

@@ -9,5 +9,13 @@
 import Foundation
 
 class CardStatistics {
-    var cards = [Card?]()
+    var cards: [Card?]
+    
+    init(cards: [Card?]) {
+        self.cards = cards
+    }
+    
+    func <#name#>(<#parameters#>) -> <#return type#> {
+        <#function body#>
+    }
 }

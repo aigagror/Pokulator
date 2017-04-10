@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0C4D811E9B1769009CD60A /* Hands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C4D801E9B1769009CD60A /* Hands.swift */; };
 		2C4C2EB81E95DE1C0073A377 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EB71E95DE1C0073A377 /* Card.swift */; };
 		2C4C2EBA1E95DFDF0073A377 /* Suits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EB91E95DFDF0073A377 /* Suits.swift */; };
 		2C4C2EBC1E95E2000073A377 /* CardStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EBB1E95E2000073A377 /* CardStatistics.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C0C4D801E9B1769009CD60A /* Hands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hands.swift; sourceTree = "<group>"; };
 		2C4C2EB71E95DE1C0073A377 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2C4C2EB91E95DFDF0073A377 /* Suits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suits.swift; sourceTree = "<group>"; };
 		2C4C2EBB1E95E2000073A377 /* CardStatistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStatistics.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				2C4C2EBE1E9751E80073A377 /* CardPicker.swift */,
+				2C0C4D801E9B1769009CD60A /* Hands.swift */,
 				2C4C2EB71E95DE1C0073A377 /* Card.swift */,
 				2C4C2EBB1E95E2000073A377 /* CardStatistics.swift */,
 				2C4C2EB91E95DFDF0073A377 /* Suits.swift */,
@@ -184,6 +187,7 @@
 				2C50606B1E9341A600B0D6DA /* ViewController.swift in Sources */,
 				2C4C2EBF1E9751E80073A377 /* CardPicker.swift in Sources */,
 				2C55BF971E98AE4E00C8CE87 /* Factorial.swift in Sources */,
+				2C0C4D811E9B1769009CD60A /* Hands.swift in Sources */,
 				2C55BF9F1E98AF5900C8CE87 /* Rational.swift in Sources */,
 				2C55BF9B1E98AEC200C8CE87 /* Factors.swift in Sources */,
 				2C4C2EB81E95DE1C0073A377 /* Card.swift in Sources */,

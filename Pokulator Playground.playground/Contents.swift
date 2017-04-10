@@ -1,104 +1,45 @@
-//: Playground - noun: a place where people can play
-
-//
-//  Card.swift
-//  Pokulator
-//
-//  Created by Edward Huang on 4/5/17.
-//  Copyright © 2017 Eddie Huang. All rights reserved.
-//
-
-
 import Foundation
 
-enum Suit: String {
-    case spades = "♠"
-    case hearts = "♥️"
-    case diamonds = "♦"
-    case clubs = "♣"
-}
-
-
-struct Card {
-    /// The value of the Card [1,13]
-    var value: Int
-    var suit: Suit
-    init(value v: Int, suit s: Suit) {
-        self.value = v
-        self.suit = s
-    }
-    
-    init(value v: Int, suit s: Int) {
-        self.value = v
-        
-        switch s {
-        case 0:
-            suit =  Suit.clubs
-        case 1:
-            suit =  Suit.diamonds
-        case 2:
-            suit = Suit.hearts
-        case 3:
-            suit = Suit.spades
-        default:
-            suit = Suit.clubs
-        }
-    }
-    
-    static func indexToSuit(index: Int) -> Suit {
-        switch index {
-        case 0:
-            return Suit.clubs
-        case 1:
-            return Suit.diamonds
-        case 2:
-            return Suit.hearts
-        case 3:
-            return Suit.spades
-        default:
-            return Suit.clubs
-        }
-    }
-    
-    func getFilename() -> String {
-        var valueString: String
-        switch self.value {
-        case 1:
-            valueString = "ace"
-        case 11:
-            valueString = "jack"
-        case 12:
-            valueString = "queen"
-        case 13:
-            valueString = "king"
-        default:
-            valueString = "\(self.value)"
-        }
-        
-        var suitString: String
-        switch self.suit {
-        case Suit.clubs:
-            suitString = "clubs"
-        case Suit.diamonds:
-            suitString = "diamonds"
-        case Suit.hearts:
-            suitString = "hearts"
-        case Suit.spades:
-            suitString = "spades"
-        default:
-            break
-        }
-        
-        return valueString + "_of_" + suitString
-    }
-    
-    static func ==(lhs: Card, rhs: Card) -> Bool {
-        return lhs.value == rhs.value && lhs.suit == rhs.suit
-    }
-    
+struct Factors {
     
 }
 
-let a = Card.init(value: 4, suit: 2)
-let b = Card.init(value: 5, suit: 2)
-a == b
+
+struct Binomial {
+    var n: Int
+    var choose: Int
+    init(n: Int, choose: Int) {
+        self.n = n
+        self.choose = choose
+    }
+    
+    func _toDouble() -> Double {
+        return 10.0/5.0
+    }
+}
+
+
+func primes(_ input:Int) -> [Int]
+{
+    var n = input
+    var answer:[Int] = []
+    var z = 2
+    
+    while z * z <= n {
+        if (n % z == 0) {
+            answer.append(z)
+            n /= z
+        }
+        else {
+            z += 1
+        }
+    }
+    if n > 1 {
+        answer.append(n)
+    }
+    return answer
+}
+
+primes(15)
+
+

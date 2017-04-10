@@ -33,32 +33,37 @@ enum Hand: Hashable {
     
     case highCard(Int,Int,Int,Int,Int)
     
-    
     // Conforming to the hash protocol
     var hashValue: Int {
         //Hands prime numbers: 53, 59, 61, 67, 71, 73, 79, 83, 89
         
+        //Card value prime numbers: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41
+        
+        let cvp = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41]
+        
+        
         switch self {
         case .highCard(let c1, let c2, let c3, let c4, let c5):
-            return 53 * c1.hashValue * c2.hashValue * c3.hashValue * c4.hashValue * c5.hashValue
+            return 53 * cvp[c1-1] * cvp[c2-1] * cvp[c3-1] * cvp[c4-1] * cvp[c5-1]
         case .onePair(let c1, let c2, let c3, let c4):
-            return 59 * c1.hashValue * c2.hashValue * c3.hashValue * c4.hashValue
+            return 59 * cvp[c1-1] * cvp[c2-1] * cvp[c3-1] * cvp[c4-1]
         case .twoPair(let c1, let c2, let c3):
-            return 61 * c1.hashValue * c2.hashValue * c3.hashValue
+            return 61 * cvp[c1-1] * cvp[c2-1] * cvp[c3-1]
         case .threeOfAKind(let c1):
-            return 67 * c1.hashValue
+            return 67 * cvp[c1-1]
         case .straight(let c1):
-            return 71 * c1.hashValue
+            return 71 * cvp[c1-1]
         case .flush(let c1, let c2, let c3, let c4, let c5):
-            return 73 * c1.hashValue * c2.hashValue * c3.hashValue * c4.hashValue * c5.hashValue
+            return 73 * cvp[c1-1] * cvp[c2-1] * cvp[c3-1] * cvp[c4-1] * cvp[c5-1]
         case .fullHouse(let c1):
-            return 79 * c1.hashValue
+            return 79 * cvp[c1-1]
         case .fourOfAKind(let c1):
-            return 83 * c1.hashValue
+            return 83 * cvp[c1-1]
         case .straight(let c1):
-            return 89 * c1.hashValue
+            return 89 * cvp[c1-1]
         default:
             return 0
+            print("Error in Hand hash value")
         }
     }
     static func ==(lhs: Hand, rhs: Hand) -> Bool {

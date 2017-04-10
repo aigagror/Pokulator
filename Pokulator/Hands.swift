@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum Hand {
+enum Hand: Hashable {
     
     //Includes the royal flush
     case straightFlush(Card)
     
-    case fourtOfAKind(Card)
+    case fourOfAKind(Card)
     
     //Highest 3 matching cards win
     case fullHouse(Card)
@@ -33,4 +33,35 @@ enum Hand {
     
     case highCard(Card,Card,Card,Card,Card)
     
+    
+    // Conforming to the hash protocol
+    var hashValue: Int {
+        //Hands prime numbers: 53, 59, 61, 67, 71, 73, 79, 83, 89
+        
+        switch self {
+        case .highCard(let c1, let c2, let c3, let c4, let c5):
+            return 53 * c1.hashValue * c2.hashValue * c3.hashValue * c4.hashValue * c5.hashValue
+        case .onePair(let c1, let c2, let c3, let c4):
+            return 59 * c1.hashValue * c2.hashValue * c3.hashValue * c4.hashValue
+        case .twoPair(let c1, let c2, let c3):
+            return 61 * c1.hashValue * c2.hashValue * c3.hashValue
+        case .threeOfAKind(let c1):
+            return 67 * c1.hashValue
+        case .straight(let c1):
+            return 71 * c1.hashValue
+        case .flush(let c1, let c2, let c3, let c4, let c5):
+            return 73 * c1.hashValue * c2.hashValue * c3.hashValue * c4.hashValue * c5.hashValue
+        case .fullHouse(let c1):
+            return 79 * c1.hashValue
+        case .fourOfAKind(let c1):
+            return 83 * c1.hashValue
+        case .straight(let c1):
+            return 89 * c1.hashValue
+        default:
+            return 0
+        }
+    }
+    static func ==(lhs: Hand, rhs: Hand) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
 }

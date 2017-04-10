@@ -8,14 +8,17 @@
 
 import Foundation
 
-class CardStatistics {
-    var cards: [Card?]
-    
-    init(cards: [Card?]) {
-        self.cards = cards
-    }
-    
-    func <#name#>(<#parameters#>) -> <#return type#> {
-        <#function body#>
-    }
+
+/// Gives a summary of how good the hand is
+///
+/// - Parameter cards: cards that are known so far
+/// - Returns: an array of keys of all possible hands along with their probabilities
+func cardStatistics(cards: [Card?]) -> [Hand : Double] {
+    <#function body#>
+}
+
+
+
+func handProbability(cards: [Card?], hand: Hand) -> Double {
+    <#function body#>
 }

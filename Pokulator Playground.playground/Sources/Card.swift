@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Card: Hashable {
+public struct Card {
     /// The value of the Card [1,13]
     var value: Int
     var suit: Suit
@@ -17,7 +17,7 @@ struct Card: Hashable {
         self.suit = s
     }
     
-    init(value v: Int, suit s: Int) {
+    public init(value v: Int, suit s: Int) {
         self.value = v
         
         switch s {
@@ -81,24 +81,9 @@ struct Card: Hashable {
         return valueString + "_of_" + suitString
     }
     
-    
-    //Conforming to the hash protocol
-    var hashValue: Int {
-        switch suit {
-        case .clubs:
-            return 1 * value
-        case .diamonds:
-            return 2 * value
-        case .hearts:
-            return 3 * value
-        case .spades:
-            return 4 * value
-        default:
-            return -1
-        }
-    }
     static func ==(lhs: Card, rhs: Card) -> Bool {
         return lhs.value == rhs.value && lhs.suit == rhs.suit
     }
+    
     
 }

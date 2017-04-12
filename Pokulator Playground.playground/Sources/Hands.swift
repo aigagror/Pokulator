@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Hand: Hashable {
+public enum Hand: Hashable {
     
     //Includes the royal flush
     case straightFlush(Int)
@@ -34,7 +34,7 @@ enum Hand: Hashable {
     case highCard(Int,Int,Int,Int,Int)
     
     // Conforming to the hash protocol
-    var hashValue: Int {
+    public var hashValue: Int {
         //Hands prime numbers: 53, 59, 61, 67, 71, 73, 79, 83, 89
         
         //Card value prime numbers: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41
@@ -66,7 +66,7 @@ enum Hand: Hashable {
             print("Error in Hand hash value")
         }
     }
-    static func ==(lhs: Hand, rhs: Hand) -> Bool {
+    public static func ==(lhs: Hand, rhs: Hand) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
 }

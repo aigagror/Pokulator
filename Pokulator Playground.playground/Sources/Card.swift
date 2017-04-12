@@ -10,9 +10,9 @@ import Foundation
 
 public struct Card {
     /// The value of the Card [1,13]
-    var value: Int
-    var suit: Suit
-    init(value v: Int, suit s: Suit) {
+    public var value: Int
+    public var suit: Suit
+    public init(value v: Int, suit s: Suit) {
         self.value = v
         self.suit = s
     }

@@ -1,82 +1,63 @@
 import Foundation
 
-enum Hand {
+func hasAStraightFlush(cards: [Card?]) -> Int? {
+    //Check if five of the cards are of the same suit
     
-    //Includes the royal flush
-    case straightFlush(Card)
+    var suitCount = [Suit.clubs : 0, Suit.diamonds : 0, Suit.hearts : 0, Suit.spades : 0]
     
-    case fourtOfAKind(Card)
-    
-    //Highest 3 matching cards win
-    case fullHouse(Card)
-    
-    //The player holding the highest ranked card wins. If necessary, the second-highest, third-highest, fourth-highest, and fifth-highest cards can be used to break the tie. If all five cards are the same ranks, the pot is split.
-    case flush(Card,Card,Card,Card,Card)
-    
-    case straight(Card)
-    
-    case threeOfAKind(Card)
-    
-    //Highest pair wins. If players have the same highest pair, highest second pair wins. If both players have two identical pairs, highest side card wins.
-    case twoPair(Card, Card, Card)
-    
-    //Highest pair wins. If players have the same pair, the highest side card wins, and if necessary, the second-highest and third-highest side card can be used to break the tie.
-    case onePair(Card, Card, Card, Card)
-    
-    case highCard(Card,Card,Card,Card,Card)
-    
-    func test() -> Void {
-        switch self {
-        case .fourtOfAKind(let card):
-            print(3)
-        case .straight(let card):
-            print(1)
-        case .fullHouse(let card):
-            print(2)
-        default:
-            print("hi")
+    for card in cards {
+        if let c = card {
+            suitCount[c.suit]! += 1
         }
     }
-}
-
-let card = Card(value: 1, suit: 1)
-let hand = Hand.fourtOfAKind(card)
-hand.test()
-struct Binomial {
-    var n: Int
-    var choose: Int
-    init(n: Int, choose: Int) {
-        self.n = n
-        self.choose = choose
-    }
     
-    func _toDouble() -> Double {
-        return 10.0/5.0
-    }
-}
-
-
-func primes(_ input:Int) -> [Int]
-{
-    var n = input
-    var answer:[Int] = []
-    var z = 2
-    
-    while z * z <= n {
-        if (n % z == 0) {
-            answer.append(z)
-            n /= z
-        }
-        else {
-            z += 1
+    var possibleSuit: Suit? = nil
+    for (suit, count) in suitCount {
+        if count >= 5 {
+            possibleSuit = suit
         }
     }
-    if n > 1 {
-        answer.append(n)
+    
+    if possibleSuit == nil {
+        return nil
     }
-    return answer
+    let validSuit = possibleSuit!
+    
+    //Check if those five cards are a straight
+    var values = [Int]()
+    for card in cards {
+        if let c = card {
+            if c.suit == validSuit {
+                values.append(c.value)
+            }
+        }
+    }
+    assert(values.count >= 5)
+    values.sort()
+    for i in (4...values.count - 1).reversed() {
+        var isStraight = true
+        for j in i-4...i-1 {
+            if values[j+1] - values[j] != 1{
+                isStraight = false
+                break
+            }
+        }
+        if isStraight {
+            return values[i]
+        }
+    }
+    return nil
 }
+let c1 = Card(value: 1,suit: Suit.clubs)
+let c2 = Card(value: 2,suit: Suit.spades)
+let c3 = Card(value: 3,suit: Suit.clubs)
+let c4 = Card(value: 4,suit: Suit.clubs)
+let c5 = Card(value: 5,suit: Suit.hearts)
+let c6 = Card(value: 6,suit: Suit.clubs)
+let c7 = Card(value: 7,suit: Suit.diamonds)
+let cards = [c2,c1,c4,c3,c7,c6,c5]
 
-primes(15)
+hasAStraightFlush(cards: cards)
+
 
 

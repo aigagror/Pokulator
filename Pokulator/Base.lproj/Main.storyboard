@@ -149,6 +149,9 @@
                                                     <constraint firstAttribute="width" secondItem="2Uf-ay-eoe" secondAttribute="height" multiplier="1:2" id="D0t-LM-XS5"/>
                                                 </constraints>
                                                 <state key="normal" title="Reset"/>
+                                                <connections>
+                                                    <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C2a-ro-yRM"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

@@ -17,12 +17,23 @@
 		2C50606E1E9341A600B0D6DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C50606C1E9341A600B0D6DA /* Main.storyboard */; };
 		2C5060701E9341A600B0D6DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C50606F1E9341A600B0D6DA /* Assets.xcassets */; };
 		2C5060731E9341A600B0D6DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C5060711E9341A600B0D6DA /* LaunchScreen.storyboard */; };
+		2C510CB71E9DCF75006AEC26 /* PokulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CB61E9DCF75006AEC26 /* PokulatorTests.swift */; };
 		2C55BF951E98AE1000C8CE87 /* Binomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF941E98AE1000C8CE87 /* Binomial.swift */; };
 		2C55BF971E98AE4E00C8CE87 /* Factorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF961E98AE4E00C8CE87 /* Factorial.swift */; };
 		2C55BF9B1E98AEC200C8CE87 /* Factors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF9A1E98AEC200C8CE87 /* Factors.swift */; };
 		2C55BF9D1E98AF1E00C8CE87 /* OpponentsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF9C1E98AF1E00C8CE87 /* OpponentsPicker.swift */; };
 		2C55BF9F1E98AF5900C8CE87 /* Rational.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF9E1E98AF5900C8CE87 /* Rational.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2C510CB91E9DCF75006AEC26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C50605D1E9341A600B0D6DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C5060641E9341A600B0D6DA;
+			remoteInfo = Pokulator;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2C0C4D801E9B1769009CD60A /* Hands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hands.swift; sourceTree = "<group>"; };
@@ -37,6 +48,9 @@
 		2C50606F1E9341A600B0D6DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C5060721E9341A600B0D6DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C5060741E9341A600B0D6DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C510CB41E9DCF75006AEC26 /* PokulatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokulatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C510CB61E9DCF75006AEC26 /* PokulatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokulatorTests.swift; sourceTree = "<group>"; };
+		2C510CB81E9DCF75006AEC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C55BF941E98AE1000C8CE87 /* Binomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binomial.swift; sourceTree = "<group>"; };
 		2C55BF961E98AE4E00C8CE87 /* Factorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factorial.swift; sourceTree = "<group>"; };
 		2C55BF9A1E98AEC200C8CE87 /* Factors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factors.swift; sourceTree = "<group>"; };
@@ -46,6 +60,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		2C5060621E9341A600B0D6DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C510CB11E9DCF75006AEC26 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -71,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				2C5060671E9341A600B0D6DA /* Pokulator */,
+				2C510CB51E9DCF75006AEC26 /* PokulatorTests */,
 				2C5060661E9341A600B0D6DA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				2C5060651E9341A600B0D6DA /* Pokulator.app */,
+				2C510CB41E9DCF75006AEC26 /* PokulatorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,6 +120,15 @@
 				2C5060741E9341A600B0D6DA /* Info.plist */,
 			);
 			path = Pokulator;
+			sourceTree = "<group>";
+		};
+		2C510CB51E9DCF75006AEC26 /* PokulatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				2C510CB61E9DCF75006AEC26 /* PokulatorTests.swift */,
+				2C510CB81E9DCF75006AEC26 /* Info.plist */,
+			);
+			path = PokulatorTests;
 			sourceTree = "<group>";
 		};
 		2C55BF931E98ADF600C8CE87 /* Math */ = {
@@ -130,6 +162,24 @@
 			productReference = 2C5060651E9341A600B0D6DA /* Pokulator.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2C510CB31E9DCF75006AEC26 /* PokulatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C510CBD1E9DCF75006AEC26 /* Build configuration list for PBXNativeTarget "PokulatorTests" */;
+			buildPhases = (
+				2C510CB01E9DCF75006AEC26 /* Sources */,
+				2C510CB11E9DCF75006AEC26 /* Frameworks */,
+				2C510CB21E9DCF75006AEC26 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C510CBA1E9DCF75006AEC26 /* PBXTargetDependency */,
+			);
+			name = PokulatorTests;
+			productName = PokulatorTests;
+			productReference = 2C510CB41E9DCF75006AEC26 /* PokulatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -144,6 +194,12 @@
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = FB436C8524;
 						ProvisioningStyle = Automatic;
+					};
+					2C510CB31E9DCF75006AEC26 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = FB436C8524;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2C5060641E9341A600B0D6DA;
 					};
 				};
 			};
@@ -161,6 +217,7 @@
 			projectRoot = "";
 			targets = (
 				2C5060641E9341A600B0D6DA /* Pokulator */,
+				2C510CB31E9DCF75006AEC26 /* PokulatorTests */,
 			);
 		};
 /* End PBXProject section */
@@ -173,6 +230,13 @@
 				2C5060731E9341A600B0D6DA /* LaunchScreen.storyboard in Resources */,
 				2C5060701E9341A600B0D6DA /* Assets.xcassets in Resources */,
 				2C50606E1E9341A600B0D6DA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C510CB21E9DCF75006AEC26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,7 +262,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2C510CB01E9DCF75006AEC26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C510CB71E9DCF75006AEC26 /* PokulatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2C510CBA1E9DCF75006AEC26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C5060641E9341A600B0D6DA /* Pokulator */;
+			targetProxy = 2C510CB91E9DCF75006AEC26 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2C50606C1E9341A600B0D6DA /* Main.storyboard */ = {
@@ -341,6 +421,34 @@
 			};
 			name = Release;
 		};
+		2C510CBB1E9DCF75006AEC26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = FB436C8524;
+				INFOPLIST_FILE = PokulatorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aigagror.PokulatorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokulator.app/Pokulator";
+			};
+			name = Debug;
+		};
+		2C510CBC1E9DCF75006AEC26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = FB436C8524;
+				INFOPLIST_FILE = PokulatorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aigagror.PokulatorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokulator.app/Pokulator";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -361,6 +469,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		2C510CBD1E9DCF75006AEC26 /* Build configuration list for PBXNativeTarget "PokulatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C510CBB1E9DCF75006AEC26 /* Debug */,
+				2C510CBC1E9DCF75006AEC26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

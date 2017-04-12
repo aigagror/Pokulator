@@ -14,7 +14,7 @@ import Foundation
 /// - Parameter cards: cards that are known so far
 /// - Returns: an array of keys of all possible hands along with their probabilities
 func cardStatistics(cards: [Card?]) -> [Hand : Double] {
-    <#function body#>
+    return [:]
 }
 
 
@@ -23,7 +23,7 @@ func cardStatistics(cards: [Card?]) -> [Hand : Double] {
 /// - Parameter cards: cards known
 /// - Returns: current best hand
 func getCurrentKnownHand(cards: [Card?]) -> Hand {
-    <#function body#>
+    return Hand.fullHouse(0)
 }
 
 
@@ -123,25 +123,25 @@ func hasAFullHouse(cards: [Card?]) -> Int? {
     }
 }
 
-func hasAFlush(cards: [Card?]) -> Bool {
-    <#function body#>
-}
-
-func hasAStraight(cards: [Card?]) -> Bool {
-    <#function body#>
-}
-
-func hasAThreeOfAKind(cards: [Card?]) -> Bool {
-    <#function body#>
-}
-
-func hasATwoPair(cards: [Card?]) -> Bool {
-    <#function body#>
-}
-
-func hasAOnePair(cards: [Card?]) -> Bool {
-    <#function body#>
-}
+//func hasAFlush(cards: [Card?]) -> Bool {
+//    <#function body#>
+//}
+//
+//func hasAStraight(cards: [Card?]) -> Bool {
+//    <#function body#>
+//}
+//
+//func hasAThreeOfAKind(cards: [Card?]) -> Bool {
+//    <#function body#>
+//}
+//
+//func hasATwoPair(cards: [Card?]) -> Bool {
+//    <#function body#>
+//}
+//
+//func hasAOnePair(cards: [Card?]) -> Bool {
+//    <#function body#>
+//}
 
 
 /// Gives the probability that the set of cards will become some version of the hand specified
@@ -169,17 +169,18 @@ func handProbability(cards: [Card?], hand: Int) -> Double {
             }
         }
         //cards are distinct. 
+        return -1
         
         
         
     default: //straight flush
-        <#code#>
+        return -1
     }
 }
 
 
 func probabilityOfOnePair(cards: [Card?]) -> Double {
-    
+    return -1
 }
 
 func numberOfKnownCards(cards: [Card?]) -> Int {
@@ -191,6 +192,7 @@ func numberOfKnownCards(cards: [Card?]) -> Int {
             return count
         }
     }
+    return count
 }
 
 func differentValues(from cards: [Card?]) -> [Int] {

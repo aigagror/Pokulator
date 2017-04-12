@@ -34,6 +34,10 @@ class ViewController: UIViewController {
     @IBAction func pop_out(_ sender: Any) {
         animate_out()
     }
+    @IBAction func reset(_ sender: Any) {
+        card_picker.reset()
+        updateCards()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,10 +67,13 @@ class ViewController: UIViewController {
     /// Updates the cards on the screen
     ///
     /// - Parameter cards: an array of card optionals
-    func updateCards(cards: Array<Card?>) -> Void {
+    func updateCards() -> Void {
+        let cards = card_picker.getCards()
         for i in 0...6 {
             if let card = cards[i] {
                 card_button_array[i].setImage(UIImage(named: card.getFilename()), for: UIControlState.normal)
+            } else {
+                card_button_array[i].setImage(nil, for: UIControlState.normal)
             }
         }
     }
@@ -99,7 +106,7 @@ class ViewController: UIViewController {
         }, completion: {(success: Bool) in
             self.add_card_view.removeFromSuperview()
             self.blur_effect.removeFromSuperview()
-            self.updateCards(cards: self.card_picker.getCards())
+            self.updateCards()
         })
     }
 

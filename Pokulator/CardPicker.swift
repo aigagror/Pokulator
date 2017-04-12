@@ -56,6 +56,14 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         return cards
     }
     
+    /// Resets the cards
+    func reset() -> Void {
+        card_index = 0
+        for i in 0...6 {
+            cards[i] = nil
+        }
+    }
+    
     func cardIsAvailable(card: Card) -> Bool {
         for c in cards {
             if let cd = c {

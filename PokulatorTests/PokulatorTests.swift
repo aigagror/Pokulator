@@ -18,7 +18,7 @@ class PokulatorTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        //Initializing card reference for easy access
+        //Initializing card reference for easy access. Indexed at 1 for clarity :)
         var card_ref = Array<Array<Card>>(repeating: Array<Card>(repeating: Card(value: 1, suit: .clubs), count: 4), count: 14)
         for i in 1...13 {
             for j in 0...3 {
@@ -28,7 +28,7 @@ class PokulatorTests: XCTestCase {
         
         var straightFlushTestCards = [[Card?]]()
         let sftc1 = [card_ref[3][0], card_ref[2][0], card_ref[5][0], card_ref[4][0], card_ref[6][0]]
-        let sftc2 = [card_ref[12][0], card_ref[0][0], card_ref[11][0], card_ref[10][0], card_ref[9][0]]
+        let sftc2 = [card_ref[12][0], card_ref[1][0], card_ref[11][0], card_ref[10][0], card_ref[13][0]]
         
         straightFlushTestCards.append(sftc1)
         straightFlushTestCards.append(sftc2)

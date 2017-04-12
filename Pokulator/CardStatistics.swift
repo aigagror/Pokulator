@@ -76,12 +76,51 @@ func hasAStraightFlush(cards: [Card?]) -> Int? {
     return nil
 }
 
-func hasAFourOfAKind(cards: [Card?]) -> Bool {
-    <#function body#>
+func hasAFourOfAKind(cards: [Card?]) -> Int? {
+    var valuesCount = Array<Int>(repeating: 0, count: 13)
+    for card in cards {
+        if let c = card {
+            valuesCount[c.value-1] += 1
+        }
+    }
+    for i in 0...12 {
+        if valuesCount[i] >= 4 {
+            return i+1
+        }
+    }
+    return nil
 }
 
-func hasAFullHouse(cards: [Card?]) -> Bool {
-    <#function body#>
+func hasAFullHouse(cards: [Card?]) -> Int? {
+    var valuesCount = Array<Int>(repeating: 0, count: 13)
+    for card in cards {
+        if let c = card {
+            valuesCount[c.value-1] += 1
+        }
+    }
+    var has3OfAKind: Int? = nil
+    var hasAPair: Int? = nil
+    for i in 0...12 {
+        if valuesCount[i] >= 3 {
+            if has3OfAKind != nil {
+                if i+1 > has3OfAKind! {
+                    hasAPair = has3OfAKind
+                    has3OfAKind = i+1
+                } else {
+                    hasAPair = i+1
+                }
+            } else {
+                has3OfAKind = i+1
+            }
+        } else if valuesCount[i] >= 2 {
+            hasAPair = i+1
+        }
+    }
+    if has3OfAKind != nil && hasAPair != nil {
+        return has3OfAKind
+    } else {
+        return nil
+    }
 }
 
 func hasAFlush(cards: [Card?]) -> Bool {

@@ -9,10 +9,10 @@
 import Foundation
 
 
-/// Returns the best known hand guaranteed based on the current state of the cards
+/// Returns the best known generic hand based on the current state of the cards
 ///
 /// - Parameter cards: cards known
-/// - Returns: current best hand
+/// - Returns: current generic hand
 func getCurrentKnownHand(cards: [Card?]) -> GenericHand {
     if hasAStraightFlush(cards: cards) != nil {
         return .straightFlush
@@ -35,6 +35,10 @@ func getCurrentKnownHand(cards: [Card?]) -> GenericHand {
     }
 }
 
+/// Returns the hand of the cards
+///
+/// - Parameter cards: all seven cards
+/// - Returns: the hand
 func getHand(cards: [Card]) -> Hand {
     if let sf = hasAStraightFlush(cards: cards) {
         return sf

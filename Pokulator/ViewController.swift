@@ -151,6 +151,9 @@ class ViewController: UIViewController {
                 let suit_index = Card.suitToIndex(suit: card.suit)
                 card_picker_view.selectRow(card.value - 1, inComponent: 0, animated: true)
                 card_picker_view.selectRow(suit_index, inComponent: 1, animated: true)
+            } else {
+                card_picker_view.selectRow(0, inComponent: 0, animated: true)
+                card_picker_view.selectRow(0, inComponent: 1, animated: true)
             }
             animate_in()
         }

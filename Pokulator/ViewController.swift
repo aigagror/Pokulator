@@ -95,6 +95,7 @@ class ViewController: UIViewController {
         //Get the stats
         let data = cardStatistics(cards: cards)
         statsTable.getData(data: data)
+        stats_table_view.reloadData()
     }
     
     /// Animates in the card picker view

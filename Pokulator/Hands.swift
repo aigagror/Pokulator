@@ -71,24 +71,6 @@ enum Hand: Hashable {
     }
 }
 
-enum GenericHand {
-    
-    //Includes the royal flush
-    case straightFlush
-    
-    case fourOfAKind
-    
-    case fullHouse
-    
-    case flush
-    
-    case straight
-    
-    case threeOfAKind
-    
-    case twoPair
-    
-    case onePair
-    
-    case highCard
+enum GenericHand: Int {
+    case straightFlush = 0, fourOfAKind, fullHouse, flush, straight, threeOfAKind, twoPair, onePair, highCard
 }

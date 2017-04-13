@@ -83,24 +83,24 @@ class ViewController: UIViewController {
         
         let curr_hand = getCurrentKnownHand(cards: cards)
         switch curr_hand {
-        case .straightFlush(let v1):
-            hand_label.text = "Straight Flush (\(v1))"
-        case .fourOfAKind(let v1):
-            hand_label.text = "Four of a Kind (\(v1))"
-        case .fullHouse(let v1):
-            hand_label.text = "Full House (\(v1))"
-        case .flush(let v):
-            hand_label.text = "Flush \(v)"
-        case .straight(let v1):
-            hand_label.text = "Straight (\(v1))"
-        case .threeOfAKind(let v):
-            hand_label.text = "Three of a Kind (\(v))"
-        case .twoPair(let v):
-            hand_label.text = "Two Pair \(v)"
-        case .onePair(let v):
-            hand_label.text = "One Pair \(v)"
-        case .highCard(let v):
-            hand_label.text = "High Card \(v)"
+        case .straightFlush:
+            hand_label.text = "Straight Flush"
+        case .fourOfAKind:
+            hand_label.text = "Four of a Kind"
+        case .fullHouse:
+            hand_label.text = "Full House"
+        case .flush:
+            hand_label.text = "Flush"
+        case .straight:
+            hand_label.text = "Straight"
+        case .threeOfAKind:
+            hand_label.text = "Three of a Kind"
+        case .twoPair:
+            hand_label.text = "Two Pair"
+        case .onePair:
+            hand_label.text = "One Pair"
+        case .highCard:
+            hand_label.text = "High Card"
         default:
             break
         }

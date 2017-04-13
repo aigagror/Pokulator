@@ -8,38 +8,17 @@
 
 import Foundation
 
-/// Gives the probability that the set of cards will become some version of the hand specified
-/// 0 - high card, 8 - straight flush
+/// Gives a summary of how good the hand is
 ///
-/// - Parameters:
-///   - cards: cards known
-///   - hand: hand
-/// - Returns: probability
-func handProbability(cards: [Card?], hand: Int) -> Double {
-    assert(cards.count == 7)
-    switch hand {
-    case 0:
-        //high card
-        return 1
-    case 1:
-        //one pair
-        for i in 0...cards.count - 2 {
-            for j in i+1...cards.count - 1 {
-                if let c1 = cards[i], let c2 = cards[j] {
-                    if c1.value == c2.value {
-                        return 1
-                    }
-                }
-            }
-        }
-        //cards are distinct. 
-        return -1
-        
-        
-        
-    default: //straight flush
-        return -1
+/// - Parameter cards: cards that are known so far
+/// - Returns: an array of keys of all possible hands along with their probabilities
+func cardStatistics(cards: [Card?]) -> [GenericHand : Double] {
+    var ret = [GenericHand : Double]()
+    let curr_hand = getCurrentKnownHand(cards: cards)
+    for i in curr_hand.rawValue+1 ... GenericHand.straightFlush.rawValue {
+        ret[GenericHand(rawValue: i)!] = 0
     }
+    return ret
 }
 
 

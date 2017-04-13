@@ -8,20 +8,34 @@
 
 import Foundation
 
-/// Gives a summary of how good the hand is
-///
-/// - Parameter cards: cards that are known so far
-/// - Returns: an array of keys of all possible hands along with their probabilities
-func cardStatistics(cards: [Card?]) -> [Hand : Double] {
-    return [:]
-}
-
 
 /// Returns the best known hand guaranteed based on the current state of the cards
 ///
 /// - Parameter cards: cards known
 /// - Returns: current best hand
-func getCurrentKnownHand(cards: [Card?]) -> Hand {
+func getCurrentKnownHand(cards: [Card?]) -> GenericHand {
+    if hasAStraightFlush(cards: cards) != nil {
+        return .straightFlush
+    } else if hasAFourOfAKind(cards: cards) != nil {
+        return .fourOfAKind
+    } else if hasAFullHouse(cards: cards) != nil {
+        return .fullHouse
+    } else if hasAFlush(cards: cards) != nil {
+        return .flush
+    } else if hasAStraight(cards: cards) != nil {
+        return .straight
+    } else if hasAThreeOfAKind(cards: cards) != nil {
+        return .threeOfAKind
+    } else if hasATwoPair(cards: cards) != nil {
+        return .twoPair
+    } else if hasAOnePair(cards: cards) != nil {
+        return .onePair
+    } else {
+        return .highCard
+    }
+}
+
+func getHand(cards: [Card]) -> Hand {
     if let sf = hasAStraightFlush(cards: cards) {
         return sf
     } else if let fk = hasAFourOfAKind(cards: cards) {

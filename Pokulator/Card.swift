@@ -49,6 +49,21 @@ struct Card: Hashable {
         }
     }
     
+    static func suitToIndex(suit: Suit) -> Int {
+        switch suit {
+        case .clubs:
+            return 0
+        case .diamonds:
+            return 1
+        case .hearts:
+            return 2
+        case .spades:
+            return 3
+        default:
+            return 0
+        }
+    }
+    
     func getFilename() -> String {
         var valueString: String
         switch self.value {

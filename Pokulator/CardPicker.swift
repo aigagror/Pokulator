@@ -14,6 +14,8 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     /// Indicates which card we're on. (0 is left hand, 2 is flop1 and 6 is river)
     private var card_index = 0
     
+    private var selected_card = Card(value: 1, suit: .clubs)
+    
     /// Holds the information for what the cards on the table are
     private var cards = Array<Card?>(repeating: nil, count: 7)
     
@@ -37,15 +39,26 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
             // can edit this card
             card_index = index
             
-            // set the default card (Ace of clubs) if there is none and if it's available
-            if cards[index] == nil {
-                let card = Card(value: 1, suit: Suit.clubs)
-                if cardIsAvailable(card: card) {
-                    cards[index] = card
-                }
-            }
+            // set the default selection
+            selected_card = Card(value: 1, suit: .clubs)
+            
             return true
         }
+    }
+    
+    /// Call this function when you're done with your selection so it'll finalize your card pick
+    func aboutToAnimateOut() -> Void {
+        if cardIsAvailable(card: selected_card) {
+            cards[card_index] = selected_card
+        }
+    }
+    
+    ///
+    ///
+    /// - Parameter index: index in question
+    /// - Returns: card at that index. nil if there is none
+    func cardAt(index: Int) -> Card? {
+        return cards[index]
     }
     
     
@@ -77,31 +90,9 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
-            if cards[card_index] != nil {
-                var card = cards[card_index]!
-                card.value = row + 1
-                if cardIsAvailable(card: card) {
-                    cards[card_index] = card
-                }
-            } else {
-                let card = Card(value: row + 1, suit: Suit.clubs)
-                if cardIsAvailable(card: card) {
-                    cards[card_index] = card
-                }
-            }
+            selected_card.value = row + 1
         } else {
-            if cards[card_index] != nil {
-                var card = cards[card_index]!
-                card.suit = Card.indexToSuit(index: row)
-                if cardIsAvailable(card: card) {
-                    cards[card_index] = card
-                }
-            } else {
-                let card = Card(value: 1, suit: row)
-                if cardIsAvailable(card: card) {
-                    cards[card_index] = card
-                }
-            }
+            selected_card.suit = Card.indexToSuit(index: row)
         }
         
     }

@@ -113,8 +113,6 @@ class ViewController: UIViewController {
         blur_effect.center = self.view.center
         blur_effect.frame = self.view.frame
         self.view.addSubview(add_card_view)
-        card_picker_view.selectRow(0, inComponent: 0, animated: true)
-        card_picker_view.selectRow(0, inComponent: 1, animated: true)
         add_card_view.center = self.view.center
         add_card_view.center.y += 50
         
@@ -129,6 +127,7 @@ class ViewController: UIViewController {
     
     /// Animates out the card picker view
     func animate_out() -> Void {
+        card_picker.aboutToAnimateOut()
         UIView.animate(withDuration: 0.3, animations: {
             self.add_card_view.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
             self.add_card_view.alpha = 0
@@ -145,40 +144,38 @@ class ViewController: UIViewController {
     }
     
     // Card Selection Stuff...
-    @IBAction func left_hand_tapped(_ sender: Any) {
-        if card_picker.setCardIndex(index: 0) {
+    
+    func tryPickingAt(index: Int) -> Void {
+        if card_picker.setCardIndex(index: index) {
+            if let card = card_picker.cardAt(index: index) {
+                let suit_index = Card.suitToIndex(suit: card.suit)
+                card_picker_view.selectRow(card.value - 1, inComponent: 0, animated: true)
+                card_picker_view.selectRow(suit_index, inComponent: 1, animated: true)
+            }
             animate_in()
         }
+    }
+    
+    @IBAction func left_hand_tapped(_ sender: Any) {
+        tryPickingAt(index: 0)
     }
     @IBAction func right_hand_tapped(_ sender: Any) {
-        if card_picker.setCardIndex(index: 1) {
-            animate_in()
-        }
+        tryPickingAt(index: 1)
     }
     @IBAction func flop1_tapped(_ sender: Any) {
-        if card_picker.setCardIndex(index: 2) {
-            animate_in()
-        }
+        tryPickingAt(index: 2)
     }
     @IBAction func flop2_tapped(_ sender: Any) {
-        if card_picker.setCardIndex(index: 3) {
-            animate_in()
-        }
+        tryPickingAt(index: 3)
     }
     @IBAction func flop3_tapped(_ sender: Any) {
-        if card_picker.setCardIndex(index: 4) {
-            animate_in()
-        }
+        tryPickingAt(index: 4)
     }
     @IBAction func turn_tapped(_ sender: Any) {
-        if card_picker.setCardIndex(index: 5) {
-            animate_in()
-        }
+        tryPickingAt(index: 5)
     }
     @IBAction func river_tapped(_ sender: Any) {
-        if card_picker.setCardIndex(index: 6) {
-            animate_in()
-        }
+        tryPickingAt(index: 6)
     }
 
 

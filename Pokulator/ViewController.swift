@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet var blur_effect: UIVisualEffectView!
     @IBOutlet var add_card_view: UIView!
     @IBOutlet weak var card_picker_view: UIPickerView!
+    @IBOutlet weak var stats_table_view: UITableView!
     
     @IBOutlet weak var left_hand: UIButton!
     @IBOutlet weak var right_hand: UIButton!
@@ -24,6 +25,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var river: UIButton!
     
     @IBOutlet weak var hand_label: UILabel!
+
+    let statsTable = StatisticsTable()
     
 
     private var card_button_array = Array<UIButton>()
@@ -40,7 +43,7 @@ class ViewController: UIViewController {
     }
     @IBAction func reset(_ sender: Any) {
         card_picker.reset()
-        updateCards()
+        updateScreen()
     }
     
     override func viewDidLoad() {
@@ -53,6 +56,10 @@ class ViewController: UIViewController {
         
         self.card_picker_view.delegate = self.card_picker
         self.card_picker_view.dataSource = self.card_picker
+        
+        // Setting up the stats table view
+        self.stats_table_view.delegate = self.statsTable
+        self.stats_table_view.dataSource = self.statsTable
         
         // Setting up card buttons
         self.card_button_array.append(left_hand)
@@ -68,10 +75,10 @@ class ViewController: UIViewController {
         
     }
     
-    /// Updates the cards on the screen
+    /// Updates the screen
     ///
     /// - Parameter cards: an array of card optionals
-    func updateCards() -> Void {
+    func updateScreen() -> Void {
         let cards = card_picker.getCards()
         for i in 0...6 {
             if let card = cards[i] {
@@ -82,29 +89,12 @@ class ViewController: UIViewController {
         }
         
         let curr_hand = getCurrentKnownHand(cards: cards)
-        switch curr_hand {
-        case .straightFlush:
-            hand_label.text = "Straight Flush"
-        case .fourOfAKind:
-            hand_label.text = "Four of a Kind"
-        case .fullHouse:
-            hand_label.text = "Full House"
-        case .flush:
-            hand_label.text = "Flush"
-        case .straight:
-            hand_label.text = "Straight"
-        case .threeOfAKind:
-            hand_label.text = "Three of a Kind"
-        case .twoPair:
-            hand_label.text = "Two Pair"
-        case .onePair:
-            hand_label.text = "One Pair"
-        case .highCard:
-            hand_label.text = "High Card"
-        default:
-            break
-        }
+        hand_label.text = toString(hand: curr_hand)
         
+        
+        //Get the stats
+        let data = cardStatistics(cards: cards)
+        statsTable.getData(data: data)
     }
     
     /// Animates in the card picker view
@@ -134,7 +124,7 @@ class ViewController: UIViewController {
         }, completion: {(success: Bool) in
             self.add_card_view.removeFromSuperview()
             self.blur_effect.removeFromSuperview()
-            self.updateCards()
+            self.updateScreen()
         })
     }
 

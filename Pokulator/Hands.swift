@@ -74,3 +74,28 @@ enum Hand: Hashable {
 enum GenericHand: Int {
     case straightFlush = 0, fourOfAKind, fullHouse, flush, straight, threeOfAKind, twoPair, onePair, highCard
 }
+
+func toString(hand: GenericHand) -> String {
+    switch hand {
+    case .straightFlush:
+        return "Straight Flush"
+    case .fourOfAKind:
+        return "Four of a Kind"
+    case .fullHouse:
+        return "Full House"
+    case .flush:
+        return "Flush"
+    case .straight:
+        return "Straight"
+    case .threeOfAKind:
+        return "Three of a Kind"
+    case .twoPair:
+        return "Two Pair"
+    case .onePair:
+        return "One Pair"
+    case .highCard:
+        return "High Card"
+    default:
+        return ""
+    }
+}

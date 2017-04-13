@@ -44,23 +44,30 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sP5-dj-eUF" userLabel="Num Opp Picker View">
-                                        <rect key="frame" x="7.5" y="70" width="320" height="80"/>
+                                        <rect key="frame" x="7.5" y="62" width="320" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="1Gl-gX-cYm"/>
                                         </constraints>
                                     </pickerView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjn-VX-fDs">
-                                        <rect key="frame" x="0.0" y="176" width="335" height="167.5"/>
-                                        <gestureRecognizers/>
+                                    <tableView clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9r5-a9-dtA" userLabel="Statistics Table View">
+                                        <rect key="frame" x="0.0" y="159" width="335" height="209.5"/>
+                                        <color key="backgroundColor" red="0.4618990421295166" green="0.52194476127624512" blue="0.10203308612108231" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="Pjn-VX-fDs" secondAttribute="height" multiplier="160:80" id="eVL-Qj-7vz"/>
+                                            <constraint firstAttribute="width" secondItem="9r5-a9-dtA" secondAttribute="height" multiplier="320:200" id="URv-aI-cZ2"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="OHr-CO-qQC">
+                                                <rect key="frame" x="0.0" y="28" width="335" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OHr-CO-qQC" id="Z9E-qZ-1cS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hand" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9U-nP-zt2">
-                                        <rect key="frame" x="0.0" y="369" width="335" height="25"/>
+                                        <rect key="frame" x="0.0" y="386" width="335" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="Ie3-x7-36Y"/>
                                         </constraints>
@@ -69,7 +76,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qfu-O5-GIj" userLabel="Community Stack View">
-                                        <rect key="frame" x="0.0" y="420" width="335" height="85.5"/>
+                                        <rect key="frame" x="0.0" y="428" width="335" height="85.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fs2-mI-Hm7" userLabel="flop1">
                                                 <rect key="frame" x="0.0" y="0.0" width="59" height="85.5"/>
@@ -166,7 +173,7 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Pjn-VX-fDs" firstAttribute="width" secondItem="i5u-eC-0Xv" secondAttribute="width" id="4iC-MS-gW1"/>
+                                    <constraint firstItem="9r5-a9-dtA" firstAttribute="width" secondItem="i5u-eC-0Xv" secondAttribute="width" id="0Ox-rm-irA"/>
                                     <constraint firstItem="MgJ-Ib-Jy8" firstAttribute="width" secondItem="i5u-eC-0Xv" secondAttribute="width" id="mhX-2y-PA8"/>
                                     <constraint firstItem="a9U-nP-zt2" firstAttribute="width" secondItem="i5u-eC-0Xv" secondAttribute="width" id="pN3-F8-dqv"/>
                                     <constraint firstItem="Qfu-O5-GIj" firstAttribute="width" secondItem="i5u-eC-0Xv" secondAttribute="width" id="vkH-Pq-weU"/>
@@ -198,6 +205,7 @@
                         <outlet property="num_opp_picker" destination="sP5-dj-eUF" id="xHs-tR-om1"/>
                         <outlet property="right_hand" destination="etd-z6-Fi1" id="7tM-Jx-zgf"/>
                         <outlet property="river" destination="IQL-dL-swr" id="HkX-Pj-KKg"/>
+                        <outlet property="stats_table_view" destination="9r5-a9-dtA" id="7Bd-VP-no2"/>
                         <outlet property="turn" destination="CSe-Pe-b9B" id="aLi-5b-i6m"/>
                     </connections>
                 </viewController>
@@ -250,7 +258,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1017" y="72"/>
+            <point key="canvasLocation" x="1016.8" y="71.514242878560722"/>
         </scene>
     </scenes>
     <resources>

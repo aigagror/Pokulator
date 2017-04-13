@@ -15,7 +15,10 @@ import Foundation
 func cardStatistics(cards: [Card?]) -> [GenericHand : Double] {
     var ret = [GenericHand : Double]()
     let curr_hand = getCurrentKnownHand(cards: cards)
-    for i in curr_hand.rawValue+1 ... GenericHand.straightFlush.rawValue {
+    if curr_hand == GenericHand.straightFlush {
+        return ret
+    }
+    for i in GenericHand.straightFlush.rawValue ... curr_hand.rawValue-1 {
         ret[GenericHand(rawValue: i)!] = 0
     }
     return ret

@@ -22,8 +22,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var flop3: UIButton!
     @IBOutlet weak var turn: UIButton!
     @IBOutlet weak var river: UIButton!
+    
+    @IBOutlet weak var hand_label: UILabel!
+    
 
     private var card_button_array = Array<UIButton>()
+    
     
     
     let card_picker = CardPicker()
@@ -76,6 +80,31 @@ class ViewController: UIViewController {
                 card_button_array[i].setImage(nil, for: UIControlState.normal)
             }
         }
+        
+        let curr_hand = getCurrentKnownHand(cards: cards)
+        switch curr_hand {
+        case .straightFlush(let v1):
+            hand_label.text = "Straight Flush (\(v1))"
+        case .fourOfAKind(let v1):
+            hand_label.text = "Four of a Kind (\(v1))"
+        case .fullHouse(let v1):
+            hand_label.text = "Full House (\(v1))"
+        case .flush(let v):
+            hand_label.text = "Flush \(v)"
+        case .straight(let v1):
+            hand_label.text = "Straight (\(v1))"
+        case .threeOfAKind(let v):
+            hand_label.text = "Three of a Kind (\(v))"
+        case .twoPair(let v):
+            hand_label.text = "Two Pair \(v)"
+        case .onePair(let v):
+            hand_label.text = "One Pair \(v)"
+        case .highCard(let v):
+            hand_label.text = "High Card \(v)"
+        default:
+            break
+        }
+        
     }
     
     /// Animates in the card picker view

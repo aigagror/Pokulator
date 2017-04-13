@@ -45,8 +45,8 @@ class PokulatorTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let sftc = cardSets[Hand.straightFlush(1)]
         print(hasAStraightFlush(cards: sftc![0]) ?? "nil")
-        XCTAssert(hasAStraightFlush(cards: sftc![0]) == 6)
-        XCTAssert(hasAStraightFlush(cards: sftc![1]) == 1)
+        XCTAssert(hasAStraightFlush(cards: sftc![0]) == Hand.straightFlush(6))
+        XCTAssert(hasAStraightFlush(cards: sftc![1]) == Hand.straightFlush(1))
     }
     
     func testPerformanceExample() {

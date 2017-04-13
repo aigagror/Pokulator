@@ -70,3 +70,25 @@ enum Hand: Hashable {
         return lhs.hashValue == rhs.hashValue
     }
 }
+
+enum GenericHand {
+    
+    //Includes the royal flush
+    case straightFlush
+    
+    case fourOfAKind
+    
+    case fullHouse
+    
+    case flush
+    
+    case straight
+    
+    case threeOfAKind
+    
+    case twoPair
+    
+    case onePair
+    
+    case highCard
+}

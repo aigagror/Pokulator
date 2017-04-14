@@ -23,7 +23,7 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     ///
     /// - Parameter index: index for the card
     /// - Returns: returns whether or not the card is set for editing
-    func setCardIndex(index: Int) -> Bool {
+    func setCardIndex(index: Int, with_selection: Card?) -> Bool {
         if index > 6 || index < 0 {
             return false
         } else {
@@ -40,7 +40,11 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
             card_index = index
             
             // set the default selection
-            selected_card = Card(value: 1, suit: .clubs)
+            if let selection = with_selection {
+                selected_card = selection
+            } else {
+                selected_card = Card(value: 1, suit: .clubs)
+            }
             
             return true
         }

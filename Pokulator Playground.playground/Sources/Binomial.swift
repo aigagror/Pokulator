@@ -49,7 +49,6 @@ public struct Binom {
         }
         
         guard numerator % denominator == 0 else {
-            print("Whoops")
             fatalError("Binom about to return a fraction")
         }
         return numerator / denominator
@@ -65,5 +64,13 @@ public struct Binom {
     
     public static func *(left: Binom, right: Int) -> Int {
         return left.toInt() * right
+    }
+    
+    public static func /(left: Int, right: Binom) -> Double {
+        return Double(left) / Double(right.toInt())
+    }
+    
+    public static func /(left: Binom, right: Binom) -> Double {
+        return Double(left.toInt()) / Double(right.toInt())
     }
 }

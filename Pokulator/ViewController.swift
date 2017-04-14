@@ -73,6 +73,8 @@ class ViewController: UIViewController {
         // A little aesthetic stuff to the add card view
         self.add_card_view.layer.cornerRadius = 5
         
+        self.stats_table_view.layer.cornerRadius = 10
+        
     }
     
     /// Updates the screen
@@ -137,7 +139,8 @@ class ViewController: UIViewController {
     // Card Selection Stuff...
     
     func tryPickingAt(index: Int) -> Void {
-        if card_picker.setCardIndex(index: index) {
+        let card = card_picker.getCards()[index]
+        if card_picker.setCardIndex(index: index, with_selection: card) {
             if let card = card_picker.cardAt(index: index) {
                 let suit_index = Card.suitToIndex(suit: card.suit)
                 card_picker_view.selectRow(card.value - 1, inComponent: 0, animated: true)

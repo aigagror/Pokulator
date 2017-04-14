@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import Pokulator
-@testable import Binomial
 class PokulatorTests: XCTestCase {
     
     
@@ -42,7 +41,10 @@ class PokulatorTests: XCTestCase {
     }
     
     func testBinomials() {
-        Binom(n: 5, choose: 1).toInt()
+        XCTAssert(Binom(n: 5, choose: 2).toInt() == 10)
+        XCTAssert(Binom(n: 10, choose: 4) * Binom(n: 4, choose: 0) * Binom(n: 7, choose: 1) * Binom(n: 8, choose: 4) == 102900)
+        
+        XCTAssert(probabilityOfOnePair(cards: [nil,nil,nil,nil,nil,nil,nil]) == Binom(n: 13, choose: 1) * Binom(n: 4, choose: 2) * Binom(n: 12, choose: 5) * pow(Binom(n: 4, choose: 1).toInt(), 5) / Binom(n: 52, choose: 7))
     }
     
     func testStaightFlushDetection() {

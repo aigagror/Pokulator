@@ -42,7 +42,7 @@ public struct Binom {
         
         var denominator: Int {
             var prod = 1
-            for i in 2...l {
+            for i in 1...l {
                 prod *= i
             }
             return prod

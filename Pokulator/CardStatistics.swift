@@ -39,15 +39,18 @@ func probabilityOfOnePair(cards: [Card?]) -> Double {
     }
     
     //get the number of outcomes that a pair matches with one of the current cards
-    var pairsWithCurrentCards = Binom(n: numberOfCards, choose: 1) * Binom(n: 3, choose: 1) * Binom(n: 13 - numberOfCards, choose: 6 - numberOfCards)
+    var pairsWithCurrentCards = 0
+    if numberOfCards > 0 {
+        pairsWithCurrentCards = Binom(n: numberOfCards, choose: 1) * Binom(n: 3, choose: 1) * Binom(n: 13 - numberOfCards, choose: 6 - numberOfCards) * Int(pow(Double(Binom(n: 4, choose: 1).toInt()), Double(6-numberOfCards)))
+    }
     
     //get the number of outcomes that there's a pair not involving the current cards
     var pairsNotWithCurrentCards = 0
     if numberOfCards < 6 {
-        pairsNotWithCurrentCards = Binom(n: 13 - numberOfCards, choose: 1) * Binom(n: 4, choose: 2) * Binom(n: 12 - numberOfCards, choose: 5 - numberOfCards)
+        pairsNotWithCurrentCards = Binom(n: 13 - numberOfCards, choose: 1) * Binom(n: 4, choose: 2) * Binom(n: 12 - numberOfCards, choose: 5 - numberOfCards) * Int(pow(Double(Binom(n: 4, choose: 1).toInt()), Double(5-numberOfCards)))
     }
     
-    return -1
+    return (pairsWithCurrentCards + pairsNotWithCurrentCards) / Binom(n: 52, choose: 7)
 }
 
 func numberOfKnownCards(cards: [Card?]) -> Int {

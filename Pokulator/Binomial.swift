@@ -42,7 +42,7 @@ struct Binom {
         
         var denominator: Int {
             var prod = 1
-            for i in 2...l {
+            for i in 1...l {
                 prod *= i
             }
             return prod
@@ -64,5 +64,13 @@ struct Binom {
     
     static func *(left: Binom, right: Int) -> Int {
         return left.toInt() * right
+    }
+    
+    static func /(left: Int, right: Binom) -> Double {
+        return Double(left) / Double(right.toInt())
+    }
+    
+    static func /(left: Binom, right: Binom) -> Double {
+        return Double(left.toInt()) / Double(right.toInt())
     }
 }

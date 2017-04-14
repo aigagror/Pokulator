@@ -50,18 +50,19 @@
                                             <constraint firstAttribute="height" constant="80" id="1Gl-gX-cYm"/>
                                         </constraints>
                                     </pickerView>
-                                    <tableView clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9r5-a9-dtA" userLabel="Statistics Table View">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9r5-a9-dtA" userLabel="Statistics Table View">
                                         <rect key="frame" x="0.0" y="173.5" width="335" height="174"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.6340146109" green="0.70626268979999995" blue="0.15843269600000001" alpha="0.86025528169999999" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="174" id="l19-tr-Yt9"/>
                                         </constraints>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <color key="sectionIndexBackgroundColor" red="0.6340146109" green="0.70626268979999995" blue="0.15843269600000001" alpha="0.86025528169999999" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="OHr-CO-qQC" customClass="StatisticsTableCell" customModule="Pokulator" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="OHr-CO-qQC" customClass="StatisticsTableCell" customModule="Pokulator" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="335" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" tableViewCell="OHr-CO-qQC" id="Z9E-qZ-1cS">
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OHr-CO-qQC" id="Z9E-qZ-1cS">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
@@ -78,6 +79,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <color key="backgroundColor" red="0.6340146109" green="0.70626268979999995" blue="0.15843269600000001" alpha="0.80325704225352113" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="0WT-a9-4pZ" firstAttribute="width" secondItem="Z9E-qZ-1cS" secondAttribute="width" multiplier="0.5" id="0Ux-sT-yCH"/>
                                                         <constraint firstItem="uIz-Tk-q0o" firstAttribute="leading" secondItem="0WT-a9-4pZ" secondAttribute="trailing" id="DwA-Yy-1qW"/>
@@ -89,6 +91,7 @@
                                                         <constraint firstItem="0WT-a9-4pZ" firstAttribute="top" secondItem="Z9E-qZ-1cS" secondAttribute="top" id="zEz-Me-ROq"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <color key="backgroundColor" red="0.6340146109" green="0.70626268979999995" blue="0.15843269600000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <outlet property="label1" destination="0WT-a9-4pZ" id="aVk-f9-3dh"/>
                                                     <outlet property="label2" destination="uIz-Tk-q0o" id="91M-ox-HOr"/>

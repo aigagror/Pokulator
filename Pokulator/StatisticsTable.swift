@@ -34,6 +34,8 @@ class StatisticsTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         }
         if let value2 = data[hand2] {
             cell.label2.text = toString(hand: hand2) + " : \(value2)"
+        } else {
+            cell.label2.text = ""
         }
         return cell
     }

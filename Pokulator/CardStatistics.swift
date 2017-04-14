@@ -25,7 +25,28 @@ func cardStatistics(cards: [Card?]) -> [GenericHand : Double] {
 }
 
 
+// The following probability functions must only be called on cards that have a current worse hand. It is assumed that the hand does not exist yet
+
 func probabilityOfOnePair(cards: [Card?]) -> Double {
+    //Assuming all cards are distinct
+    var uniqueValues = [Int]()
+    var numberOfCards = 0
+    for card in cards {
+        if let c = card {
+            uniqueValues.append(c.value)
+            numberOfCards += 1
+        }
+    }
+    
+    //get the number of outcomes that a pair matches with one of the current cards
+    var pairsWithCurrentCards = Binom(n: numberOfCards, choose: 1) * Binom(n: 3, choose: 1) * Binom(n: 13 - numberOfCards, choose: 6 - numberOfCards)
+    
+    //get the number of outcomes that there's a pair not involving the current cards
+    var pairsNotWithCurrentCards = 0
+    if numberOfCards < 6 {
+        pairsNotWithCurrentCards = Binom(n: 13 - numberOfCards, choose: 1) * Binom(n: 4, choose: 2) * Binom(n: 12 - numberOfCards, choose: 5 - numberOfCards)
+    }
+    
     return -1
 }
 

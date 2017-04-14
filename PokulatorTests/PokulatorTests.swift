@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import Pokulator
+@testable import Binomial
 class PokulatorTests: XCTestCase {
     
     
@@ -38,6 +39,10 @@ class PokulatorTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+    
+    func testBinomials() {
+        Binom(n: 5, choose: 1).toInt()
     }
     
     func testStaightFlushDetection() {

@@ -10,10 +10,10 @@ import Foundation
 
 
 /// Choose notation
-struct Binom {
+public struct Binom {
     private var n: Int
     private var c: Int
-    init(n: Int, choose: Int) {
+    public init(n: Int, choose: Int) {
         guard(n > 0 && choose >= 0) else {
             fatalError("bad binom input")
         }
@@ -24,7 +24,7 @@ struct Binom {
         self.c = choose
     }
     
-    func toInt() -> Int {
+    public func toInt() -> Int {
         // n! / c! / (n-c)!
         if c == 0 || c == n {
             return 1
@@ -49,20 +49,21 @@ struct Binom {
         }
         
         guard numerator % denominator == 0 else {
+            print("Whoops")
             fatalError("Binom about to return a fraction")
         }
         return numerator / denominator
     }
     
-    static func *(left: Binom, right: Binom) -> Int {
+    public static func *(left: Binom, right: Binom) -> Int {
         return left.toInt() * right.toInt()
     }
     
-    static func *(left: Int, right: Binom) -> Int {
+    public static func *(left: Int, right: Binom) -> Int {
         return left * right.toInt()
     }
     
-    static func *(left: Binom, right: Int) -> Int {
+    public static func *(left: Binom, right: Int) -> Int {
         return left.toInt() * right
     }
 }

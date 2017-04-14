@@ -14,6 +14,19 @@ import Foundation
 /// - Returns: an array of keys of all possible hands along with their probabilities
 func cardStatistics(cards: [Card?]) -> [GenericHand : Double] {
     var ret = [GenericHand : Double]()
+
+    //check if all the cards are filled
+    var hasEmpty = false
+    for card in cards {
+        if card == nil {
+            hasEmpty = true
+            break
+        }
+    }
+    if !hasEmpty {
+        return ret
+    }
+    
     let curr_hand = getCurrentKnownHand(cards: cards)
     if curr_hand == GenericHand.straightFlush {
         return ret
@@ -30,7 +43,7 @@ func cardStatistics(cards: [Card?]) -> [GenericHand : Double] {
 }
 
 
-// The following probability functions must only be called on cards that have a current worse hand. It is assumed that the hand does not exist yet
+// The following probability functions must only be called on cards that have a current worse hand. It is assumed that the hand does not exist yet. It is also assumed that the cards are not filled yet
 
 func probabilityOfOnePair(cards: [Card?]) -> Double {
     //Assuming all cards are distinct

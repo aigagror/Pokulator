@@ -107,7 +107,7 @@ class ViewController: UIViewController {
         blur_effect.frame = self.view.frame
         self.view.addSubview(add_card_view)
         add_card_view.center = self.view.center
-        add_card_view.center.y += 50
+        add_card_view.center.y += 200
         
         add_card_view.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         add_card_view.alpha = 0

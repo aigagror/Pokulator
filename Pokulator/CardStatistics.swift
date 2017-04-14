@@ -19,7 +19,12 @@ func cardStatistics(cards: [Card?]) -> [GenericHand : Double] {
         return ret
     }
     for i in GenericHand.straightFlush.rawValue ... curr_hand.rawValue-1 {
-        ret[GenericHand(rawValue: i)!] = 0
+        switch GenericHand(rawValue: i)! {
+        case GenericHand.onePair:
+            ret[GenericHand(rawValue: i)!] = probabilityOfOnePair(cards: cards)
+        default:
+            ret[GenericHand(rawValue: i)!] = 0
+        }
     }
     return ret
 }

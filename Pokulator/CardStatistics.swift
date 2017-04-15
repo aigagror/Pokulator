@@ -46,7 +46,7 @@ func cardStatistics(cards: [Card?]) -> [GenericHand : Double] {
 // The following probability functions must only be called on cards that have a current worse hand. It is assumed that the hand does not exist yet. It is also assumed that the cards are not filled yet
 
 func probOnePair(cards: [Card?]) -> Double {
-    //Assuming all cards are distinct
+    //Assuming all cards are distinct and does not form a straight
     var uniqueRanks = [Int]()
     for card in cards {
         if let c = card {
@@ -56,23 +56,36 @@ func probOnePair(cards: [Card?]) -> Double {
     let numberOfCards = uniqueRanks.count
     let freeCards = 7-numberOfCards
     
-    //get the number of ways to form straights with the given cards
-    var setsOfStraightRanks = 0
-    for i in 1...10
-    
-    
-    //get the number of possible combinations of ranks
-    let validRankSets = Binom(n: 13, choose: freeCards) - setsOfStraightRanks
     
     //get the number of outcomes that a pair matches with one of the current cards
     var pairsWithCurrentCards = 0
     if numberOfCards > 0 {
-        pairsWithCurrentCards = Binom(n: numberOfCards, choose: 1) * Binom(n: 3, choose: 1) * Binom(n: 13 - numberOfCards, choose: 6 - numberOfCards) * pow(Binom(n: 4, choose: 1).toInt(), 6-numberOfCards)
+        let freeKickers = freeCards - 1
+        
+        //get the valid set of ranks for the free kickers
+            //get the number of ways to form straights with the given cards
+        let validRankSets = 0
+
+        
+        //get the valid set of suits for the free kickers
+        let validSuitSets = 0
+        
+        pairsWithCurrentCards = Binom(n: numberOfCards, choose: 1) * Binom(n: 3, choose: 1) * validRankSets * validSuitSets
     }
     
     //get the number of outcomes that there's a pair not involving the current cards
     var pairsNotWithCurrentCards = 0
     if numberOfCards < 6 {
+        let freeKickers = freeCards - 2
+        
+        //get the valid set of ranks for the free kickers
+        //get the number of ways to form straights with the given cards
+        let validRankSets = 0
+        
+        
+        //get the valid set of suits for the free kickers
+        let validSuitSets = 0
+        
         pairsNotWithCurrentCards = Binom(n: 13 - numberOfCards, choose: 1) * Binom(n: 4, choose: 2) * Binom(n: 12 - numberOfCards, choose: 5 - numberOfCards) * pow(Binom(n: 4, choose: 1).toInt(), 5-numberOfCards)
     }
     return (pairsWithCurrentCards + pairsNotWithCurrentCards) / Binom(n: 52-numberOfCards, choose: freeCards)

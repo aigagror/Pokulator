@@ -34,7 +34,7 @@ func cardStatistics(cards: [Card?]) -> [GenericHand : Double] {
     for i in GenericHand.straightFlush.rawValue ... curr_hand.rawValue-1 {
         switch GenericHand(rawValue: i)! {
         case GenericHand.onePair:
-            ret[GenericHand(rawValue: i)!] = probabilityOfOnePair(cards: cards)
+            ret[GenericHand(rawValue: i)!] = probOnePair(cards: cards)
         default:
             ret[GenericHand(rawValue: i)!] = 0
         }
@@ -45,16 +45,24 @@ func cardStatistics(cards: [Card?]) -> [GenericHand : Double] {
 
 // The following probability functions must only be called on cards that have a current worse hand. It is assumed that the hand does not exist yet. It is also assumed that the cards are not filled yet
 
-func probabilityOfOnePair(cards: [Card?]) -> Double {
+func probOnePair(cards: [Card?]) -> Double {
     //Assuming all cards are distinct
-    var uniqueValues = [Int]()
-    var numberOfCards = 0
+    var uniqueRanks = [Int]()
     for card in cards {
         if let c = card {
-            uniqueValues.append(c.value)
-            numberOfCards += 1
+            uniqueRanks.append(c.value)
         }
     }
+    let numberOfCards = uniqueRanks.count
+    let freeCards = 7-numberOfCards
+    
+    //get the number of ways to form straights with the given cards
+    var setsOfStraightRanks = 0
+    for i in 1...10
+    
+    
+    //get the number of possible combinations of ranks
+    let validRankSets = Binom(n: 13, choose: freeCards) - setsOfStraightRanks
     
     //get the number of outcomes that a pair matches with one of the current cards
     var pairsWithCurrentCards = 0
@@ -67,7 +75,35 @@ func probabilityOfOnePair(cards: [Card?]) -> Double {
     if numberOfCards < 6 {
         pairsNotWithCurrentCards = Binom(n: 13 - numberOfCards, choose: 1) * Binom(n: 4, choose: 2) * Binom(n: 12 - numberOfCards, choose: 5 - numberOfCards) * pow(Binom(n: 4, choose: 1).toInt(), 5-numberOfCards)
     }
-    return (pairsWithCurrentCards + pairsNotWithCurrentCards) / Binom(n: 52-numberOfCards, choose: 7-numberOfCards)
+    return (pairsWithCurrentCards + pairsNotWithCurrentCards) / Binom(n: 52-numberOfCards, choose: freeCards)
+}
+
+func probTwoPair(cards: [Card?]) -> Double {
+    <#function body#>
+}
+
+func probThreeOfAKind(cards: [Card?]) -> Double {
+    <#function body#>
+}
+
+func probStraight(cards: [Card?]) -> Double {
+    <#function body#>
+}
+
+func probFlush(cards: [Card?]) -> Double {
+    <#function body#>
+}
+
+func probFullHouse(cards: [Card?]) -> Double {
+    <#function body#>
+}
+
+func probFourOfAKind(cards: [Card?]) -> Double {
+    <#function body#>
+}
+
+func probStraightFlush(cards: [Card?]) -> Double {
+    <#function body#>
 }
 
 func numberOfKnownCards(cards: [Card?]) -> Int {

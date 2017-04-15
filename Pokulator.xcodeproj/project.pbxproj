@@ -22,6 +22,7 @@
 		2C510CC11E9F1E83006AEC26 /* StatisticsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CC01E9F1E83006AEC26 /* StatisticsTable.swift */; };
 		2C510CC31EA03C5E006AEC26 /* StatisticsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CC21EA03C5E006AEC26 /* StatisticsTableCell.swift */; };
 		2C510CCB1EA08D84006AEC26 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CCA1EA08D84006AEC26 /* Utilities.swift */; };
+		2C510CCD1EA2C2D9006AEC26 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 2C510CCC1EA2C2D9006AEC26 /* README */; };
 		2C55BF951E98AE1000C8CE87 /* Binomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF941E98AE1000C8CE87 /* Binomial.swift */; };
 		2C55BF971E98AE4E00C8CE87 /* Factorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF961E98AE4E00C8CE87 /* Factorial.swift */; };
 		2C55BF9B1E98AEC200C8CE87 /* Factors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF9A1E98AEC200C8CE87 /* Factors.swift */; };
@@ -59,6 +60,7 @@
 		2C510CC01E9F1E83006AEC26 /* StatisticsTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTable.swift; sourceTree = "<group>"; };
 		2C510CC21EA03C5E006AEC26 /* StatisticsTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableCell.swift; sourceTree = "<group>"; };
 		2C510CCA1EA08D84006AEC26 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		2C510CCC1EA2C2D9006AEC26 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		2C55BF941E98AE1000C8CE87 /* Binomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binomial.swift; sourceTree = "<group>"; };
 		2C55BF961E98AE4E00C8CE87 /* Factorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factorial.swift; sourceTree = "<group>"; };
 		2C55BF9A1E98AEC200C8CE87 /* Factors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factors.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		2C5060671E9341A600B0D6DA /* Pokulator */ = {
 			isa = PBXGroup;
 			children = (
+				2C510CCC1EA2C2D9006AEC26 /* README */,
 				2C5060681E9341A600B0D6DA /* AppDelegate.swift */,
 				2C50606A1E9341A600B0D6DA /* ViewController.swift */,
 				2C50606C1E9341A600B0D6DA /* Main.storyboard */,
@@ -255,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C510CCD1EA2C2D9006AEC26 /* README in Resources */,
 				2C5060731E9341A600B0D6DA /* LaunchScreen.storyboard in Resources */,
 				2C5060701E9341A600B0D6DA /* Assets.xcassets in Resources */,
 				2C50606E1E9341A600B0D6DA /* Main.storyboard in Resources */,

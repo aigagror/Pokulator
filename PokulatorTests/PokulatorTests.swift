@@ -43,8 +43,17 @@ class PokulatorTests: XCTestCase {
     func testBinomials() {
         XCTAssert(Binom(n: 5, choose: 2).toInt() == 10)
         XCTAssert(Binom(n: 10, choose: 4) * Binom(n: 4, choose: 0) * Binom(n: 7, choose: 1) * Binom(n: 8, choose: 4) == 102900)
-        
-        XCTAssert(probabilityOfOnePair(cards: [nil,nil,nil,nil,nil,nil,nil]) == Binom(n: 13, choose: 1) * Binom(n: 4, choose: 2) * Binom(n: 12, choose: 5) * pow(Binom(n: 4, choose: 1).toInt(), 5) / Binom(n: 52, choose: 7))
+    }
+    
+    func testProbabilities() -> Void {
+        XCTAssert(probOnePair(cards: [nil,nil,nil,nil,nil,nil,nil]) == 58627800 / Binom(n: 52, choose: 7))
+        XCTAssert(probTwoPair(cards: [nil,nil,nil,nil,nil,nil,nil]) == 31433400 / Binom(n: 52, choose: 7))
+        XCTAssert(probThreeOfAKind(cards: [nil,nil,nil,nil,nil,nil,nil]) == 6461620 / Binom(n: 52, choose: 7))
+        XCTAssert(probStraight(cards: [nil,nil,nil,nil,nil,nil,nil]) == 6180020 / Binom(n: 52, choose: 7))
+        XCTAssert(probFlush(cards: [nil,nil,nil,nil,nil,nil,nil]) == 4047644 / Binom(n: 52, choose: 7))
+        XCTAssert(probFullHouse(cards: [nil,nil,nil,nil,nil,nil,nil]) == 3473184 / Binom(n: 52, choose: 7))
+        XCTAssert(probFourOfAKind(cards: [nil,nil,nil,nil,nil,nil,nil]) == 224848 / Binom(n: 52, choose: 7))
+        XCTAssert(probStraightFlush(cards: [nil,nil,nil,nil,nil,nil,nil]) == (37260 + 4324) / Binom(n: 52, choose: 7))
     }
     
     func testStaightFlushDetection() {

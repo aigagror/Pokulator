@@ -13,7 +13,7 @@ import Foundation
 ///
 /// - Parameter cards: cards known
 /// - Returns: current generic hand
-func getCurrentKnownHand(cards: [Card?]) -> GenericHand {
+func getCurrentKnownHand(cards: Set<Card>) -> GenericHand {
     if hasAStraightFlush(cards: cards) != nil {
         return .straightFlush
     } else if hasAFourOfAKind(cards: cards) != nil {
@@ -39,7 +39,7 @@ func getCurrentKnownHand(cards: [Card?]) -> GenericHand {
 ///
 /// - Parameter cards: all seven cards
 /// - Returns: the hand
-func getHand(cards: [Card]) -> Hand {
+func getHand(cards: Set<Card>) -> Hand {
     if let sf = hasAStraightFlush(cards: cards) {
         return sf
     } else if let fk = hasAFourOfAKind(cards: cards) {
@@ -62,15 +62,13 @@ func getHand(cards: [Card]) -> Hand {
 }
 
 
-func hasAStraightFlush(cards: [Card?]) -> Hand? {
+func hasAStraightFlush(cards: Set<Card>) -> Hand? {
     //Check if five of the cards are of the same suit
     
     var suitCount = [Suit.clubs : 0, Suit.diamonds : 0, Suit.hearts : 0, Suit.spades : 0]
     
     for card in cards {
-        if let c = card {
-            suitCount[c.suit]! += 1
-        }
+        suitCount[card.suit]! += 1
     }
     
     var possibleSuit: Suit? = nil
@@ -86,42 +84,37 @@ func hasAStraightFlush(cards: [Card?]) -> Hand? {
     let validSuit = possibleSuit!
     
     //Check if those five cards are a straight
-    var values = [Int]()
+    var values = Set<Int>()
     for card in cards {
-        if let c = card {
-            if c.suit == validSuit {
-                values.append(c.value)
-                
-                //An Ace can be valued at 1 or 14 here
-                if c.value == 1 {
-                    values.append(14)
-                }
+        if card.suit == validSuit {
+            values.insert(card.value)
+            
+            //An Ace can be valued at 1 or 14 here
+            if card.value == 1 {
+                values.insert(14)
             }
         }
     }
     assert(values.count >= 5)
-    values.sort()
-    for i in (4...values.count - 1).reversed() {
-        var isStraight = true
-        for j in i-4...i-1 {
-            if values[j+1] - values[j] != 1{
-                isStraight = false
+    for i in (1...10).reversed() {
+        var isAStraight = true
+        for j in i...i+4 {
+            if !values.contains(j) {
+                isAStraight = false
                 break
             }
         }
-        if isStraight {
-            return Hand.straightFlush(values[i] == 14 ? 1 : values[i])
+        if isAStraight {
+            return Hand.straight(i+4 == 14 ? 1 : i+4)
         }
     }
     return nil
 }
 
-func hasAFourOfAKind(cards: [Card?]) -> Hand? {
+func hasAFourOfAKind(cards: Set<Card>) -> Hand? {
     var valuesCount = Array<Int>(repeating: 0, count: 13)
     for card in cards {
-        if let c = card {
-            valuesCount[c.value-1] += 1
-        }
+        valuesCount[card.value-1] += 1
     }
     for i in 0...12 {
         if valuesCount[i] >= 4 {
@@ -131,12 +124,10 @@ func hasAFourOfAKind(cards: [Card?]) -> Hand? {
     return nil
 }
 
-func hasAFullHouse(cards: [Card?]) -> Hand? {
+func hasAFullHouse(cards: Set<Card>) -> Hand? {
     var valuesCount = Array<Int>(repeating: 0, count: 13)
     for card in cards {
-        if let c = card {
-            valuesCount[c.value-1] += 1
-        }
+        valuesCount[card.value-1] += 1
     }
     var has3OfAKind: Int? = nil
     var hasAPair = false
@@ -174,12 +165,10 @@ func hasAFullHouse(cards: [Card?]) -> Hand? {
     return nil
 }
 
-func hasAFlush(cards: [Card?]) -> Hand? {
+func hasAFlush(cards: Set<Card>) -> Hand? {
     var suitCount = [Suit.clubs : 0, Suit.diamonds : 0, Suit.hearts : 0, Suit.spades : 0]
     for card in cards {
-        if let c = card {
-            suitCount[c.suit]! += 1
-        }
+        suitCount[card.suit]! += 1
     }
     
     var possibleSuit: Suit? = nil
@@ -196,11 +185,9 @@ func hasAFlush(cards: [Card?]) -> Hand? {
     
     var values = [Int]()
     for card in cards {
-        if let c = card {
-            if c.suit == validSuit {
-                //An Ace is valued at 14 here
-                values.append(c.value == 1 ? 14 : c.value)
-            }
+        if card.suit == validSuit {
+            //An Ace is valued at 14 here
+            values.append(card.value == 1 ? 14 : card.value)
         }
     }
     
@@ -213,12 +200,10 @@ func hasAFlush(cards: [Card?]) -> Hand? {
     return Hand.flush(values[0], values[1], values[2], values[3], values[4])
 }
 
-func hasAStraight(cards: [Card?]) -> Hand? {
+func hasAStraight(cards: Set<Card>) -> Hand? {
     var valuesCount = Array<Int>(repeating: 0, count: 13)
     for card in cards {
-        if let c = card {
-            valuesCount[c.value-1] += 1
-        }
+        valuesCount[card.value-1] += 1
     }
     
     var uniqueValues = [Int]()
@@ -249,12 +234,10 @@ func hasAStraight(cards: [Card?]) -> Hand? {
     return nil
 }
 
-func hasAThreeOfAKind(cards: [Card?]) -> Hand? {
+func hasAThreeOfAKind(cards: Set<Card>) -> Hand? {
     var valuesCount = Array<Int>(repeating: 0, count: 13)
     for card in cards {
-        if let c = card {
-            valuesCount[c.value-1] += 1
-        }
+        valuesCount[card.value-1] += 1
     }
     
     if valuesCount[0] >= 3 {
@@ -268,12 +251,10 @@ func hasAThreeOfAKind(cards: [Card?]) -> Hand? {
     return nil
 }
 
-func hasATwoPair(cards: [Card?]) -> Hand? {
+func hasATwoPair(cards: Set<Card>) -> Hand? {
     var valuesCount = Array<Int>(repeating: 0, count: 13)
     for card in cards {
-        if let c = card {
-            valuesCount[c.value-1] += 1
-        }
+        valuesCount[card.value-1] += 1
     }
     
     var ret = (-1,-1,-1)
@@ -304,12 +285,10 @@ func hasATwoPair(cards: [Card?]) -> Hand? {
     }
 }
 
-func hasAOnePair(cards: [Card?]) -> Hand? {
+func hasAOnePair(cards: Set<Card>) -> Hand? {
     var valuesCount = Array<Int>(repeating: 0, count: 13)
     for card in cards {
-        if let c = card {
-            valuesCount[c.value-1] += 1
-        }
+        valuesCount[card.value-1] += 1
     }
     
     var ret = (-1,-1,-1,-1)
@@ -350,12 +329,15 @@ func hasAOnePair(cards: [Card?]) -> Hand? {
     return Hand.onePair(ret.0, ret.1, ret.2, ret.3)
 }
 
-func getHighCard(cards: [Card?]) -> Hand {
+
+/// Assume the cards do not form any better hand
+///
+/// - Parameter cards: Set of given cards
+/// - Returns: high card hand
+func getHighCard(cards: Set<Card>) -> Hand {
     var values = [Int]()
     for card in cards {
-        if let c = card {
-            values.append(c.value == 1 ? 14 : c.value)
-        }
+        values.append(card.value == 1 ? 14 : card.value)
     }
     
     values.sort(by: {$0 > $1})

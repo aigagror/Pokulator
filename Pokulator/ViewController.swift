@@ -90,12 +90,20 @@ class ViewController: UIViewController {
             }
         }
         
-        let curr_hand = getCurrentKnownHand(cards: cards)
+        var givenCards = Set<Card>()
+        for card in cards {
+            if let c = card {
+                givenCards.insert(c)
+            }
+        }
+        
+        let curr_hand = getCurrentKnownHand(cards: givenCards)
         hand_label.text = toString(hand: curr_hand)
         
         
         //Get the stats
-        let data = cardStatistics(cards: cards)
+        
+        let data = cardStatistics(cards: givenCards)
         statsTable.getData(data: data)
         stats_table_view.reloadData()
     }

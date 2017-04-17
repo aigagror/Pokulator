@@ -73,4 +73,8 @@ public struct Binom {
     public static func /(left: Binom, right: Binom) -> Double {
         return Double(left.toInt()) / Double(right.toInt())
     }
+    
+    public static func -(left: Binom, right: Int) -> Int {
+        return left.toInt() - right
+    }
 }

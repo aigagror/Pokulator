@@ -1,3 +1,4 @@
+
 //
 //  OnePair.swift
 //  Pokulator
@@ -65,7 +66,7 @@ func probOnePair(cards: Set<Card>) -> Double {
             
             var validSuitSets = 0
             for j in 0...2 {
-                for k in i+1...3 {
+                for k in j+1...3 {
                     let card1 = Card(value: i, suit: j)
                     let card2 = Card(value: i, suit: k)
                     assert(!cards.contains(card1))
@@ -83,14 +84,20 @@ func probOnePair(cards: Set<Card>) -> Double {
     return (pairsWithCurrentCards + pairsNotWithCurrentCards) / Binom(n: 52-cards.count, choose: 7-cards.count)
 }
 
-//Returns the number of ways the freekickers can pick their suits while not forming a flush with the rest of the given cards
+//Returns the number of ways can pick the free cards while not forming a flush with the rest of the given cards. Note that cards are distinguishable here
 func numValidSuitSets(cards: Set<Card>) -> Int {
-    let possibleSuitSets = pow(4, freeKickers)
+    var suitCount = [Suit.clubs:0,Suit.diamonds:0,Suit.hearts:0,Suit.spades:0]
+    for card in cards {
+        suitCount[card.suit]! += 1
+    }
+    
+    let free = 7 - cards.count
+    let possibleSuitSets = pow(4, free)
     var sixFlushSets = 0
     for suit in [Suit.clubs,Suit.diamonds,Suit.hearts,Suit.spades] {
         let suitsNeeded = 6 - suitCount[suit]!
-        assert(freeKickers <= suitsNeeded)
-        if freeCards == suitsNeeded {
+        assert(free <= suitsNeeded)
+        if free == suitsNeeded {
             sixFlushSets += 1
         }
     }
@@ -98,22 +105,25 @@ func numValidSuitSets(cards: Set<Card>) -> Int {
     var fiveFlushSets = 0
     for suit in [Suit.clubs,Suit.diamonds,Suit.hearts,Suit.spades] {
         let suitsNeeded = 5 - suitCount[suit]!
-        if freeCards >= suitsNeeded {
-            if freeCards == suitsNeeded {
+        if free >= suitsNeeded {
+            if free == suitsNeeded {
                 fiveFlushSets += 1
             } else {
                 //we have one left over card
-                fiveFlushSets += 3
+                fiveFlushSets += Binom(n: free, choose: 1) * 3
             }
         }
     }
     let validSuitSets = possibleSuitSets - sixFlushSets - fiveFlushSets
     assert(validSuitSets >= 0)
+    return validSuitSets
 }
 
-//Returns the number of ways the freekickers can pick their ranks while being all distinct and not in a straight with the rest of the given cards
+//Returns the number of ways the free cards can pick their ranks while being all distinct and not in a straight with the rest of the given cards
+//It is assumed that there is a pair in the cards already
 func numValidRankSets(cards: Set<Card>) -> Int {
-    var numberOfCards = 0
+    var numberOfCards = cards.count
+    let free = 7 - cards.count
     var givenRanks = Set<Int>()
     
     for card in cards {
@@ -123,14 +133,12 @@ func numValidRankSets(cards: Set<Card>) -> Int {
         }
         numberOfCards += 1
     }
-    let freeCards = 7-numberOfCards
     
     
-    
-    let numTakenRanks = 6 - freeKickers
+    let numTakenRanks = 6 - free
     
     //Sets of ranks that are distinct with themselves and the given ranks
-    let possibleRankSets = Binom(n: 13 - numTakenRanks, choose: freeKickers)
+    let possibleRankSets = Binom(n: 13 - numTakenRanks, choose: free)
     
     
     var sixStraightSets = 0
@@ -141,8 +149,8 @@ func numValidRankSets(cards: Set<Card>) -> Int {
                 ranksNeeded += 1
             }
         }
-        assert(freeKickers <= ranksNeeded)
-        if ranksNeeded == numFreeCards {
+        assert(free <= ranksNeeded)
+        if ranksNeeded == free {
             sixStraightSets += 1
         }
     }
@@ -150,55 +158,30 @@ func numValidRankSets(cards: Set<Card>) -> Int {
     var fiveStraightSets = 0
     for i in 1...10 {
         var ranksNeeded = 0
+        if i > 1 && givenRanks.contains(i-1) {
+            continue
+        }
+        if i < 10 && givenRanks.contains(i+5) {
+            continue
+        }
         for j in i...i+4 {
             if !givenRanks.contains(j) {
                 ranksNeeded += 1
             }
         }
-        if freeKickers >= ranksNeeded {
-            if freeKickers == ranksNeeded {
+        if free >= ranksNeeded {
+            if free == ranksNeeded {
                 fiveStraightSets += 1
             } else {
                 //we have one left over card. Figure out how many ranks it can have
-                var validRanks = 0
                 switch i {
                 case 1:
-                    for k in 7...14 {
-                        if !givenRanks.contains(k) {
-                            validRanks += 1
-                        }
-                    }
+                    fiveStraightSets += 7
                 case 10:
-                    for k in 1...8 {
-                        if !givenRanks.contains(k) {
-                            validRanks += 1
-                        }
-                    }
-                case 2:
-                    for k in 8...14 {
-                        if !givenRanks.contains(k) {
-                            validRanks += 1
-                        }
-                    }
-                case 9:
-                    for k in 1...7 {
-                        if !givenRanks.contains(k) {
-                            validRanks += 1
-                        }
-                    }
+                    fiveStraightSets += 7
                 default:
-                    for k in 1...i-2 {
-                        if !givenRanks.contains(k) {
-                            validRanks += 1
-                        }
-                    }
-                    for k in i+6...14 {
-                        if !givenRanks.contains(k) {
-                            validRanks += 1
-                        }
-                    }
+                    fiveStraightSets += 6
                 }
-                fiveStraightSets += validRanks
             }
         }
     }

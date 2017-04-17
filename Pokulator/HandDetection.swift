@@ -105,7 +105,7 @@ func hasAStraightFlush(cards: Set<Card>) -> Hand? {
             }
         }
         if isAStraight {
-            return Hand.straight(i+4 == 14 ? 1 : i+4)
+            return Hand.straightFlush(i+4 == 14 ? 1 : i+4)
         }
     }
     return nil

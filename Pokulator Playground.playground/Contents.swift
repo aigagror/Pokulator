@@ -16,3 +16,4 @@ Binom(n: 4, choose: 1).toInt()
 
 Binom(n: 12, choose: 1) * Binom(n: 4, choose: 2) * Binom(n: 11, choose: 4) * pow(Binom(n: 4, choose: 1).toInt(), 4)
 
+Binom(n: 12, choose: 5) - 2 - (6 + 7 + 7)

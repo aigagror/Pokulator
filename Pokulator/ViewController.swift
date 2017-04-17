@@ -79,8 +79,6 @@ class ViewController: UIViewController {
     }
     
     /// Updates the screen
-    ///
-    /// - Parameter cards: an array of card optionals
     func updateScreen() -> Void {
         let cards = card_picker.getCards()
         for i in 0...6 {

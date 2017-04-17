@@ -101,7 +101,44 @@ func probTwoPair(cards: Set<Card>) -> Double {
     //The case where there are two pairs with 3 cards of distinct rank
     var numTwoPair = 0
     if uniqueRanks.count <= 5 {
-        <#code#>
+        switch uniqueRanks.count {
+        case 0:
+            numTwoPair = 28_962_360
+        case 1:
+            if givenPair != nil {
+                assert(cards.count == 2)
+            } else {
+                
+            }
+        case 2:
+            if givenPair != nil {
+                assert(cards.count == 3)
+                
+            } else {
+                
+            }
+        case 3:
+            if givenPair != nil {
+                assert(cards.count == 4)
+                
+            } else {
+                
+            }
+        case 4:
+            if givenPair != nil {
+                assert(cards.count == 5)
+                
+            } else {
+                
+            }
+        default:
+            if givenPair != nil {
+                assert(cards.count == 6)
+                
+            } else {
+                
+            }
+        }
     }
     
     return (numThreePair + numTwoPair) / Binom(n: 52-cards.count, choose: 7-cards.count)

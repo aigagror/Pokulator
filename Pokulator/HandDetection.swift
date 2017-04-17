@@ -40,6 +40,9 @@ func getCurrentKnownHand(cards: Set<Card>) -> GenericHand {
 /// - Parameter cards: all seven cards
 /// - Returns: the hand
 func getHand(cards: Set<Card>) -> Hand {
+    guard cards.count == 7 else {
+        fatalError("Not passing in enough cards")
+    }
     if let sf = hasAStraightFlush(cards: cards) {
         return sf
     } else if let fk = hasAFourOfAKind(cards: cards) {

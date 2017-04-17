@@ -75,6 +75,7 @@ class ViewController: UIViewController {
         
         self.stats_table_view.layer.cornerRadius = 10
         
+        updateScreen()
     }
     
     /// Updates the screen

@@ -16,14 +16,7 @@ func cardStatistics(cards: Set<Card>) -> [GenericHand : Double] {
     var ret = [GenericHand : Double]()
 
     //check if all the cards are filled
-    var hasEmpty = false
-    for card in cards {
-        if card == nil {
-            hasEmpty = true
-            break
-        }
-    }
-    if !hasEmpty {
+    if cards.count == 7 {
         return ret
     }
     

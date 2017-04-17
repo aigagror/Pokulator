@@ -85,7 +85,7 @@ func probOnePair(cards: Set<Card>) -> Double {
 }
 
 //Returns the number of ways can pick the free cards while not forming a flush with the rest of the given cards. Note that cards are distinguishable here
-func numValidSuitSets(cards: Set<Card>) -> Int {
+fileprivate func numValidSuitSets(cards: Set<Card>) -> Int {
     var suitCount = [Suit.clubs:0,Suit.diamonds:0,Suit.hearts:0,Suit.spades:0]
     for card in cards {
         suitCount[card.suit]! += 1
@@ -121,7 +121,7 @@ func numValidSuitSets(cards: Set<Card>) -> Int {
 
 //Returns the number of ways the free cards can pick their ranks while being all distinct and not in a straight with the rest of the given cards
 //It is assumed that there is a pair in the cards already
-func numValidRankSets(cards: Set<Card>) -> Int {
+fileprivate func numValidRankSets(cards: Set<Card>) -> Int {
     var numberOfCards = cards.count
     let free = 7 - cards.count
     var givenRanks = Set<Int>()

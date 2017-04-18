@@ -1,19 +1,15 @@
 import Foundation
 
-let numberOfCards = 4
+let start = Date()
+let dictionary = monte_carlo(cards: Set<Card>(), n: 200_000)
 
-Binom(n: numberOfCards, choose: 1).toInt()
+let elapsed = -start.timeIntervalSinceNow
 
-Binom(n: numberOfCards, choose: 1) * Binom(n: 3, choose: 1) * Binom(n: 13 - numberOfCards, choose: 6 - numberOfCards)
+print("Took \(elapsed) seconds")
 
-Binom(n: 13, choose: 1) * Binom(n: 4, choose: 2) * Binom(n: 12, choose: 5) * pow(Binom(n: 4, choose: 1).toInt(), 5)
+for i in (0...8).reversed() {
+    print(dictionary[GenericHand(rawValue: i)!]!)
+}
 
-Binom(n: 52, choose: 7).toInt()
 
-Binom(n: 11, choose: 4).toInt()
 
-Binom(n: 4, choose: 1).toInt()
-
-Binom(n: 12, choose: 1) * Binom(n: 4, choose: 2) * Binom(n: 11, choose: 4) * pow(Binom(n: 4, choose: 1).toInt(), 4)
-
-Binom(n: 12, choose: 5) - 2 - (6 + 7 + 7)

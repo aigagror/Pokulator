@@ -70,3 +70,7 @@ public enum Hand: Hashable {
         return lhs.hashValue == rhs.hashValue
     }
 }
+
+public enum GenericHand: Int {
+    case straightFlush = 0, fourOfAKind, fullHouse, flush, straight, threeOfAKind, twoPair, onePair, highCard
+}

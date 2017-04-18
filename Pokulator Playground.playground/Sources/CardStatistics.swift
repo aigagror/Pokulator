@@ -12,7 +12,7 @@ import Foundation
 ///
 /// - Parameter cards: cards that are known so far
 /// - Returns: an array of keys of all possible hands along with their probabilities
-func cardStatistics(cards: Set<Card>) -> [GenericHand : Double] {
+public func cardStatistics(cards: Set<Card>) -> [GenericHand : Double] {
     var ret = [GenericHand : Double]()
 
     //check if all the cards are filled
@@ -21,31 +21,16 @@ func cardStatistics(cards: Set<Card>) -> [GenericHand : Double] {
     }
     
     return monte_carlo(cards: cards, n: 100_000)
-    
-    
-    let curr_hand = getCurrentKnownHand(cards: cards)
-    if curr_hand == GenericHand.straightFlush {
-        return ret
-    }
-    for i in GenericHand.straightFlush.rawValue ... curr_hand.rawValue-1 {
-        switch GenericHand(rawValue: i)! {
-        case GenericHand.onePair:
-            ret[GenericHand(rawValue: i)!] = probOnePair(cards: cards)
-        default:
-            ret[GenericHand(rawValue: i)!] = 0
-        }
-    }
-    return ret
 }
 
-func monte_carlo(cards: Set<Card>, n: Int) -> [GenericHand : Double] {
+public func monte_carlo(cards: Set<Card>, n: Int) -> [GenericHand : Double] {
     var ret = [GenericHand : Double]()
     let curr_hand = getCurrentKnownHand(cards: cards)
     for i in GenericHand.straightFlush.rawValue...curr_hand.rawValue {
         ret[GenericHand(rawValue: i)!] = 0
     }
     let emptyRet = ret
-    
+
     
     let group = DispatchGroup()
     
@@ -84,7 +69,7 @@ func monte_carlo(cards: Set<Card>, n: Int) -> [GenericHand : Double] {
 
 
 
-func random_fill(cards: Set<Card>) -> Set<Card> {
+public func random_fill(cards: Set<Card>) -> Set<Card> {
     var cards = cards
     while cards.count < 7 {
         let value = Int(arc4random_uniform(13) + 1)

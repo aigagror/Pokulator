@@ -105,17 +105,89 @@ func probTwoPair(cards: Set<Card>) -> Double {
         case 0:
             numTwoPair = 28_962_360
         case 1:
-            if givenPair != nil {
+            if let pair = givenPair {
                 assert(cards.count == 2)
+                for i in 1...13 {
+                    if i == pair {
+                        continue
+                    }
+                    for j in 0...2 {
+                        for k in i+1...3 {
+                            let card1 = Card(value: i, suit: j)
+                            let card2 = Card(value: i, suit: k)
+                            var cardsWithTwoPair = cards
+                            cardsWithTwoPair.insert(card1)
+                            cardsWithTwoPair.insert(card2)
+                            
+                            numTwoPair += numValidRankSets(cards: cardsWithTwoPair) * numValidSuitSets(cards: cardsWithTwoPair)
+                        }
+                    }
+                }
             } else {
+                //the card is part of the singles
+                for i in 1...12 {
+                    for j in i+1...13 {
+                        if uniqueRanks.contains(i) || uniqueRanks.contains(j) {
+                            continue
+                        }
+                        let master_card1 = Card(value: i, suit: .clubs)
+                        let master_card2 = Card(value: i, suit: .spades)
+                        let master_card3 = Card(value: j, suit: .clubs)
+                        let master_card4 = Card(value: j, suit: .spades)
+                        var masterCardSet = cards
+                        masterCardSet.insert(master_card1)
+                        masterCardSet.insert(master_card2)
+                        masterCardSet.insert(master_card3)
+                        masterCardSet.insert(master_card4)
+                        
+                        let numRankSets = numValidRankSets(cards: masterCardSet)
+                        let numSuitSets = pow(6, 2) * pow(4, 2) - 1
+                        
+                        numTwoPair += numRankSets * numSuitSets
+                    }
+                }
                 
+                //the card is part of one of the pairs
+                for i in 1...13 {
+                    if uniqueRanks.contains(i) {
+                        continue
+                    }
+                    let master_card1 = Card(value: i, suit: .clubs)
+                    let master_card2 = Card(value: i, suit: .spades)
+                    var masterCardSet = cards
+                    masterCardSet.insert(master_card1)
+                    masterCardSet.insert(master_card2)
+                    
+                    let numRankSets = numValidRankSets(cards: masterCardSet)
+                    let numSuitSets = (6*62 + 24*63 + 6*64) / 4
+                    
+                    numTwoPair += numRankSets * numSuitSets
+                }
             }
         case 2:
             if givenPair != nil {
                 assert(cards.count == 3)
+                //the single card is one of the singles
+                for i in 1...13 {
+                    if uniqueRanks.contains(i) {
+                        continue
+                    }
+                    let master_card1 = Card(value: i, suit: .clubs)
+                    let master_card2 = Card(value: i, suit: .spades)
+                    var masterCardSet = cards
+                    masterCardSet.insert(master_card1)
+                    masterCardSet.insert(master_card2)
+                }
+                
+                
+                //the single card is other pair
                 
             } else {
+                //both cards are singles
                 
+                //both cards are the pairs
+                
+                //one of the cards is the single the other is the pair
             }
         case 3:
             if givenPair != nil {

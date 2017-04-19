@@ -46,7 +46,13 @@ class ViewController: UIViewController {
         updateCards()
     }
     
-    let calculatorQueue = DispatchQueue(label: "calulator")
+    //background calculations
+    var cards = Set<Card>()
+    var data = [GenericHand:Int]()
+    var total_trials = 0
+    let calculatorQueue = DispatchQueue(label: "calculator_queue", qos: .background)
+    var calcWorkItem = DispatchWorkItem { 
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +83,81 @@ class ViewController: UIViewController {
         
         self.stats_table_view.layer.cornerRadius = 10
         
+        
+        //calculations set up
+        calcWorkItem = DispatchWorkItem {
+            while true {
+                let curr_cards = self.getCards()
+                
+                //check if the sets are the same
+                var sameSet = true
+                for card in curr_cards {
+                    if !self.cards.contains(card) {
+                        sameSet = false
+                        self.cards = curr_cards
+                        break
+                    }
+                }
+                for card in self.cards {
+                    if !curr_cards.contains(card) {
+                        sameSet = false
+                        self.cards = curr_cards
+                        break
+                    }
+                }
+                
+                if !sameSet {
+                    for i in 0...8 {
+                        self.data[GenericHand(rawValue: i)!] = 0
+                    }
+                    self.total_trials = 0
+                }
+                
+                let additional_data = monte_carlo(cards: self.cards, n: 20_000)
+                self.total_trials += 20_000
+                for (hand,n) in additional_data {
+                    if let old = self.data[hand] {
+                        self.data[hand] = old + n
+                    } else {
+                        self.data[hand] = n
+                    }
+                }
+                
+                var new_data = [GenericHand:Double]()
+                
+                for (hand,n) in self.data {
+                    new_data[hand] = Double(n*100) / Double(self.total_trials)
+                }
+                
+                DispatchQueue.main.async {
+                    self.statsTable.getData(data: new_data)
+                    self.stats_table_view.reloadData()
+                    print("accumulated trials: \(self.total_trials)")
+                }
+            }
+        }
+        
+        // Start up the calculations
+        calculatorQueue.async {
+            self.calcWorkItem.perform()
+        }
+        
         updateCards()
+    }
+    
+    
+    /// Returns a the set of given cards
+    ///
+    /// - Returns: a set of given cards
+    func getCards() -> Set<Card> {
+        let cards = card_picker.getCards()
+        var givenCards = Set<Card>()
+        for card in cards {
+            if let c = card {
+                givenCards.insert(c)
+            }
+        }
+        return givenCards
     }
     
     /// Updates the cards on the screen
@@ -91,22 +171,10 @@ class ViewController: UIViewController {
             }
         }
         
-        var givenCards = Set<Card>()
-        for card in cards {
-            if let c = card {
-                givenCards.insert(c)
-            }
-        }
+        let givenCards = getCards()
         
         let curr_hand = getCurrentKnownHand(cards: givenCards)
         hand_label.text = toString(hand: curr_hand)
-        
-        
-        //Get the stats
-        let data = cardStatistics(cards: givenCards)
-        self.statsTable.getData(data: data)
-        
-        stats_table_view.reloadData()
     }
     
     /// Animates in the card picker view
@@ -138,11 +206,6 @@ class ViewController: UIViewController {
             self.blur_effect.removeFromSuperview()
             self.updateCards()
         })
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // Card Selection Stuff...
@@ -185,5 +248,9 @@ class ViewController: UIViewController {
     }
 
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 }
 

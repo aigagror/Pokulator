@@ -30,10 +30,12 @@ class StatisticsTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         let hand2 = GenericHand(rawValue: indexPath.row * 2 + 1)!
         
         if let value1 = data[hand1] {
-            cell.label1.text = toString(hand: hand1) + " : \(value1)"
+            cell.title1.text = toString(hand: hand1) + ":"
+            cell.label1.text = "\((value1*1000).rounded() / 1000.0)"
         }
         if let value2 = data[hand2] {
-            cell.label2.text = toString(hand: hand2) + " : \(value2)"
+            cell.title2.text = toString(hand: hand2) + ":"
+            cell.label2.text = "\((value2*1000).rounded() / 1000.0)"
         } else {
             cell.label2.text = ""
         }

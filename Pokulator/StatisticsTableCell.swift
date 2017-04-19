@@ -13,5 +13,7 @@ class StatisticsTableCell: UITableViewCell {
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var label2: UILabel!
     
+    @IBOutlet weak var title1: UILabel!
     
+    @IBOutlet weak var title2: UILabel!
 }

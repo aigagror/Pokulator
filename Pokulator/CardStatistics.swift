@@ -12,19 +12,19 @@ import Foundation
 ///
 /// - Parameter cards: cards that are known so far
 /// - Returns: an array of keys of all possible hands along with their probabilities
-func cardStatistics(cards: Set<Card>) -> [GenericHand : Double] {
+func cardStatistics(cards: Set<Card>) -> [GenericHand : Int] {
     //check if all the cards are filled
     if cards.count == 7 {
-        return [GenericHand : Double]()
+        return [GenericHand : Int]()
     }
     
     return monte_carlo(cards: cards, n: 20_000)
 }
 
-func monte_carlo(cards: Set<Card>, n: Int) -> [GenericHand : Double] {
+func monte_carlo(cards: Set<Card>, n: Int) -> [GenericHand : Int] {
     let start = Date()
     
-    var ret = [GenericHand : Double]()
+    var ret = [GenericHand : Int]()
     let curr_hand = getCurrentKnownHand(cards: cards)
     for i in GenericHand.straightFlush.rawValue...curr_hand.rawValue {
         ret[GenericHand(rawValue: i)!] = 0
@@ -35,7 +35,7 @@ func monte_carlo(cards: Set<Card>, n: Int) -> [GenericHand : Double] {
     let group = DispatchGroup()
     
     let adderQueue = DispatchQueue(label: "adder")
-    func addToRet(add: [GenericHand : Double]) {
+    func addToRet(add: [GenericHand : Int]) {
         for (hand,value) in add {
             ret[hand]! += value
         }
@@ -60,12 +60,6 @@ func monte_carlo(cards: Set<Card>, n: Int) -> [GenericHand : Double] {
     }
     
     group.wait()
-    
-    
-    for i in GenericHand.straightFlush.rawValue...curr_hand.rawValue {
-        ret[GenericHand(rawValue: i)!]! /= Double(n)
-        ret[GenericHand(rawValue: i)!]! *= 100.0
-    }
     
     let elapsed = -start.timeIntervalSinceNow
     print("Took \(elapsed) seconds")

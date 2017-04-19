@@ -46,6 +46,8 @@ class ViewController: UIViewController {
         updateScreen()
     }
     
+    let calculatorQueue = DispatchQueue(label: "calulator")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -101,10 +103,15 @@ class ViewController: UIViewController {
         
         
         //Get the stats
+        let workItem = DispatchWorkItem {
+            let data = cardStatistics(cards: givenCards)
+            self.statsTable.getData(data: data)
+        }
         
-        let data = cardStatistics(cards: givenCards)
-        statsTable.getData(data: data)
-        stats_table_view.reloadData()
+        calculatorQueue.async {
+            workItem.perform()
+        }
+        workItem.notify(queue: DispatchQueue.main, execute: {self.stats_table_view.reloadData()})
     }
     
     /// Animates in the card picker view

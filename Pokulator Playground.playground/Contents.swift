@@ -1,15 +1,31 @@
 import Foundation
 
-let start = Date()
-let dictionary = monte_carlo(cards: Set<Card>(), n: 200_000)
+var count = 0
 
-let elapsed = -start.timeIntervalSinceNow
+let workItem = DispatchWorkItem{
+    for i in 1...10 {
+        print("🔴 \(i)")
+        sleep(1)
+    }
+}
 
-print("Took \(elapsed) seconds")
+let workItem2 = DispatchWorkItem{
+    for i in 1...10 {
+        print("🔵")
+        sleep(1)
+    }
+}
 
-for i in (0...8).reversed() {
-    print(dictionary[GenericHand(rawValue: i)!]!)
+let queue = DispatchQueue(label: "queue")
+queue.async {
+    workItem.perform()
 }
 
 
+
+sleep(5)
+queue.async {
+    workItem.perform()
+}
+sleep(10)
 

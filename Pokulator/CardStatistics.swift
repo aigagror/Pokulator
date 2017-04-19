@@ -18,7 +18,7 @@ func cardStatistics(cards: Set<Card>) -> [GenericHand : Double] {
         return [GenericHand : Double]()
     }
     
-    return monte_carlo(cards: cards, n: 100_000)
+    return monte_carlo(cards: cards, n: 20_000)
 }
 
 func monte_carlo(cards: Set<Card>, n: Int) -> [GenericHand : Double] {
@@ -43,8 +43,9 @@ func monte_carlo(cards: Set<Card>, n: Int) -> [GenericHand : Double] {
     
     let concurrentQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
     
-    let size = 50_000
-    for _ in 1...Int((Double(n)/Double(size)).rounded(.up)) {
+    let size = 10_000
+    let k = Int((Double(n)/Double(size)).rounded(.up))
+    for _ in 1...k {
         concurrentQueue.async(group: group) {
             var d = emptyRet
             for _ in 1...size {

@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     }
     @IBAction func reset(_ sender: Any) {
         card_picker.reset()
-        updateScreen()
+        updateCards()
     }
     
     let calculatorQueue = DispatchQueue(label: "calulator")
@@ -77,11 +77,11 @@ class ViewController: UIViewController {
         
         self.stats_table_view.layer.cornerRadius = 10
         
-        updateScreen()
+        updateCards()
     }
     
-    /// Updates the screen
-    func updateScreen() -> Void {
+    /// Updates the cards on the screen
+    func updateCards() -> Void {
         let cards = card_picker.getCards()
         for i in 0...6 {
             if let card = cards[i] {
@@ -103,15 +103,10 @@ class ViewController: UIViewController {
         
         
         //Get the stats
-        let workItem = DispatchWorkItem {
-            let data = cardStatistics(cards: givenCards)
-            self.statsTable.getData(data: data)
-        }
+        let data = cardStatistics(cards: givenCards)
+        self.statsTable.getData(data: data)
         
-        calculatorQueue.async {
-            workItem.perform()
-        }
-        workItem.notify(queue: DispatchQueue.main, execute: {self.stats_table_view.reloadData()})
+        stats_table_view.reloadData()
     }
     
     /// Animates in the card picker view
@@ -141,7 +136,7 @@ class ViewController: UIViewController {
         }, completion: {(success: Bool) in
             self.add_card_view.removeFromSuperview()
             self.blur_effect.removeFromSuperview()
-            self.updateScreen()
+            self.updateCards()
         })
     }
 

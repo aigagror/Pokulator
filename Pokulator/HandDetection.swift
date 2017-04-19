@@ -14,21 +14,153 @@ import Foundation
 /// - Parameter cards: cards known
 /// - Returns: current generic hand
 func getCurrentKnownHand(cards: Set<Card>) -> GenericHand {
-    if hasAStraightFlush(cards: cards) != nil {
-        return .straightFlush
-    } else if hasAFourOfAKind(cards: cards) != nil {
-        return .fourOfAKind
-    } else if hasAFullHouse(cards: cards) != nil {
-        return .fullHouse
-    } else if hasAFlush(cards: cards) != nil {
+    assert(cards.count <= 7)
+    
+    var givenRanks = Set<Int>()
+    var suitCount = [Suit.clubs:0, Suit.diamonds:0, Suit.hearts:0, Suit.spades:0]
+    for card in cards {
+        givenRanks.insert(card.value)
+        suitCount[card.suit]! += 1
+    }
+    
+    //determine if there's a straight
+    var straight = false
+    if givenRanks.count >= 5 {
+        assert(givenRanks.count <= 7)
+        var sorted = givenRanks.sorted()
+        if givenRanks.contains(1) {
+            sorted.append(14)
+        }
+        for i in 0...sorted.count - 5 {
+            let x = sorted[i+4]
+            if sorted[i]+4 == x && sorted[i+1]+3 == x && sorted[i+2]+2 == x && sorted[i+3]+1 == x  {
+                straight = true
+            }
+        }
+    }
+    
+    //determine if there's a flush
+    var flush = false
+    for (_,c) in suitCount {
+        if c >= 5 {
+            flush = true
+        }
+    }
+    
+    //determine if there's a straight flush
+    if straight && flush {
+        var getSuit:Suit? = nil
+        for (s,c) in suitCount {
+            if c >= 5 {
+                getSuit = s
+                break
+            }
+        }
+        guard getSuit != nil else {
+            fatalError("Couldn't get suit for flush")
+        }
+        let suit = getSuit!
+        
+        var values = Set<Int>()
+        for card in cards {
+            if card.suit == suit {
+                values.insert(card.value)
+            }
+        }
+        assert(values.count >= 5)
+        if values.contains(1) {
+            values.insert(14)
+        }
+        let sorted = values.sorted()
+        for i in 0...sorted.count - 5 {
+            let x = sorted[i+4]
+            if sorted[i]+4 == x && sorted[i+1]+3 == x && sorted[i+2]+2 == x && sorted[i+3]+1 == x  {
+                return .straightFlush
+            }
+        }
+    }
+    
+    //determine if there's a four of a kind
+    if cards.count - givenRanks.count >= 3 {
+        var valuesCount = [Int:Int]()
+        for rank in givenRanks {
+            valuesCount[rank] = 0
+        }
+        
+        for card in cards {
+            valuesCount[card.value]! += 1
+        }
+        
+        for (_,y) in valuesCount {
+            if y >= 4 {
+                return .fourOfAKind
+            }
+        }
+    }
+    
+    //determine if there's a full house
+    if cards.count - givenRanks.count >= 3 {
+        var valuesCount = [Int:Int]()
+        for rank in givenRanks {
+            valuesCount[rank] = 0
+        }
+        
+        for card in cards {
+            valuesCount[card.value]! += 1
+        }
+        
+        var three = false
+        var two = false
+        
+        for (_,y) in valuesCount {
+            if y >= 3 {
+                if three {
+                    return .fullHouse
+                } else {
+                    three = true
+                }
+            } else if y >= 2 {
+                two = true
+            }
+        }
+        if two && three {
+            return .fullHouse
+        }
+    }
+    
+    if flush {
         return .flush
-    } else if hasAStraight(cards: cards) != nil {
+    }
+    
+    if straight {
         return .straight
-    } else if hasAThreeOfAKind(cards: cards) != nil {
-        return .threeOfAKind
-    } else if hasATwoPair(cards: cards) != nil {
+    }
+    
+    //determine if there's a three of a kind
+    if cards.count - givenRanks.count >= 2 {
+        var valuesCount = [Int:Int]()
+        for rank in givenRanks {
+            valuesCount[rank] = 0
+        }
+        
+        for card in cards {
+            valuesCount[card.value]! += 1
+        }
+        
+        for (_,y) in valuesCount {
+            if y >= 3 {
+                return .threeOfAKind
+            }
+        }
+    }
+    
+    //determine if there's a two pair
+    if cards.count - givenRanks.count >= 2 {
         return .twoPair
-    } else if hasAOnePair(cards: cards) != nil {
+    }
+    
+    //determine if there's a pair
+    if cards.count - givenRanks.count >= 1 {
         return .onePair
     } else {
         return .highCard

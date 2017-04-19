@@ -41,13 +41,13 @@ class PokulatorTests: XCTestCase {
         XCTAssertEqual(probTwoPair(cards: empty), 31_433_400 / Binom(n: 52, choose: 7))
     }
     
-    func testStaightFlushDetection() {
+    func testHandDetection() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let c1 = Set<Card>(arrayLiteral: Card(value: 2, suit: .clubs), Card(value: 3, suit: .clubs), Card(value: 4, suit: .clubs), Card(value: 5, suit: .clubs), Card(value: 6, suit: .clubs))
-        let c2 = Set<Card>(arrayLiteral: Card(value: 1, suit: .clubs), Card(value: 10, suit: .clubs), Card(value: 11, suit: .clubs), Card(value: 12, suit: .clubs), Card(value: 13, suit: .clubs), Card(value: 10, suit: .clubs))
-        XCTAssertEqual(hasAStraightFlush(cards: c1), Hand.straightFlush(6))
-        XCTAssertEqual(hasAStraightFlush(cards: c2), Hand.straightFlush(1))
+        let sf = Set<Card>(arrayLiteral: Card(value: 2, suit: .clubs), Card(value: 3, suit: .clubs), Card(value: 4, suit: .clubs), Card(value: 5, suit: .clubs), Card(value: 6, suit: .clubs))
+        let sf2 = Set<Card>(arrayLiteral: Card(value: 1, suit: .clubs), Card(value: 10, suit: .clubs), Card(value: 11, suit: .clubs), Card(value: 12, suit: .clubs), Card(value: 13, suit: .clubs), Card(value: 10, suit: .clubs))
+        XCTAssertEqual(getCurrentKnownHand(cards: sf), GenericHand.straightFlush)
+        XCTAssertEqual(getCurrentKnownHand(cards: sf2), GenericHand.straightFlush)
     }
     
     func testPerformanceExample() {

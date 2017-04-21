@@ -111,10 +111,21 @@ class ViewController: UIViewController {
                         self.data[GenericHand(rawValue: i)!] = 0
                     }
                     self.total_trials = 0
+                    
+                    DispatchQueue.main.async {
+                        var new_data = [GenericHand:Double]()
+                        
+                        for (hand,n) in self.data {
+                            new_data[hand] = Double(n*100) / Double(self.total_trials)
+                        }
+                        self.statsTable.getData(data: new_data)
+                        self.stats_table_view.reloadData()
+                        print("accumulated trials: \(self.total_trials)")
+                    }
                 }
                 
-                let additional_data = monte_carlo(cards: self.cards, n: 20_000)
-                self.total_trials += 20_000
+                let additional_data = monte_carlo(cards: self.cards, n: 40_000)
+                self.total_trials += 40_000
                 for (hand,n) in additional_data {
                     if let old = self.data[hand] {
                         self.data[hand] = old + n
@@ -123,13 +134,12 @@ class ViewController: UIViewController {
                     }
                 }
                 
-                var new_data = [GenericHand:Double]()
-                
-                for (hand,n) in self.data {
-                    new_data[hand] = Double(n*100) / Double(self.total_trials)
-                }
-                
                 DispatchQueue.main.async {
+                    var new_data = [GenericHand:Double]()
+                    
+                    for (hand,n) in self.data {
+                        new_data[hand] = Double(n*100) / Double(self.total_trials)
+                    }
                     self.statsTable.getData(data: new_data)
                     self.stats_table_view.reloadData()
                     print("accumulated trials: \(self.total_trials)")

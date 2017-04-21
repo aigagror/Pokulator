@@ -18,7 +18,7 @@ class StatisticsTable: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (data.count + 1) / 2
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -27,18 +27,27 @@ class StatisticsTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         }
         
         let hand1 = GenericHand(rawValue: indexPath.row * 2)!
-        let hand2 = GenericHand(rawValue: indexPath.row * 2 + 1)!
+        let hand2 = GenericHand(rawValue: indexPath.row * 2 + 1)
         
         if let value1 = data[hand1] {
             cell.title1.text = toString(hand: hand1) + ":"
-            cell.label1.text = "\((value1*1000).rounded() / 1000.0)"
-        }
-        if let value2 = data[hand2] {
-            cell.title2.text = toString(hand: hand2) + ":"
-            cell.label2.text = "\((value2*1000).rounded() / 1000.0)"
+            cell.label1.text = value1 == 0 ? "-" : "\((value1*1000).rounded() / 1000.0)"
         } else {
-            cell.label2.text = ""
+            cell.label2.text = "-"
         }
+        
+        if indexPath.row == 4 {
+            cell.title2.text = "Winning:"
+            cell.label2.text = "-"
+        } else {
+            if let value2 = data[hand2!] {
+                cell.title2.text = toString(hand: hand2!) + ":"
+                cell.label2.text = value2 == 0 ? "-" : "\((value2*1000).rounded() / 1000.0)"
+            } else {
+                cell.label2.text = "-"
+            }
+        }
+        
         return cell
     }
 }

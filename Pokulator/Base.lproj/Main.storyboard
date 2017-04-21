@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -45,7 +45,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qo1-Ij-lGP">
-                                        <rect key="frame" x="0.0" y="69" width="335" height="80"/>
+                                        <rect key="frame" x="0.0" y="60" width="335" height="80"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opponents" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5H-ep-9ge">
                                                 <rect key="frame" x="0.0" y="0.0" width="100.5" height="80"/>
@@ -66,10 +66,10 @@
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9r5-a9-dtA" userLabel="Statistics Table View">
-                                        <rect key="frame" x="0.0" y="173.5" width="335" height="174"/>
+                                        <rect key="frame" x="0.0" y="155.5" width="335" height="218"/>
                                         <color key="backgroundColor" red="0.47367572784423828" green="0.53377795219421387" blue="0.11058802157640457" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="174" id="l19-tr-Yt9"/>
+                                            <constraint firstAttribute="height" constant="218" id="l19-tr-Yt9"/>
                                         </constraints>
                                         <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -136,7 +136,7 @@
                                         </prototypes>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hand" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9U-nP-zt2">
-                                        <rect key="frame" x="0.0" y="371.5" width="335" height="25"/>
+                                        <rect key="frame" x="0.0" y="389.5" width="335" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="Ie3-x7-36Y"/>
                                         </constraints>
@@ -145,7 +145,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qfu-O5-GIj" userLabel="Community Stack View">
-                                        <rect key="frame" x="0.0" y="421" width="335" height="85.5"/>
+                                        <rect key="frame" x="0.0" y="430" width="335" height="85.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fs2-mI-Hm7" userLabel="flop1">
                                                 <rect key="frame" x="0.0" y="0.0" width="59" height="85.5"/>
@@ -233,7 +233,9 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Uf-ay-eoe">
                                                         <rect key="frame" x="0.0" y="29" width="58" height="58"/>
-                                                        <state key="normal" title="Reset"/>
+                                                        <state key="normal" title="Reset">
+                                                            <color key="titleColor" red="0.63479536802030456" green="0.094959553848277894" blue="0.0054844945602931369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C2a-ro-yRM"/>
                                                         </connections>

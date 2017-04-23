@@ -31,9 +31,13 @@ class StatisticsTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         
         if let value1 = data[hand1] {
             cell.title1.text = toString(hand: hand1) + ":"
-            cell.label1.text = value1 == 0 ? "-" : "\((value1*1000).rounded() / 1000.0)"
+            if value1 == 0 || value1 == Double.nan {
+                cell.label1.text = "-"
+            } else {
+                cell.label1.text = "\((value1*1000).rounded() / 1000.0)"
+            }
         } else {
-            cell.label2.text = "-"
+            cell.label1.text = "-"
         }
         
         if indexPath.row == 4 {
@@ -42,7 +46,10 @@ class StatisticsTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         } else {
             if let value2 = data[hand2!] {
                 cell.title2.text = toString(hand: hand2!) + ":"
-                cell.label2.text = value2 == 0 ? "-" : "\((value2*1000).rounded() / 1000.0)"
+                if value2 == 0 || value2 == Double.nan {
+                    cell.label2.text = "-"
+                }
+                cell.label2.text = "\((value2*1000).rounded() / 1000.0)"
             } else {
                 cell.label2.text = "-"
             }

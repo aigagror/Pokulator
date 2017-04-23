@@ -48,6 +48,7 @@ class ViewController: UIViewController {
     
     //background calculations
     var cards = Set<Card>()
+    var opponents = 1
     var data = [GenericHand:Int]()
     var total_trials = 0
     let calculatorQueue = DispatchQueue(label: "calculator_queue", qos: .background)
@@ -89,7 +90,7 @@ class ViewController: UIViewController {
             while true {
                 let curr_cards = self.getCards()
                 
-                //check if the sets are the same
+                //check if the sets are the same (including opponent count)
                 var sameSet = true
                 for card in curr_cards {
                     if !self.cards.contains(card) {
@@ -98,13 +99,20 @@ class ViewController: UIViewController {
                         break
                     }
                 }
-                for card in self.cards {
-                    if !curr_cards.contains(card) {
-                        sameSet = false
-                        self.cards = curr_cards
-                        break
+                let new_opponents = self.opponent_picker.get_number_opponents()
+                if self.opponents == new_opponents {
+                    for card in self.cards {
+                        if !curr_cards.contains(card) {
+                            sameSet = false
+                            self.cards = curr_cards
+                            break
+                        }
                     }
+                } else {
+                    sameSet = false
+                    self.opponents = new_opponents
                 }
+                
                 
                 if !sameSet {
                     for i in 0...8 {
@@ -124,7 +132,7 @@ class ViewController: UIViewController {
                     }
                 }
                 
-                let additional_data = monte_carlo(cards: self.cards, n: 40_000)
+                let additional_data = monte_carlo(cards: self.cards, opponents: self.opponents, n: 40_000)
                 self.total_trials += 40_000
                 for (hand,n) in additional_data {
                     if let old = self.data[hand] {

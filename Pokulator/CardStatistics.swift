@@ -12,16 +12,16 @@ import Foundation
 ///
 /// - Parameter cards: cards that are known so far
 /// - Returns: an array of keys of all possible hands along with their probabilities
-func cardStatistics(cards: Set<Card>) -> [GenericHand : Int] {
+func cardStatistics(cards: Set<Card>, opponents: Int) -> [GenericHand : Int] {
     //check if all the cards are filled
     if cards.count == 7 {
         return [GenericHand : Int]()
     }
     
-    return monte_carlo(cards: cards, n: 20_000)
+    return monte_carlo(cards: cards, opponents: opponents, n: 20_000)
 }
 
-func monte_carlo(cards: Set<Card>, n: Int) -> [GenericHand : Int] {
+func monte_carlo(cards: Set<Card>, opponents: Int, n: Int) -> [GenericHand : Int] {
     let start = Date()
     
     var ret = [GenericHand : Int]()

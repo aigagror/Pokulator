@@ -16,44 +16,38 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
     private var selected_card = Card(value: 1, suit: .clubs)
     
-    /// Holds the information for what the cards on the table are
-    private var cards = Array<Card?>(repeating: nil, count: 7)
-    
     /// Attempts to modify the card. May reject if the index is out of bounds of [0,6], or is at an index where previous cards have not been set yet
     ///
     /// - Parameter index: index for the card
     /// - Returns: returns whether or not the card is set for editing
     func setCardIndex(index: Int, with_selection: Card?) -> Bool {
+        let cards = getCards()
         if index > 6 || index < 0 {
             return false
-        } else {
-            if index > 0 {
-                for i in 0...index - 1 {
-                    if cards[i] == nil {
-                        // need to pick previous cards first
-                        return false
-                    }
-                }
-            }
-            
-            // can edit this card
-            card_index = index
-            
-            // set the default selection
-            if let selection = with_selection {
-                selected_card = selection
-            } else {
-                selected_card = Card(value: 1, suit: .clubs)
-            }
-            
-            return true
         }
+        if cards.count < index {
+            return false
+        }
+        
+        // can edit this card
+        card_index = index
+        
+        // set the default selection
+        if let selection = with_selection {
+            selected_card = selection
+        } else {
+            selected_card = Card(value: 1, suit: .clubs)
+        }
+        
+        return true
     }
     
     /// Call this function when you're done with your selection so it'll finalize your card pick
     func aboutToAnimateOut() -> Void {
         if cardIsAvailable(card: selected_card) {
+            var cards = getCards()
             cards[card_index] = selected_card
+            update(new_cards: cards)
         }
     }
     
@@ -62,31 +56,21 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     /// - Parameter index: index in question
     /// - Returns: card at that index. nil if there is none
     func cardAt(index: Int) -> Card? {
+        let cards = getCards()
         return cards[index]
-    }
-    
-    
-    /// Returns the array of cards
-    ///
-    /// - Returns: an array of Cards
-    func getCards() -> Array<Card?> {
-        return cards
     }
     
     /// Resets the cards
     func reset() -> Void {
         card_index = 0
-        for i in 0...6 {
-            cards[i] = nil
-        }
+        update(new_cards: Array<Card>())
     }
     
     func cardIsAvailable(card: Card) -> Bool {
+        let cards = getCards()
         for c in cards {
-            if let cd = c {
-                if cd == card {
-                    return false
-                }
+            if c == card {
+                return false
             }
         }
         return true

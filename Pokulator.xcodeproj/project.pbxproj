@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2C0C4D811E9B1769009CD60A /* Hands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C4D801E9B1769009CD60A /* Hands.swift */; };
+		2C3C83D01EB1A9FA00983034 /* GameHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C83CF1EB1A9FA00983034 /* GameHandler.swift */; };
 		2C4C2EB81E95DE1C0073A377 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EB71E95DE1C0073A377 /* Card.swift */; };
 		2C4C2EBA1E95DFDF0073A377 /* Suits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EB91E95DFDF0073A377 /* Suits.swift */; };
-		2C4C2EBC1E95E2000073A377 /* CardStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EBB1E95E2000073A377 /* CardStatistics.swift */; };
 		2C4C2EBF1E9751E80073A377 /* CardPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EBE1E9751E80073A377 /* CardPicker.swift */; };
 		2C5060691E9341A600B0D6DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5060681E9341A600B0D6DA /* AppDelegate.swift */; };
 		2C50606B1E9341A600B0D6DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C50606A1E9341A600B0D6DA /* ViewController.swift */; };
@@ -44,9 +44,9 @@
 
 /* Begin PBXFileReference section */
 		2C0C4D801E9B1769009CD60A /* Hands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hands.swift; sourceTree = "<group>"; };
+		2C3C83CF1EB1A9FA00983034 /* GameHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHandler.swift; sourceTree = "<group>"; };
 		2C4C2EB71E95DE1C0073A377 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2C4C2EB91E95DFDF0073A377 /* Suits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suits.swift; sourceTree = "<group>"; };
-		2C4C2EBB1E95E2000073A377 /* CardStatistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStatistics.swift; sourceTree = "<group>"; };
 		2C4C2EBE1E9751E80073A377 /* CardPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPicker.swift; sourceTree = "<group>"; };
 		2C5060651E9341A600B0D6DA /* Pokulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5060681E9341A600B0D6DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +93,7 @@
 		2C4C2EBD1E95E2290073A377 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				2C3C83CF1EB1A9FA00983034 /* GameHandler.swift */,
 				2C0C4D801E9B1769009CD60A /* Hands.swift */,
 				2C4C2EB71E95DE1C0073A377 /* Card.swift */,
 				2C4C2EB91E95DFDF0073A377 /* Suits.swift */,
@@ -158,7 +159,6 @@
 		2C510CC51EA05915006AEC26 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
-				2C4C2EBB1E95E2000073A377 /* CardStatistics.swift */,
 				2C510CBE1E9F08E6006AEC26 /* HandDetection.swift */,
 				2C510CCE1EA41ECC006AEC26 /* Hand Probabilities */,
 			);
@@ -304,8 +304,8 @@
 				2C55BF9F1E98AF5900C8CE87 /* Rational.swift in Sources */,
 				2C55BF9B1E98AEC200C8CE87 /* Factors.swift in Sources */,
 				2C4C2EB81E95DE1C0073A377 /* Card.swift in Sources */,
+				2C3C83D01EB1A9FA00983034 /* GameHandler.swift in Sources */,
 				2C55BF951E98AE1000C8CE87 /* Binomial.swift in Sources */,
-				2C4C2EBC1E95E2000073A377 /* CardStatistics.swift in Sources */,
 				2C4C2EBA1E95DFDF0073A377 /* Suits.swift in Sources */,
 				2C510CD21EA46834006AEC26 /* TwoPair.swift in Sources */,
 				2C510CBF1E9F08E6006AEC26 /* HandDetection.swift in Sources */,
@@ -529,6 +529,7 @@
 				2C510CBC1E9DCF75006AEC26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

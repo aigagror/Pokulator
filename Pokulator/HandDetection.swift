@@ -13,8 +13,16 @@ import Foundation
 ///
 /// - Parameter cards: cards known
 /// - Returns: current generic hand
-func getCurrentKnownHand(cards: Set<Card>) -> GenericHand {
+func getCurrentKnownHand(cards: Array<Card>) -> GenericHand {
     assert(cards.count <= 7)
+    let n = cards.count
+    for i in 0...n-2 {
+        for j in i+i...n-1 {
+            if cards[i] == cards[j] {
+                fatalError("Duplicate cards")
+            }
+        }
+    }
     
     var givenRanks = Set<Int>()
     var suitCount = [Suit.clubs:0, Suit.diamonds:0, Suit.hearts:0, Suit.spades:0]

@@ -17,7 +17,7 @@ struct Card: Hashable {
         self.suit = s
     }
     
-    init(value v: Int, suit s: Int) {
+    init(value v: Int = 0, suit s: Int = 0) {
         self.value = v
         
         switch s {

@@ -48,8 +48,6 @@ class ViewController: UIViewController {
     
     //background calculations
     let calculatorQueue = DispatchQueue(label: "calculator_queue", qos: .background)
-    var calcWorkItem = DispatchWorkItem { 
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,31 +79,30 @@ class ViewController: UIViewController {
         self.stats_table_view.layer.cornerRadius = 10
         
         
-        //calculations set up
-        calcWorkItem = DispatchWorkItem {
-            while true {
-                
-                monteCarlo(n: 40_000)
-                
-                DispatchQueue.main.async {
-                    var new_data = [GenericHand:Double]()
-                    
-                    let hand_data = getHandData()
-                    let hand_trials = getHandTrials()
-                    
-                    for (hand,n) in hand_data {
-                        new_data[hand] = Double(n*100) / Double(hand_trials)
-                    }
-                    self.statsTable.getData(data: new_data)
-                    self.stats_table_view.reloadData()
-                    print("hand trials: \(hand_trials), wins: \(getWins())")
-                }
-            }
-        }
-        
         // Start up the calculations
         calculatorQueue.async {
-            self.calcWorkItem.perform()
+            while true {
+                monteCarlo(n: 40_000)
+                
+                var new_data = [GenericHand:Double]()
+
+                let hand_data = getHandData()
+                let hand_trials = getHandTrials()
+                let wins = getWins()
+                
+                for (hand,n) in hand_data {
+                    new_data[hand] = Double(n*100) / Double(hand_trials)
+                    if hand == GenericHand.highCard {
+                        print(n)
+                    }
+                }
+                
+                DispatchQueue.main.sync {
+                    self.statsTable.getData(data: new_data)
+                    self.stats_table_view.reloadData()
+                    print("hand trials: \(hand_trials), wins: \(wins)")
+                }
+            }
         }
         
         updateScreen()

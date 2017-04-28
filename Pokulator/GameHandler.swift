@@ -8,6 +8,10 @@
 
 import Foundation
 
+
+/// This queue is used to protect the critical section of all of the fileprivate variables here
+public let dataQueue = DispatchQueue(label: "adder", qos: .background)
+
 fileprivate var cards = Array<Card>()
 
 fileprivate var hand_trials = 0
@@ -30,9 +34,8 @@ func getCards() -> Array<Card> {
     return cards
 }
 
-let dataQueue = DispatchQueue(label: "adder")
 
-/// Performs n sample rounds and updates the hands and wins informations
+/// Performs n sample rounds and updates the hands and wins informations. Blocks until all of the data is updated
 ///
 /// - Parameter n: Number of iterations to make
 func monteCarlo(n: Int) {
@@ -134,7 +137,8 @@ func update(new_cards: Array<Card>? = nil, new_opponents: Int? = nil) -> Void {
                 win_trials = 0
                 cards = c
             }
-            print("refreshed")
+            print("refreshed hand data")
+            print(hand_data)
         }
     }
     if let o = new_opponents {
@@ -144,19 +148,37 @@ func update(new_cards: Array<Card>? = nil, new_opponents: Int? = nil) -> Void {
                 win_trials = 0
                 opponents = 0
             }
-            print("refreshed")
+            print("refreshed win data")
         }
     }
 }
 
 func getHandData() -> [GenericHand:Int] {
-    return hand_data
+    dataQueue.sync {
+        
+    }
+    dataQueue.suspend()
+    let hd = hand_data
+    dataQueue.resume()
+    return hd
 }
 
 func getHandTrials() -> Int {
-    return hand_trials
+    dataQueue.sync {
+        
+    }
+    dataQueue.suspend()
+    let ht = hand_trials
+    dataQueue.resume()
+    return ht
 }
 
 func getWins() -> Int {
-    return wins
+    dataQueue.sync {
+        
+    }
+    dataQueue.suspend()
+    let w = wins
+    dataQueue.resume()
+    return w
 }

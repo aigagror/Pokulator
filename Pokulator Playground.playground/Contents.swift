@@ -3,7 +3,9 @@ import Foundation
 var count = 0
 
 let c = [1,2,3,4,5]
+let b = Array<Card>(repeating: Card(), count: 10)
 c[1...4]
+print(b[(2...6)])
 
 //let workItem = DispatchWorkItem{
 //    for i in 1...10 {

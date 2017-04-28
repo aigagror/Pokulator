@@ -16,10 +16,12 @@ import Foundation
 func getCurrentKnownHand(cards: Array<Card>) -> GenericHand {
     assert(cards.count <= 7)
     let n = cards.count
-    for i in 0...n-2 {
-        for j in i+i...n-1 {
-            if cards[i] == cards[j] {
-                fatalError("Duplicate cards")
+    if n >= 2 {
+        for i in 0...n-2 {
+            for j in i+1...n-1 {
+                if cards[i] == cards[j] {
+                    fatalError("Duplicate cards")
+                }
             }
         }
     }

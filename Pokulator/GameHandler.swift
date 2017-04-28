@@ -11,16 +11,26 @@ import Foundation
 fileprivate var cards = Array<Card>()
 
 fileprivate var hand_trials = 0
-fileprivate var hand_data:[GenericHand:Int] = [:]
+fileprivate var hand_data:[GenericHand:Int] = emptyData
 
 fileprivate var opponents = 0
 fileprivate var win_trials = 0
 fileprivate var wins = 0
 
 
+var emptyData: [GenericHand:Int] {
+    var emptyData: [GenericHand:Int] = [:]
+    for i in 0...8 {
+        emptyData[GenericHand(rawValue: i)!] = 0
+    }
+    return emptyData
+}
+
 func getCards() -> Array<Card> {
     return cards
 }
+
+let dataQueue = DispatchQueue(label: "adder")
 
 /// Performs n sample rounds and updates the hands and wins informations
 ///
@@ -32,33 +42,39 @@ func monteCarlo(n: Int) {
     
     let group = DispatchGroup()
     
-    let adderQueue = DispatchQueue(label: "adder")
-    func addToHandData(add: [GenericHand : Int]) {
-        for (hand,value) in add {
+    func addToData(hands: [GenericHand : Int], w: Int, w_trials: Int) {
+        for (hand,value) in hands {
             hand_data[hand]! += value
+            hand_trials += value
         }
+        wins += w
+        win_trials += w_trials
     }
     
-    var emptyRet: [GenericHand:Int] = [:]
-    for i in 0...8 {
-        emptyRet[GenericHand(rawValue: i)!] = 0
-    }
     
-    let concurrentQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
+    let monteQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
     
     let size = 10_000
     let k = Int((Double(n)/Double(size)).rounded(.up))
     for _ in 1...k {
-        concurrentQueue.async(group: group) {
-            var d = emptyRet
+        monteQueue.async(group: group) {
+            var d = emptyData
+            var w = 0
             for _ in 1...size {
                 let (filled_cards, opponent_cards) = randomFill()
                 let hand = getCurrentKnownHand(cards: filled_cards)
                 d[hand]! += 1
-                let best_opponent_hand = bestOpponentHand(community_cards: filled_cards[2...6], opponent_cards: opponent_cards)
+                var cc = Array<Card>()
+                for i in 2...6 {
+                    cc.append(filled_cards[i])
+                }
+                let best_opponent_hand = bestOpponentHand(community_cards: cc, opponent_cards: opponent_cards)
+                if hand.rawValue < best_opponent_hand.rawValue {
+                    w += 1
+                }
             }
-            adderQueue.async(group: group) {
-                addToHandData(add: d)
+            dataQueue.async(group: group) {
+                addToData(hands: d, w: w, w_trials: size)
             }
         }
     }
@@ -93,7 +109,7 @@ fileprivate func randomFill() -> (Array<Card>, Array<Card>) {
 }
 
 fileprivate func bestOpponentHand(community_cards: Array<Card>, opponent_cards: Array<Card>) -> GenericHand {
-    guard cards.count % 2 == 0 && community_cards.count == 5 else {
+    guard opponent_cards.count % 2 == 0 && community_cards.count == 5 else {
         fatalError("given an odd number of opponent cards")
     }
     
@@ -110,10 +126,26 @@ fileprivate func bestOpponentHand(community_cards: Array<Card>, opponent_cards: 
 ///   - opponents: updated number of opponents
 func update(new_cards: Array<Card>? = nil, new_opponents: Int? = nil) -> Void {
     if let c = new_cards {
-        cards = c
+        if cards != c {
+            dataQueue.sync {
+                hand_trials = 0
+                hand_data = emptyData
+                wins = 0
+                win_trials = 0
+                cards = c
+            }
+            print("refreshed")
+        }
     }
     if let o = new_opponents {
-        opponents = o
+        if opponents != o {
+            dataQueue.sync {
+                wins = 0
+                win_trials = 0
+                opponents = 0
+            }
+            print("refreshed")
+        }
     }
 }
 

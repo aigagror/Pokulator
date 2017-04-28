@@ -46,7 +46,12 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     func aboutToAnimateOut() -> Void {
         if cardIsAvailable(card: selected_card) {
             var cards = getCards()
-            cards[card_index] = selected_card
+            if cards.count == card_index {
+                cards.append(selected_card)
+            } else {
+                assert(cards.count > card_index)
+                cards[card_index] = selected_card
+            }
             update(new_cards: cards)
         }
     }
@@ -57,7 +62,11 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     /// - Returns: card at that index. nil if there is none
     func cardAt(index: Int) -> Card? {
         let cards = getCards()
-        return cards[index]
+        if cards.count > index {
+            return cards[index]
+        } else {
+            return nil
+        }
     }
     
     /// Resets the cards

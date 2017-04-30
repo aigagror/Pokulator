@@ -89,13 +89,15 @@ class ViewController: UIViewController {
                 let hand_data = getHandData()
                 let hand_trials = getHandTrials()
                 let wins = getWins()
+                let win_trials = getWinTrials()
+                let winPercentage = Double(wins) / Double(win_trials)
                 
                 for (hand,n) in hand_data {
                     new_data[hand] = Double(n*100) / Double(hand_trials)
                 }
                 
                 DispatchQueue.main.sync {
-                    self.statsTable.getData(data: new_data)
+                    self.statsTable.getData(handData: new_data, win: winPercentage)
                     self.stats_table_view.reloadData()
                     print("hand trials: \(hand_trials), wins: \(wins)")
                 }

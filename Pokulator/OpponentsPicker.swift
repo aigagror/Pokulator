@@ -13,12 +13,6 @@ class OppponentPicker: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
     // UIPicker Protocol Stuff...
     // Number of Components
     
-    private var num_opp = 1
-    
-    func get_number_opponents() -> Int {
-        return num_opp
-    }
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -35,6 +29,6 @@ class OppponentPicker: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
     
     // What to do when user selects something
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.num_opp = row + 1
+        update(new_cards: nil, new_opponents: row + 1)
     }
 }

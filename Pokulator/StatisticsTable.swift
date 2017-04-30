@@ -11,10 +11,12 @@ import UIKit
 
 class StatisticsTable: NSObject, UITableViewDelegate, UITableViewDataSource {
     
-    private var data = [GenericHand : Double]()
+    private var handData = [GenericHand : Double]()
+    private var win = 0.0
 
-    func getData(data: [GenericHand : Double]) -> Void {
-        self.data = data
+    func getData(handData: [GenericHand : Double], win: Double) -> Void {
+        self.handData = handData
+        self.win = win
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,7 +31,7 @@ class StatisticsTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         let hand1 = GenericHand(rawValue: indexPath.row * 2)!
         let hand2 = GenericHand(rawValue: indexPath.row * 2 + 1)
         
-        if let value1 = data[hand1] {
+        if let value1 = handData[hand1] {
             cell.title1.text = toString(hand: hand1) + ":"
             if value1 == 0 || value1 == Double.nan {
                 cell.label1.text = "-"
@@ -42,9 +44,9 @@ class StatisticsTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 4 {
             cell.title2.text = "Winning:"
-            cell.label2.text = "-"
+            cell.label2.text = win == 0 ? "-" : "\((win*1000).rounded() / 1000.0)"
         } else {
-            if let value2 = data[hand2!] {
+            if let value2 = handData[hand2!] {
                 cell.title2.text = toString(hand: hand2!) + ":"
                 if value2 == 0 || value2 == Double.nan {
                     cell.label2.text = "-"

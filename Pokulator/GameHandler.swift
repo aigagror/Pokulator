@@ -18,7 +18,7 @@ fileprivate var cards = Array<Card>()
 fileprivate var hand_trials = 0
 fileprivate var hand_data:[GenericHand:Int] = emptyData
 
-fileprivate var opponents = 0
+fileprivate var opponents = 1
 fileprivate var win_trials = 0
 fileprivate var wins = 0
 
@@ -62,7 +62,7 @@ fileprivate func updateHelper(new_cards: Array<Card>? = nil, new_opponents: Int?
             dataQueue.sync {
                 wins = 0
                 win_trials = 0
-                opponents = 0
+                opponents = o
             }
             print("refreshed win data")
         }
@@ -144,7 +144,7 @@ fileprivate func randomFill() -> (Array<Card>, Array<Card>) {
         let value = Int(arc4random_uniform(13) + 1)
         let suit = Int(arc4random_uniform(4))
         let card = Card(value: value, suit: suit)
-        if !opponents_cards.contains(card) {
+        if !opponents_cards.contains(card) && !main_cards.contains(card) {
             opponents_cards.append(card)
         }
     }
@@ -154,10 +154,22 @@ fileprivate func randomFill() -> (Array<Card>, Array<Card>) {
 
 fileprivate func bestOpponentHand(community_cards: Array<Card>, opponent_cards: Array<Card>) -> GenericHand {
     guard opponent_cards.count % 2 == 0 && community_cards.count == 5 else {
-        fatalError("given an odd number of opponent cards")
+        fatalError("given an odd number of opponent cards or not given all five community cards")
     }
     
     var bestHand = GenericHand.highCard
+    let n = opponent_cards.count
+    for i in 0...(n/2 - 1) {
+        let o1 = opponent_cards[2*i]
+        let o2 = opponent_cards[2*i + 1]
+        var trial = community_cards
+        trial.append(o1)
+        trial.append(o2)
+        let hand = getCurrentKnownHand(cards: trial)
+        if hand.rawValue < bestHand.rawValue {
+            bestHand = hand
+        }
+    }
     
     return bestHand
 }
@@ -193,6 +205,16 @@ func getWins() -> Int {
     }
     dataQueue.suspend()
     let w = wins
+    dataQueue.resume()
+    return w
+}
+
+func getWinTrials() -> Int {
+    dataQueue.sync {
+        
+    }
+    dataQueue.suspend()
+    let w = win_trials
     dataQueue.resume()
     return w
 }

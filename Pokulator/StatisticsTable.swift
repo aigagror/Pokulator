@@ -48,8 +48,9 @@ class StatisticsTable: NSObject, UITableViewDelegate, UITableViewDataSource {
                 cell.title2.text = toString(hand: hand2!) + ":"
                 if value2 == 0 || value2 == Double.nan {
                     cell.label2.text = "-"
+                } else {
+                    cell.label2.text = "\((value2*1000).rounded() / 1000.0)"
                 }
-                cell.label2.text = "\((value2*1000).rounded() / 1000.0)"
             } else {
                 cell.label2.text = "-"
             }

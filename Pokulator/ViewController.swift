@@ -85,16 +85,13 @@ class ViewController: UIViewController {
                 monteCarlo(n: 40_000)
                 
                 var new_data = [GenericHand:Double]()
-
+                
                 let hand_data = getHandData()
                 let hand_trials = getHandTrials()
                 let wins = getWins()
                 
                 for (hand,n) in hand_data {
                     new_data[hand] = Double(n*100) / Double(hand_trials)
-                    if hand == GenericHand.highCard {
-                        print(n)
-                    }
                 }
                 
                 DispatchQueue.main.sync {

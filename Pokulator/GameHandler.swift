@@ -8,9 +8,10 @@
 
 import Foundation
 
+fileprivate let updateQueue = DispatchQueue(label: "updater")
 
-/// This queue is used to protect the critical section of all of the fileprivate variables here
-public let dataQueue = DispatchQueue(label: "adder", qos: .background)
+/// This queue is used to protect the critical section of all of the fileprivate variables here. Any reading/writing on these variables should be done through this queue
+fileprivate let dataQueue = DispatchQueue(label: "adder", qos: .background)
 
 fileprivate var cards = Array<Card>()
 
@@ -30,15 +31,55 @@ var emptyData: [GenericHand:Int] {
     return emptyData
 }
 
-func getCards() -> Array<Card> {
-    return cards
+
+/// Given the new data about the cards, update the trial information appropriately
+///
+/// - Parameters:
+///   - cards: updated cards
+///   - opponents: updated number of opponents
+func update(new_cards: Array<Card>? = nil, new_opponents: Int? = nil) {
+    updateQueue.sync {
+        updateHelper(new_cards: new_cards, new_opponents: new_opponents)
+    }
 }
 
+fileprivate func updateHelper(new_cards: Array<Card>? = nil, new_opponents: Int? = nil) -> Void {
+    
+    if let c = new_cards {
+        if cards != c {
+            dataQueue.sync {
+                hand_trials = 0
+                hand_data = emptyData
+                wins = 0
+                win_trials = 0
+                cards = c
+            }
+            print("refreshed hand data")
+        }
+    }
+    if let o = new_opponents {
+        if opponents != o {
+            dataQueue.sync {
+                wins = 0
+                win_trials = 0
+                opponents = 0
+            }
+            print("refreshed win data")
+        }
+    }
+}
 
 /// Performs n sample rounds and updates the hands and wins informations. Blocks until all of the data is updated
 ///
 /// - Parameter n: Number of iterations to make
 func monteCarlo(n: Int) {
+    updateQueue.sync {
+        monteCarloHelper(n: n)
+    }
+}
+
+fileprivate func monteCarloHelper(n: Int) {
+    
     let start = Date()
     
     let curr_hand = getCurrentKnownHand(cards: cards)
@@ -122,35 +163,8 @@ fileprivate func bestOpponentHand(community_cards: Array<Card>, opponent_cards: 
 }
 
 
-/// Given the new data about the cards, update the trial information appropriately
-///
-/// - Parameters:
-///   - cards: updated cards
-///   - opponents: updated number of opponents
-func update(new_cards: Array<Card>? = nil, new_opponents: Int? = nil) -> Void {
-    if let c = new_cards {
-        if cards != c {
-            dataQueue.sync {
-                hand_trials = 0
-                hand_data = emptyData
-                wins = 0
-                win_trials = 0
-                cards = c
-            }
-            print("refreshed hand data")
-            print(hand_data)
-        }
-    }
-    if let o = new_opponents {
-        if opponents != o {
-            dataQueue.sync {
-                wins = 0
-                win_trials = 0
-                opponents = 0
-            }
-            print("refreshed win data")
-        }
-    }
+func getCards() -> Array<Card> {
+    return cards
 }
 
 func getHandData() -> [GenericHand:Int] {

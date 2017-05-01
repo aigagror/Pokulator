@@ -144,17 +144,18 @@ fileprivate func randomFill() -> Array<Card> {
     
     // shuffle the first few cards needed
     let cardsNeeded = (7 - cards.count) + 2 * opponents
+    let n = cardList.count
     for i in 0...(cardsNeeded-1) {
-        let rand = Int(arc4random_uniform(UInt32(52 - i)))
+        let rand = Int(arc4random_uniform(UInt32(n - i))) + i
         let temp = cardList[i]
         cardList[i] = cardList[rand]
         cardList[rand] = temp
     }
     
-    for i in 1...cardsNeeded {
+    for i in 0...(cardsNeeded-1) {
         ret.append(Card(index: cardList[i]))
     }
-    
+        
     return ret
 }
 

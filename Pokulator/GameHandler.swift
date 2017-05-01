@@ -105,14 +105,11 @@ fileprivate func monteCarloHelper(n: Int) {
             var d = emptyData
             var w = 0
             for _ in 1...size {
-                let (filled_cards, opponent_cards) = randomFill()
-                let hand = getCurrentKnownHand(cards: filled_cards)
+                let fill = randomFill()
+                
+                let hand = getCurrentKnownHand(cards: fill)
                 d[hand]! += 1
-                var cc = Array<Card>()
-                for i in 2...6 {
-                    cc.append(filled_cards[i])
-                }
-                let best_opponent_hand = bestOpponentHand(community_cards: cc, opponent_cards: opponent_cards)
+                let best_opponent_hand = bestOpponentHand(cards: fill)
                 if hand.rawValue < best_opponent_hand.rawValue {
                     w += 1
                 }
@@ -129,40 +126,57 @@ fileprivate func monteCarloHelper(n: Int) {
     print("Took \(elapsed) seconds")
 }
 
-fileprivate func randomFill() -> (Array<Card>, Array<Card>) {
-    var main_cards = cards
-    while main_cards.count < 7 {
-        let value = Int(arc4random_uniform(13) + 1)
-        let suit = Int(arc4random_uniform(4))
-        let new_card = Card(value: value, suit: suit)
-        if !main_cards.contains(new_card) {
-            main_cards.append(new_card)
-        }
+fileprivate func randomFill() -> Array<Card> {
+    
+    var ret = cards
+    
+    var givenList = Array<Int>()
+    for card in cards {
+        givenList.append(card.hashValue)
     }
-    var opponents_cards = Array<Card>()
-    while opponents_cards.count < 2*opponents {
-        let value = Int(arc4random_uniform(13) + 1)
-        let suit = Int(arc4random_uniform(4))
-        let card = Card(value: value, suit: suit)
-        if !opponents_cards.contains(card) && !main_cards.contains(card) {
-            opponents_cards.append(card)
+    
+    var cardList = Array<Int>()
+    for i in 1...52 {
+        if !givenList.contains(i) {
+            cardList.append(i)
         }
     }
     
-    return (main_cards,opponents_cards)
+    // shuffle the first few cards needed
+    let cardsNeeded = (7 - cards.count) + 2 * opponents
+    for i in 0...(cardsNeeded-1) {
+        let rand = Int(arc4random_uniform(UInt32(52 - i)))
+        let temp = cardList[i]
+        cardList[i] = cardList[rand]
+        cardList[rand] = temp
+    }
+    
+    for i in 1...cardsNeeded {
+        ret.append(Card(index: cardList[i]))
+    }
+    
+    return ret
 }
 
-fileprivate func bestOpponentHand(community_cards: Array<Card>, opponent_cards: Array<Card>) -> GenericHand {
-    guard opponent_cards.count % 2 == 0 && community_cards.count == 5 else {
-        fatalError("given an odd number of opponent cards or not given all five community cards")
+
+/// Gives the best hand that the opponents have
+///
+/// - Parameter cards: all of the cards. The first seven are the user's hands and the community cards, the rest are the opponents cardss
+/// - Returns: the best hand from all of the opponents
+fileprivate func bestOpponentHand(cards: Array<Card>) -> GenericHand {
+    guard cards.count % 2 == 1 && cards.count > 7 else {
+        fatalError("given an odd number of opponent cards or not given all necessary cards")
     }
     
     var bestHand = GenericHand.highCard
-    let n = opponent_cards.count
+    let n = cards.count - 7
     for i in 0...(n/2 - 1) {
-        let o1 = opponent_cards[2*i]
-        let o2 = opponent_cards[2*i + 1]
-        var trial = community_cards
+        let o1 = cards[7 + 2*i]
+        let o2 = cards[8 + 2*i]
+        var trial = Array<Card>()
+        for i in 2...6 {
+            trial.append(cards[i])
+        }
         trial.append(o1)
         trial.append(o2)
         let hand = getCurrentKnownHand(cards: trial)

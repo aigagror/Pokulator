@@ -33,6 +33,18 @@ struct Card: Hashable {
             suit = Suit.clubs
         }
     }
+    init(index: Int) {
+        self.value = (index % 13) + 1
+        if index <= 13 {
+            self.suit = .clubs
+        } else if index <= 26 {
+            self.suit = .diamonds
+        } else if index <= 39 {
+            self.suit = .hearts
+        } else {
+            self.suit = .spades
+        }
+    }
     
     static func indexToSuit(index: Int) -> Suit {
         switch index {

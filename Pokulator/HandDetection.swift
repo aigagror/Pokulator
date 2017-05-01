@@ -9,17 +9,26 @@
 import Foundation
 
 
-/// Returns the best known generic hand based on the current state of the cards
+/// Returns the best known generic hand based on the current state of the FIRST 7 cards
 ///
 /// - Parameter cards: cards known
 /// - Returns: current generic hand
 func getCurrentKnownHand(cards: Array<Card>) -> GenericHand {
-    assert(cards.count <= 7)
-    let n = cards.count
+    
+    //get the first 7 cards
+    let m = cards.count > 7 ? 7 : cards.count
+    var parsedCards = Array<Card>()
+    if m > 0 {
+        for i in 0...(m-1) {
+            parsedCards.append(cards[i])
+        }
+    }
+    
+    let n = parsedCards.count
     if n >= 2 {
         for i in 0...n-2 {
             for j in i+1...n-1 {
-                if cards[i] == cards[j] {
+                if parsedCards[i] == parsedCards[j] {
                     fatalError("Duplicate cards")
                 }
             }
@@ -28,7 +37,7 @@ func getCurrentKnownHand(cards: Array<Card>) -> GenericHand {
     
     var givenRanks = Set<Int>()
     var suitCount = [Suit.clubs:0, Suit.diamonds:0, Suit.hearts:0, Suit.spades:0]
-    for card in cards {
+    for card in parsedCards {
         givenRanks.insert(card.value)
         suitCount[card.suit]! += 1
     }
@@ -72,7 +81,7 @@ func getCurrentKnownHand(cards: Array<Card>) -> GenericHand {
         let suit = getSuit!
         
         var values = Set<Int>()
-        for card in cards {
+        for card in parsedCards {
             if card.suit == suit {
                 values.insert(card.value)
             }
@@ -91,13 +100,13 @@ func getCurrentKnownHand(cards: Array<Card>) -> GenericHand {
     }
     
     //determine if there's a four of a kind
-    if cards.count - givenRanks.count >= 3 {
+    if parsedCards.count - givenRanks.count >= 3 {
         var valuesCount = [Int:Int]()
         for rank in givenRanks {
             valuesCount[rank] = 0
         }
         
-        for card in cards {
+        for card in parsedCards {
             valuesCount[card.value]! += 1
         }
         
@@ -109,13 +118,13 @@ func getCurrentKnownHand(cards: Array<Card>) -> GenericHand {
     }
     
     //determine if there's a full house
-    if cards.count - givenRanks.count >= 3 {
+    if parsedCards.count - givenRanks.count >= 3 {
         var valuesCount = [Int:Int]()
         for rank in givenRanks {
             valuesCount[rank] = 0
         }
         
-        for card in cards {
+        for card in parsedCards {
             valuesCount[card.value]! += 1
         }
         
@@ -147,13 +156,13 @@ func getCurrentKnownHand(cards: Array<Card>) -> GenericHand {
     }
     
     //determine if there's a three of a kind
-    if cards.count - givenRanks.count >= 2 {
+    if parsedCards.count - givenRanks.count >= 2 {
         var valuesCount = [Int:Int]()
         for rank in givenRanks {
             valuesCount[rank] = 0
         }
         
-        for card in cards {
+        for card in parsedCards {
             valuesCount[card.value]! += 1
         }
         
@@ -165,12 +174,12 @@ func getCurrentKnownHand(cards: Array<Card>) -> GenericHand {
     }
     
     //determine if there's a two pair
-    if cards.count - givenRanks.count >= 2 {
+    if parsedCards.count - givenRanks.count >= 2 {
         return .twoPair
     }
     
     //determine if there's a pair
-    if cards.count - givenRanks.count >= 1 {
+    if parsedCards.count - givenRanks.count >= 1 {
         return .onePair
     } else {
         return .highCard

@@ -29,7 +29,7 @@ func getCurrentKnownHand(cards: Array<Card>) -> GenericHand {
         for i in 0...n-2 {
             for j in i+1...n-1 {
                 if parsedCards[i] == parsedCards[j] {
-                    fatalError("Duplicate cards")
+                    fatalError("Duplicate cards between indices \(i), \(j)")
                 }
             }
         }

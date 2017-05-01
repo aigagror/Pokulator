@@ -34,7 +34,8 @@ struct Card: Hashable {
         }
     }
     init(index: Int) {
-        self.value = (index % 13) + 1
+        let mod = (index % 13)
+        self.value = mod == 0 ? 13 : mod
         if index <= 13 {
             self.suit = .clubs
         } else if index <= 26 {
@@ -113,13 +114,13 @@ struct Card: Hashable {
     var hashValue: Int {
         switch suit {
         case .clubs:
-            return 1 * value
+            return value
         case .diamonds:
-            return 2 * value
+            return 13 + value
         case .hearts:
-            return 3 * value
+            return 26 + value
         case .spades:
-            return 4 * value
+            return 39 + value
         default:
             return -1
         }

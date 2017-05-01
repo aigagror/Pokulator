@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C0C4D811E9B1769009CD60A /* Hands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C4D801E9B1769009CD60A /* Hands.swift */; };
 		2C3C83D01EB1A9FA00983034 /* GameHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C83CF1EB1A9FA00983034 /* GameHandler.swift */; };
+		2C3C83D41EB6EDFC00983034 /* StatsUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C83D31EB6EDFC00983034 /* StatsUpdater.swift */; };
 		2C4C2EB81E95DE1C0073A377 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EB71E95DE1C0073A377 /* Card.swift */; };
 		2C4C2EBA1E95DFDF0073A377 /* Suits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EB91E95DFDF0073A377 /* Suits.swift */; };
 		2C4C2EBF1E9751E80073A377 /* CardPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EBE1E9751E80073A377 /* CardPicker.swift */; };
@@ -19,8 +20,6 @@
 		2C5060731E9341A600B0D6DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C5060711E9341A600B0D6DA /* LaunchScreen.storyboard */; };
 		2C510CB71E9DCF75006AEC26 /* PokulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CB61E9DCF75006AEC26 /* PokulatorTests.swift */; };
 		2C510CBF1E9F08E6006AEC26 /* HandDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CBE1E9F08E6006AEC26 /* HandDetection.swift */; };
-		2C510CC11E9F1E83006AEC26 /* StatisticsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CC01E9F1E83006AEC26 /* StatisticsTable.swift */; };
-		2C510CC31EA03C5E006AEC26 /* StatisticsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CC21EA03C5E006AEC26 /* StatisticsTableCell.swift */; };
 		2C510CCB1EA08D84006AEC26 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CCA1EA08D84006AEC26 /* Utilities.swift */; };
 		2C510CD01EA41EF0006AEC26 /* OnePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CCF1EA41EF0006AEC26 /* OnePair.swift */; };
 		2C510CD21EA46834006AEC26 /* TwoPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CD11EA46834006AEC26 /* TwoPair.swift */; };
@@ -45,6 +44,7 @@
 /* Begin PBXFileReference section */
 		2C0C4D801E9B1769009CD60A /* Hands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hands.swift; sourceTree = "<group>"; };
 		2C3C83CF1EB1A9FA00983034 /* GameHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHandler.swift; sourceTree = "<group>"; };
+		2C3C83D31EB6EDFC00983034 /* StatsUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsUpdater.swift; sourceTree = "<group>"; };
 		2C4C2EB71E95DE1C0073A377 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2C4C2EB91E95DFDF0073A377 /* Suits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suits.swift; sourceTree = "<group>"; };
 		2C4C2EBE1E9751E80073A377 /* CardPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPicker.swift; sourceTree = "<group>"; };
@@ -59,8 +59,6 @@
 		2C510CB61E9DCF75006AEC26 /* PokulatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokulatorTests.swift; sourceTree = "<group>"; };
 		2C510CB81E9DCF75006AEC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C510CBE1E9F08E6006AEC26 /* HandDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandDetection.swift; sourceTree = "<group>"; };
-		2C510CC01E9F1E83006AEC26 /* StatisticsTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTable.swift; sourceTree = "<group>"; };
-		2C510CC21EA03C5E006AEC26 /* StatisticsTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableCell.swift; sourceTree = "<group>"; };
 		2C510CCA1EA08D84006AEC26 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		2C510CCF1EA41EF0006AEC26 /* OnePair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnePair.swift; sourceTree = "<group>"; };
 		2C510CD11EA46834006AEC26 /* TwoPair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoPair.swift; sourceTree = "<group>"; };
@@ -149,8 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				2C55BF9C1E98AF1E00C8CE87 /* OpponentsPicker.swift */,
-				2C510CC01E9F1E83006AEC26 /* StatisticsTable.swift */,
-				2C510CC21EA03C5E006AEC26 /* StatisticsTableCell.swift */,
+				2C3C83D31EB6EDFC00983034 /* StatsUpdater.swift */,
 				2C4C2EBE1E9751E80073A377 /* CardPicker.swift */,
 			);
 			name = UI;
@@ -297,9 +294,9 @@
 				2C50606B1E9341A600B0D6DA /* ViewController.swift in Sources */,
 				2C4C2EBF1E9751E80073A377 /* CardPicker.swift in Sources */,
 				2C510CD41EA5A943006AEC26 /* ProbabilityUtilities.swift in Sources */,
+				2C3C83D41EB6EDFC00983034 /* StatsUpdater.swift in Sources */,
 				2C55BF971E98AE4E00C8CE87 /* Factorial.swift in Sources */,
 				2C0C4D811E9B1769009CD60A /* Hands.swift in Sources */,
-				2C510CC31EA03C5E006AEC26 /* StatisticsTableCell.swift in Sources */,
 				2C510CCB1EA08D84006AEC26 /* Utilities.swift in Sources */,
 				2C55BF9F1E98AF5900C8CE87 /* Rational.swift in Sources */,
 				2C55BF9B1E98AEC200C8CE87 /* Factors.swift in Sources */,
@@ -310,7 +307,6 @@
 				2C510CD21EA46834006AEC26 /* TwoPair.swift in Sources */,
 				2C510CBF1E9F08E6006AEC26 /* HandDetection.swift in Sources */,
 				2C5060691E9341A600B0D6DA /* AppDelegate.swift in Sources */,
-				2C510CC11E9F1E83006AEC26 /* StatisticsTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

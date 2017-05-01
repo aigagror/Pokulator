@@ -14,23 +14,12 @@ class ViewController: UIViewController {
     @IBOutlet var blur_effect: UIVisualEffectView!
     @IBOutlet var add_card_view: UIView!
     @IBOutlet weak var card_picker_view: UIPickerView!
-    @IBOutlet weak var stats_table_view: UITableView!
     
-    @IBOutlet weak var left_hand: UIButton!
-    @IBOutlet weak var right_hand: UIButton!
-    @IBOutlet weak var flop1: UIButton!
-    @IBOutlet weak var flop2: UIButton!
-    @IBOutlet weak var flop3: UIButton!
-    @IBOutlet weak var turn: UIButton!
-    @IBOutlet weak var river: UIButton!
+    @IBOutlet var stats: [UILabel]!
     
     @IBOutlet weak var hand_label: UILabel!
-
-    let statsTable = StatisticsTable()
     
-
-    private var card_button_array = Array<UIButton>()
-    
+    @IBOutlet var card_buttons: [UIButton]!
     
     
     let card_picker = CardPicker()
@@ -60,29 +49,15 @@ class ViewController: UIViewController {
         self.card_picker_view.delegate = self.card_picker
         self.card_picker_view.dataSource = self.card_picker
         
-        // Setting up the stats table view
-        self.stats_table_view.delegate = self.statsTable
-        self.stats_table_view.dataSource = self.statsTable
-        
-        // Setting up card buttons
-        self.card_button_array.append(left_hand)
-        self.card_button_array.append(right_hand)
-        self.card_button_array.append(flop1)
-        self.card_button_array.append(flop2)
-        self.card_button_array.append(flop3)
-        self.card_button_array.append(turn)
-        self.card_button_array.append(river)
         
         // A little aesthetic stuff to the add card view
         self.add_card_view.layer.cornerRadius = 5
-        
-        self.stats_table_view.layer.cornerRadius = 10
         
         
         // Start up the calculations
         calculatorQueue.async {
             while true {
-                monteCarlo(n: 40_000)
+                monteCarlo(n: 20_000)
                 
                 var new_data = [GenericHand:Double]()
                 
@@ -97,8 +72,7 @@ class ViewController: UIViewController {
                 }
                 
                 DispatchQueue.main.sync {
-                    self.statsTable.getData(handData: new_data, win: winPercentage)
-                    self.stats_table_view.reloadData()
+                    updateStats(stats: self.stats, handData: new_data, win: winPercentage)
                     print("hand trials: \(hand_trials), wins: \(wins)")
                 }
             }
@@ -112,9 +86,9 @@ class ViewController: UIViewController {
         let cards = getCards()
         for i in 0...6 {
             if i < cards.count {
-                card_button_array[i].setImage(UIImage(named: cards[i].getFilename()), for: UIControlState.normal)
+            card_buttons[i].setImage(UIImage(named: cards[i].getFilename()), for: UIControlState.normal)
             } else {
-                card_button_array[i].setImage(nil, for: UIControlState.normal)
+                card_buttons[i].setImage(nil, for: UIControlState.normal)
             }
         }
         

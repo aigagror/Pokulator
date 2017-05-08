@@ -33,6 +33,9 @@ struct Card: Hashable {
             suit = Suit.clubs
         }
     }
+    /// 1-indexed
+    ///
+    /// - Parameter index: card index
     init(index: Int) {
         let mod = (index % 13)
         self.value = mod == 0 ? 13 : mod

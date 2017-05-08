@@ -10,14 +10,14 @@ import Foundation
 
 public struct Card: Hashable {
     /// The value of the Card [1,13]
-    public var value: Int
-    public var suit: Suit
-    public init(value v: Int, suit s: Suit) {
+    var value: Int
+    var suit: Suit
+    init(value v: Int, suit s: Suit) {
         self.value = v
         self.suit = s
     }
     
-    public init(value v: Int=0, suit s: Int=0) {
+    init(value v: Int = 0, suit s: Int = 0) {
         self.value = v
         
         switch s {
@@ -33,6 +33,22 @@ public struct Card: Hashable {
             suit = Suit.clubs
         }
     }
+    /// 1-indexed
+    ///
+    /// - Parameter index: card index
+    public init(index: Int) {
+        let mod = (index % 13)
+        self.value = mod == 0 ? 13 : mod
+        if index <= 13 {
+            self.suit = .clubs
+        } else if index <= 26 {
+            self.suit = .diamonds
+        } else if index <= 39 {
+            self.suit = .hearts
+        } else {
+            self.suit = .spades
+        }
+    }
     
     static func indexToSuit(index: Int) -> Suit {
         switch index {
@@ -46,6 +62,21 @@ public struct Card: Hashable {
             return Suit.spades
         default:
             return Suit.clubs
+        }
+    }
+    
+    static func suitToIndex(suit: Suit) -> Int {
+        switch suit {
+        case .clubs:
+            return 0
+        case .diamonds:
+            return 1
+        case .hearts:
+            return 2
+        case .spades:
+            return 3
+        default:
+            return 0
         }
     }
     
@@ -81,17 +112,18 @@ public struct Card: Hashable {
         return valueString + "_of_" + suitString
     }
     
+    
     //Conforming to the hash protocol
     public var hashValue: Int {
         switch suit {
         case .clubs:
-            return 1 * value
+            return value
         case .diamonds:
-            return 2 * value
+            return 13 + value
         case .hearts:
-            return 3 * value
+            return 26 + value
         case .spades:
-            return 4 * value
+            return 39 + value
         default:
             return -1
         }
@@ -99,6 +131,5 @@ public struct Card: Hashable {
     public static func ==(lhs: Card, rhs: Card) -> Bool {
         return lhs.value == rhs.value && lhs.suit == rhs.suit
     }
-    
     
 }

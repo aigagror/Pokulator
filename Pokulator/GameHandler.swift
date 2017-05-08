@@ -13,6 +13,8 @@ fileprivate let updateQueue = DispatchQueue(label: "updater")
 /// This queue is used to protect the critical section of all of the fileprivate variables here. Any reading/writing on these variables should be done through this queue
 fileprivate let dataQueue = DispatchQueue(label: "adder", qos: .background)
 
+let deckCond = NSCondition()
+fileprivate var deck = Array<Card>(arrayLiteral: Card(index: 1), Card(index: 2), Card(index: 3), Card(index: 4), Card(index: 5), Card(index: 6), Card(index: 7), Card(index: 8), Card(index: 9), Card(index: 10), Card(index: 11), Card(index: 12), Card(index: 13), Card(index: 14), Card(index: 15), Card(index: 16), Card(index: 17), Card(index: 18), Card(index: 19), Card(index: 20), Card(index: 21), Card(index: 22), Card(index: 23), Card(index: 24), Card(index: 25), Card(index: 26), Card(index: 27), Card(index: 28), Card(index: 29), Card(index: 30), Card(index: 31), Card(index: 32), Card(index: 33), Card(index: 34), Card(index: 35), Card(index: 36), Card(index: 37), Card(index: 38), Card(index: 39), Card(index: 40), Card(index: 41), Card(index: 42), Card(index: 43), Card(index: 44), Card(index: 45), Card(index: 46), Card(index: 47), Card(index: 48), Card(index: 49), Card(index: 50), Card(index: 51), Card(index: 52))
 fileprivate var cards = Array<Card>()
 
 fileprivate var hand_trials = 0
@@ -98,7 +100,7 @@ fileprivate func monteCarloHelper(n: Int) {
     
     let monteQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
     
-    let size = 10_000
+    let size = 5_000
     let k = Int((Double(n)/Double(size)).rounded(.up))
     for _ in 1...k {
         monteQueue.async(group: group) {
@@ -123,71 +125,40 @@ fileprivate func monteCarloHelper(n: Int) {
     group.wait()
     
     let elapsed = -start.timeIntervalSinceNow
-    print("Took \(elapsed) seconds")
+    print("Took \((elapsed * 1000).rounded() / 1000.0) seconds")
 }
 
+/// Creates an array where the first 2 are the players hands, the next 5 are the community cards, and the rest are the opponents cards
+///
+/// - Returns: Array of the cards
 fileprivate func randomFill() -> Array<Card> {
+    deckCond.lock()
+    
+    // shuffle the length of the cards about to be returned plus the amount of cards we already have to ensure enough shuffled cards
+    var cardsNeeded = (7 - cards.count) + 2 * opponents
+    let shuffleAmount = cardsNeeded + cards.count
+    for i in 0...(shuffleAmount-1) {
+        let rand = Int(arc4random_uniform(UInt32(52 - i))) + i
+        let temp = deck[i]
+        deck[i] = deck[rand]
+        deck[rand] = temp
+    }
     
     var ret = cards
-    
-    var givenList = Array<Int>()
-    for card in cards {
-        givenList.append(card.hashValue)
-    }
-    
-    var cardList = Array<Int>()
-    for i in 1...52 {
-        if !givenList.contains(i) {
-            cardList.append(i)
+    var i = 0
+    while cardsNeeded > 0 {
+        if !cards.contains(deck[i]) {
+            ret.append(deck[i])
+            cardsNeeded -= 1
         }
+        i += 1
     }
-    
-    // shuffle the first few cards needed
-    let cardsNeeded = (7 - cards.count) + 2 * opponents
-    let n = cardList.count
-    for i in 0...(cardsNeeded-1) {
-        let rand = Int(arc4random_uniform(UInt32(n - i))) + i
-        let temp = cardList[i]
-        cardList[i] = cardList[rand]
-        cardList[rand] = temp
-    }
-    
-    for i in 0...(cardsNeeded-1) {
-        ret.append(Card(index: cardList[i]))
-    }
-        
+    deckCond.unlock()
     return ret
 }
 
 
-/// Gives the best hand that the opponents have
-///
-/// - Parameter cards: all of the cards. The first seven are the user's hands and the community cards, the rest are the opponents cardss
-/// - Returns: the best hand from all of the opponents
-fileprivate func bestOpponentHand(cards: Array<Card>) -> GenericHand {
-    guard cards.count % 2 == 1 && cards.count > 7 else {
-        fatalError("given an odd number of opponent cards or not given all necessary cards")
-    }
-    
-    var bestHand = GenericHand.highCard
-    let n = cards.count - 7
-    for i in 0...(n/2 - 1) {
-        let o1 = cards[7 + 2*i]
-        let o2 = cards[8 + 2*i]
-        var trial = Array<Card>()
-        for i in 2...6 {
-            trial.append(cards[i])
-        }
-        trial.append(o1)
-        trial.append(o2)
-        let hand = getCurrentKnownHand(cards: trial)
-        if hand.rawValue < bestHand.rawValue {
-            bestHand = hand
-        }
-    }
-    
-    return bestHand
-}
+
 
 
 func getCards() -> Array<Card> {

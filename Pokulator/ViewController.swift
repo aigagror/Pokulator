@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         // Start up the calculations
         calculatorQueue.async {
             while true {
-                monteCarlo(n: 20_000)
+                monteCarlo(n: 10_000)
                 
                 var new_data = [GenericHand:Double]()
                 
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
                 
                 DispatchQueue.main.sync {
                     updateStats(stats: self.stats, handData: new_data, win: winPercentage)
-                    print("hand trials: \(hand_trials), wins: \(wins)")
+                    print("HT: \(hand_trials), WT: \(win_trials), Wins: \(wins)")
                 }
             }
         }

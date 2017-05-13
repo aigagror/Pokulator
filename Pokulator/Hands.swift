@@ -8,6 +8,17 @@
 
 import Foundation
 
+/// Aces will be identified as 14 instead of 1
+///
+/// - straightFlush: <#straightFlush description#>
+/// - fourOfAKind: <#fourOfAKind description#>
+/// - fullHouse: <#fullHouse description#>
+/// - flush: <#flush description#>
+/// - straight: <#straight description#>
+/// - threeOfAKind: <#threeOfAKind description#>
+/// - twoPair: <#twoPair description#>
+/// - onePair: <#onePair description#>
+/// - highCard: <#highCard description#>
 enum Hand: Hashable {
     
     //Includes the royal flush
@@ -44,23 +55,23 @@ enum Hand: Hashable {
         
         switch self {
         case .highCard(let c1, let c2, let c3, let c4, let c5):
-            return 53 * cvp[c1-1] * cvp[c2-1] * cvp[c3-1] * cvp[c4-1] * cvp[c5-1]
+            return 53 * cvp[c1-2] * cvp[c2-2] * cvp[c3-2] * cvp[c4-2] * cvp[c5-2]
         case .onePair(let c1, let c2, let c3, let c4):
-            return 59 * cvp[c1-1] * cvp[c2-1] * cvp[c3-1] * cvp[c4-1]
+            return 59 * cvp[c1-2] * cvp[c2-2] * cvp[c3-2] * cvp[c4-2]
         case .twoPair(let c1, let c2, let c3):
-            return 61 * cvp[c1-1] * cvp[c2-1] * cvp[c3-1]
+            return 61 * cvp[c1-2] * cvp[c2-2] * cvp[c3-2]
         case .threeOfAKind(let c1):
-            return 67 * cvp[c1-1]
+            return 67 * cvp[c1-2]
         case .straight(let c1):
-            return 71 * cvp[c1-1]
+            return 71 * cvp[c1-2]
         case .flush(let c1, let c2, let c3, let c4, let c5):
-            return 73 * cvp[c1-1] * cvp[c2-1] * cvp[c3-1] * cvp[c4-1] * cvp[c5-1]
+            return 73 * cvp[c1-2] * cvp[c2-2] * cvp[c3-2] * cvp[c4-2] * cvp[c5-2]
         case .fullHouse(let c1):
-            return 79 * cvp[c1-1]
+            return 79 * cvp[c1-2]
         case .fourOfAKind(let c1):
-            return 83 * cvp[c1-1]
+            return 83 * cvp[c1-2]
         case .straightFlush(let c1):
-            return 89 * cvp[c1-1]
+            return 89 * cvp[c1-2]
         default:
             return 0
             print("Error in Hand hash value")

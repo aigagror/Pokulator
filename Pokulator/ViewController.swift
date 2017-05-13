@@ -65,7 +65,7 @@ class ViewController: UIViewController {
                 let hand_trials = getHandTrials()
                 let wins = getWins()
                 let win_trials = getWinTrials()
-                let winPercentage = Double(wins) / Double(win_trials)
+                let winPercentage = Double(wins*100) / Double(win_trials)
                 
                 for (hand,n) in hand_data {
                     new_data[hand] = Double(n*100) / Double(hand_trials)
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         }
         
         let curr_hand = getCurrentKnownHand(cards: cards)
-        hand_label.text = toString(hand: curr_hand)
+        hand_label.text = toString(hand: getGeneric(hand: curr_hand))
     }
     
     /// Animates in the card picker view

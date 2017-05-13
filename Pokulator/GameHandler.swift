@@ -110,9 +110,10 @@ fileprivate func monteCarloHelper(n: Int) {
                 let fill = randomFill()
                 
                 let hand = getCurrentKnownHand(cards: fill)
-                d[hand]! += 1
+                let genHand = getGeneric(hand: hand)
+                d[genHand]! += 1
                 let best_opponent_hand = bestOpponentHand(cards: fill)
-                if hand.rawValue < best_opponent_hand.rawValue {
+                if hand >= best_opponent_hand {
                     w += 1
                 }
             }

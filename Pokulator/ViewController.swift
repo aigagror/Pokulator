@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         }
         
         let curr_hand = getCurrentKnownHand(cards: cards)
-        hand_label.text = toString(hand: getGeneric(hand: curr_hand))
+        hand_label.text = toString(hand: getGeneric(curr_hand))
     }
     
     /// Animates in the card picker view

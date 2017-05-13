@@ -71,8 +71,8 @@ enum Hand: Hashable {
     }
     
     static func <=(lhs: Hand, rhs: Hand) -> Bool {
-        let g1 = getGeneric(hand: lhs)
-        let g2 = getGeneric(hand: rhs)
+        let g1 = getGeneric(lhs)
+        let g2 = getGeneric(rhs)
         if g2.rawValue < g1.rawValue {
             return true
         } else if g2.rawValue > g1.rawValue {
@@ -84,15 +84,15 @@ enum Hand: Hashable {
                 switch rhs {
                 case .highCard(let d):
                     if c.0 != d.0 {
-                        return c.0 > d.0
+                        return c.0 < d.0
                     } else if c.1 != d.1 {
-                        return c.1 > d.1
+                        return c.1 < d.1
                     } else if c.2 != d.2 {
-                        return c.2 > d.2
+                        return c.2 < d.2
                     } else if c.3 != d.3 {
-                        return c.3 > d.3
+                        return c.3 < d.3
                     } else if c.4 != d.4 {
-                        return c.4 > d.4
+                        return c.4 < d.4
                     } else {
                         //tie
                         return true
@@ -104,13 +104,13 @@ enum Hand: Hashable {
                 switch rhs {
                 case .onePair(let d):
                     if c.0 != d.0 {
-                        return c.0 > d.0
+                        return c.0 < d.0
                     } else if c.1 != d.1 {
-                        return c.1 > d.1
+                        return c.1 < d.1
                     } else if c.2 != d.2 {
-                        return c.2 > d.2
+                        return c.2 < d.2
                     } else if c.3 != d.3 {
-                        return c.3 > d.3
+                        return c.3 < d.3
                     } else {
                         //tie
                         return true
@@ -122,11 +122,11 @@ enum Hand: Hashable {
                 switch rhs {
                 case .twoPair(let d):
                     if c.0 != d.0 {
-                        return c.0 > d.0
+                        return c.0 < d.0
                     } else if c.1 != d.1 {
-                        return c.1 > d.1
+                        return c.1 < d.1
                     } else if c.2 != d.2 {
-                        return c.2 > d.2
+                        return c.2 < d.2
                     } else {
                         //tie
                         return true
@@ -138,7 +138,7 @@ enum Hand: Hashable {
                 switch rhs {
                 case .threeOfAKind(let d):
                     if c != d {
-                        return c > d
+                        return c < d
                     } else {
                         //tie
                         return true
@@ -150,7 +150,7 @@ enum Hand: Hashable {
                 switch rhs {
                 case .straight(let d):
                     if c != d {
-                        return c > d
+                        return c < d
                     } else {
                         //tie
                         return true
@@ -162,15 +162,15 @@ enum Hand: Hashable {
                 switch rhs {
                 case .flush(let d):
                     if c.0 != d.0 {
-                        return c.0 > d.0
+                        return c.0 < d.0
                     } else if c.1 != d.1 {
-                        return c.1 > d.1
+                        return c.1 < d.1
                     } else if c.2 != d.2 {
-                        return c.2 > d.2
+                        return c.2 < d.2
                     } else if c.3 != d.3 {
-                        return c.3 > d.3
+                        return c.3 < d.3
                     } else if c.4 != d.4 {
-                        return c.4 > d.4
+                        return c.4 < d.4
                     } else {
                         //tie
                         return true
@@ -182,7 +182,7 @@ enum Hand: Hashable {
                 switch rhs {
                 case .fullHouse(let d):
                     if c != d {
-                        return c > d
+                        return c < d
                     } else {
                         //tie
                         return true
@@ -194,7 +194,7 @@ enum Hand: Hashable {
                 switch rhs {
                 case .fourOfAKind(let d):
                     if c != d {
-                        return c > d
+                        return c < d
                     } else {
                         //tie
                         return true
@@ -206,7 +206,7 @@ enum Hand: Hashable {
                 switch rhs {
                 case .straightFlush(let d):
                     if c != d {
-                        return c > d
+                        return c < d
                     } else {
                         //tie
                         return true
@@ -303,7 +303,7 @@ enum Hand: Hashable {
         return !(lhs <= rhs)
     }
 }
-func getGeneric(hand: Hand) -> GenericHand {
+func getGeneric(_ hand: Hand) -> GenericHand {
     switch hand {
     case .highCard(_):
         return .highCard

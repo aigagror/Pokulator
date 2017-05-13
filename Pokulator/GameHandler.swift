@@ -110,11 +110,13 @@ fileprivate func monteCarloHelper(n: Int) {
                 let fill = randomFill()
                 
                 let hand = getCurrentKnownHand(cards: fill)
-                let genHand = getGeneric(hand: hand)
+                let genHand = getGeneric(hand)
                 d[genHand]! += 1
                 let best_opponent_hand = bestOpponentHand(cards: fill)
                 if hand >= best_opponent_hand {
                     w += 1
+                } else {
+                    
                 }
             }
             dataQueue.async(group: group) {

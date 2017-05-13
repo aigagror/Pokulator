@@ -69,8 +69,264 @@ enum Hand: Hashable {
     static func ==(lhs: Hand, rhs: Hand) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
+    
+    static func <=(lhs: Hand, rhs: Hand) -> Bool {
+        let g1 = getGeneric(hand: lhs)
+        let g2 = getGeneric(hand: rhs)
+        if g1.rawValue < g2.rawValue {
+            return true
+        } else if g1.rawValue > g2.rawValue {
+            return false
+        } else {
+            // raw values are equal, compare cards
+            switch lhs {
+            case .highCard(let c):
+                switch rhs {
+                case .highCard(let d):
+                    if c.0 != d.0 {
+                        return c.0 < d.0
+                    } else if c.1 != d.1 {
+                        return c.1 < d.1
+                    } else if c.2 != d.2 {
+                        return c.2 < d.2
+                    } else if c.3 != d.3 {
+                        return c.3 < d.3
+                    } else if c.4 != d.4 {
+                        return c.4 < d.4
+                    } else {
+                        //tie
+                        return true
+                    }
+                default:
+                    fatalError("hands should be equal")
+                }
+            case .onePair(let c):
+                switch rhs {
+                case .onePair(let d):
+                    if c.0 != d.0 {
+                        return c.0 < d.0
+                    } else if c.1 != d.1 {
+                        return c.1 < d.1
+                    } else if c.2 != d.2 {
+                        return c.2 < d.2
+                    } else if c.3 != d.3 {
+                        return c.3 < d.3
+                    } else {
+                        //tie
+                        return true
+                    }
+                default:
+                    fatalError("hands should be equal")
+                }
+            case .twoPair(let c):
+                switch rhs {
+                case .twoPair(let d):
+                    if c.0 != d.0 {
+                        return c.0 < d.0
+                    } else if c.1 != d.1 {
+                        return c.1 < d.1
+                    } else if c.2 != d.2 {
+                        return c.2 < d.2
+                    } else {
+                        //tie
+                        return true
+                    }
+                default:
+                    fatalError("hands should be equal")
+                }
+            case .threeOfAKind(let c):
+                switch rhs {
+                case .threeOfAKind(let d):
+                    if c != d {
+                        return c < d
+                    } else {
+                        //tie
+                        return true
+                    }
+                default:
+                    fatalError("hands should be equal")
+                }
+            case .straight(let c):
+                switch rhs {
+                case .straight(let d):
+                    if c != d {
+                        return c < d
+                    } else {
+                        //tie
+                        return true
+                    }
+                default:
+                    fatalError("hands should be equal")
+                }
+            case .flush(let c):
+                switch rhs {
+                case .flush(let d):
+                    if c.0 != d.0 {
+                        return c.0 < d.0
+                    } else if c.1 != d.1 {
+                        return c.1 < d.1
+                    } else if c.2 != d.2 {
+                        return c.2 < d.2
+                    } else if c.3 != d.3 {
+                        return c.3 < d.3
+                    } else if c.4 != d.4 {
+                        return c.4 < d.4
+                    } else {
+                        //tie
+                        return true
+                    }
+                default:
+                    fatalError("hands should be equal")
+                }
+            case .fullHouse(let c):
+                switch rhs {
+                case .fullHouse(let d):
+                    if c != d {
+                        return c < d
+                    } else {
+                        //tie
+                        return true
+                    }
+                default:
+                    return false
+                }
+            case .fourOfAKind(let c):
+                switch rhs {
+                case .fourOfAKind(let d):
+                    if c != d {
+                        return c < d
+                    } else {
+                        //tie
+                        return true
+                    }
+                default:
+                    fatalError("hands should be equal")
+                }
+            case .straightFlush(let c):
+                switch rhs {
+                case .straightFlush(let d):
+                    if c != d {
+                        return c < d
+                    } else {
+                        //tie
+                        return true
+                    }
+                default:
+                    fatalError("hands should be equal")
+                }
+            default:
+                fatalError("should not be here")
+                return false
+            }
+        }
+    }
+    
+    static func <(lhs: Hand, rhs: Hand) -> Bool {
+        if !(lhs <= rhs) {
+            return false
+        }
+        
+        switch lhs {
+        case .highCard(let c):
+            switch rhs {
+            case .highCard(let d):
+                return c != d
+            default:
+                return false
+            }
+        case .onePair(let c):
+            switch rhs {
+            case .onePair(let d):
+                return c != d
+            default:
+                return false
+            }
+        case .twoPair(let c):
+            switch rhs {
+            case .twoPair(let d):
+                return c != d
+            default:
+                return false
+            }
+        case .threeOfAKind(let c):
+            switch rhs {
+            case .threeOfAKind(let d):
+                return c != d
+            default:
+                return false
+            }
+        case .straight(let c):
+            switch rhs {
+            case .straight(let d):
+                return c != d
+            default:
+                return false
+            }
+        case .flush(let c):
+            switch rhs {
+            case .flush(let d):
+                return c != d
+            default:
+                return false
+            }
+        case .fullHouse(let c):
+            switch rhs {
+            case .fullHouse(let d):
+                return c != d
+            default:
+                return false
+            }
+        case .fourOfAKind(let c):
+            switch rhs {
+            case .fourOfAKind(let d):
+                return c != d
+            default:
+                return false
+            }
+        case .straightFlush(let c):
+            switch rhs {
+            case .straightFlush(let d):
+                return c != d
+            default:
+                return false
+            }
+        default:
+            fatalError("should not be here")
+        }
+    }
+    
+    static func >=(lhs: Hand, rhs: Hand) -> Bool {
+        return !(lhs < rhs)
+    }
+    
+    static func >(lhs: Hand, rhs: Hand) -> Bool {
+        return !(lhs <= rhs)
+    }
 }
-
+func getGeneric(hand: Hand) -> GenericHand {
+    switch hand {
+    case .highCard(_):
+        return .highCard
+    case .onePair(_):
+        return .onePair
+    case .twoPair(_):
+        return .twoPair
+    case .threeOfAKind(_):
+        return .threeOfAKind
+    case .straight(_):
+        return .straight
+    case .flush(_):
+        return .flush
+    case .fullHouse(_):
+        return .fullHouse
+    case .fourOfAKind(_):
+        return .fourOfAKind
+    case .straightFlush(_):
+        return .straightFlush
+    default:
+        return .highCard
+    }
+}
 enum GenericHand: Int {
     case straightFlush = 0, fourOfAKind, fullHouse, flush, straight, threeOfAKind, twoPair, onePair, highCard
 }

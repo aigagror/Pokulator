@@ -413,9 +413,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Kg-v5-NcL">
                                                 <rect key="frame" x="277" y="0.0" width="58" height="116"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Uf-ay-eoe">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Uf-ay-eoe">
                                                         <rect key="frame" x="0.0" y="29" width="58" height="58"/>
-                                                        <state key="normal" title="Reset">
+                                                        <state key="normal" title="Reset" image="reset">
                                                             <color key="titleColor" red="0.63479536802030456" green="0.094959553848277894" blue="0.0054844945602931369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
@@ -498,12 +498,12 @@
                     <subviews>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRB-Qn-4Pn">
                             <rect key="frame" x="0.0" y="0.0" width="265" height="200"/>
+                            <color key="backgroundColor" red="0.43145455786953407" green="0.4921875" blue="0.11661391252932829" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                             <accessibility key="accessibilityConfiguration">
                                 <accessibilityTraits key="traits" keyboardKey="YES"/>
                             </accessibility>
                         </pickerView>
                     </subviews>
-                    <color key="backgroundColor" red="0.63401461093498601" green="0.70626268979798945" blue="0.15843269596812401" alpha="0.86025528169014087" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="lRB-Qn-4Pn" secondAttribute="bottom" id="HjQ-ad-SfM"/>
                         <constraint firstAttribute="trailing" secondItem="lRB-Qn-4Pn" secondAttribute="trailing" id="UzP-Gd-Rub"/>
@@ -535,7 +535,7 @@
                             </visualEffectView>
                         </subviews>
                     </view>
-                    <blurEffect style="light"/>
+                    <blurEffect style="regular"/>
                 </visualEffectView>
                 <tapGestureRecognizer id="KvB-jv-kkT">
                     <connections>
@@ -548,5 +548,6 @@
     </scenes>
     <resources>
         <image name="background" width="667" height="621"/>
+        <image name="reset" width="60" height="60"/>
     </resources>
 </document>

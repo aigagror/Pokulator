@@ -87,7 +87,7 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
-            selected_card.value = row + 1
+            selected_card.value = row == 12 ? 1 : row + 2
         } else {
             selected_card.suit = Card.indexToSuit(index: row)
         }
@@ -111,18 +111,18 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
-            if row <= 9 && row > 0 {
-                return "\(row + 1)"
+            if row <= 8 && row >= 0 {
+                return "\(row + 2)"
             } else {
                 switch row {
-                case 0:
-                    return "A"
-                case 10:
+                case 9:
                     return "J"
-                case 11:
+                case 10:
                     return "Q"
-                case 12:
+                case 11:
                     return "K"
+                case 12:
+                    return "A"
                 default:
                     return nil
                 }

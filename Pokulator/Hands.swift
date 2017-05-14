@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Aces will be identified as 14 instead of 1
+/// Aces should be considered as value 14 instead of 1. The only case they should be considered value 1 is when we are evaluating for straights. Therefore, for all indices, the only values it should range through are 2-14 inclusive
 ///
 /// - straightFlush: <#straightFlush description#>
 /// - fourOfAKind: <#fourOfAKind description#>

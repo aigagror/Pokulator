@@ -98,12 +98,13 @@ func getCurrentKnownHand(cards: Array<Card>) -> Hand {
     var highestThreeOfAKind = 0
     var highestFourOfAKind = 0
     for (r,y) in valuesCount {
+        let rank = r == 1 ? 14 : r
         if y >= 2 {
-            highestPair = max(highestPair, r)
+            highestPair = max(highestPair, rank)
             if y >= 3 {
-                highestThreeOfAKind = max(highestThreeOfAKind, r)
+                highestThreeOfAKind = max(highestThreeOfAKind, rank)
                 if y >= 4 {
-                    highestFourOfAKind = max(highestFourOfAKind, r)
+                    highestFourOfAKind = max(highestFourOfAKind, rank)
                 }
             }
         }
@@ -137,9 +138,10 @@ func getCurrentKnownHand(cards: Array<Card>) -> Hand {
         assert(values.count >= 5)
         if values.contains(1) {
             values.insert(14)
+            values.remove(1)
         }
         let sorted = values.sorted(by: {$0 > $1})
-        var t = (0,0,0,0,0)
+        var t = (2,2,2,2,2)
         if m > 0 {
             t.0 = sorted[0]
             if m > 1 {
@@ -171,15 +173,17 @@ func getCurrentKnownHand(cards: Array<Card>) -> Hand {
     if m - givenRanks.count >= 2 && highestPair != 0 {
         var secondHighestPair = 0
         for (r,y) in valuesCount {
-            if y >= 2 && r != highestPair {
-                secondHighestPair = max(secondHighestPair, r)
+            let rank = r == 1 ? 14 : r
+            if y >= 2 && rank != highestPair {
+                secondHighestPair = max(secondHighestPair, rank)
             }
         }
         
         var highestOther = 0
         for r in givenRanks {
-            if r != highestPair && r != secondHighestPair {
-                highestOther = max(highestOther, r)
+            let rank = r == 1 ? 14 : r
+            if rank != highestPair && rank != secondHighestPair {
+                highestOther = max(highestOther, rank)
             }
         }
         
@@ -193,12 +197,13 @@ func getCurrentKnownHand(cards: Array<Card>) -> Hand {
         //get all values that are not the highestPair
         var values = Array<Int>()
         for card in parsedCards {
-            if card.value != highestPair {
-                values.append(card.value)
+            let v = card.value == 1 ? 14 : card.value
+            if v != highestPair {
+                values.append(v)
             }
         }
         let sorted = values.sorted(by: {$0 > $1})
-        var t = (0,0,0)
+        var t = (2,2,2)
         if m > 0 {
             t.0 = sorted[0]
             if m > 1 {
@@ -212,10 +217,10 @@ func getCurrentKnownHand(cards: Array<Card>) -> Hand {
     } else {
         var values = Array<Int>()
         for card in parsedCards {
-            values.append(card.value)
+            values.append(card.value == 1 ? 14 : card.value)
         }
         let sorted = values.sorted(by: {$0 > $1})
-        var t = (0,0,0,0,0)
+        var t = (2,2,2,2,2)
         assert(m == sorted.count)
         if m > 0 {
             t.0 = sorted[0]

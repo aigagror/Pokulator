@@ -27,7 +27,11 @@ class HandComparison: XCTestCase {
         let h1 = Hand.twoPair(3, 1, 11)
         let h2 = Hand.twoPair(3, 1, 13)
         
+        let s1 = Hand.straight(14)
+        let s2 = Hand.straight(13)
+        
         XCTAssert(!(h1 >= h2))
+        XCTAssert(s1 >= s2)
         
     }
     

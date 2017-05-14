@@ -49,6 +49,7 @@ func getCurrentKnownHand(cards: Array<Card>) -> Hand {
             let x = sortedRanks[i+4]
             if sortedRanks[i]+4 == x && sortedRanks[i+1]+3 == x && sortedRanks[i+2]+2 == x && sortedRanks[i+3]+1 == x  {
                 straight = x
+                break
             }
         }
     }

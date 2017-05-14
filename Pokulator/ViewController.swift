@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         // Start up the calculations
         calculatorQueue.async {
             while true {
-                monteCarlo(n: 10_000)
+                monteCarlo(n: 2_000)
                 
                 var new_data = [GenericHand:Double]()
                 

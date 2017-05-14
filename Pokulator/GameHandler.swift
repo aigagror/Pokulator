@@ -100,7 +100,7 @@ fileprivate func monteCarloHelper(n: Int) {
     
     let monteQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
     
-    let size = 5_000
+    let size = 1_000
     let k = Int((Double(n)/Double(size)).rounded(.up))
     for _ in 1...k {
         monteQueue.async(group: group) {

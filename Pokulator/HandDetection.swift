@@ -141,22 +141,13 @@ func getCurrentKnownHand(cards: Array<Card>) -> Hand {
             values.remove(1)
         }
         let sorted = values.sorted(by: {$0 > $1})
+        assert(sorted.count >= 5)
         var t = (2,2,2,2,2)
-        if m > 0 {
-            t.0 = sorted[0]
-            if m > 1 {
-                t.1 = sorted[1]
-                if m > 2 {
-                    t.2 = sorted[2]
-                    if m > 3 {
-                        t.3 = sorted[3]
-                        if m > 4 {
-                            t.4 = sorted[4]
-                        }
-                    }
-                }
-            }
-        }
+        t.0 = sorted[0]
+        t.1 = sorted[1]
+        t.2 = sorted[2]
+        t.3 = sorted[3]
+        t.4 = sorted[4]
         return .flush(t.0,t.1,t.2,t.3,t.4)
     }
     
@@ -203,12 +194,13 @@ func getCurrentKnownHand(cards: Array<Card>) -> Hand {
             }
         }
         let sorted = values.sorted(by: {$0 > $1})
+        let s = sorted.count
         var t = (2,2,2)
-        if m > 0 {
+        if s > 0 {
             t.0 = sorted[0]
-            if m > 1 {
+            if s > 1 {
                 t.1 = sorted[1]
-                if m > 2 {
+                if s > 2 {
                     t.2 = sorted[2]
                 }
             }

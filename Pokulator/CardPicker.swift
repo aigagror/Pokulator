@@ -94,6 +94,10 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         
     }
     
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 50
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }

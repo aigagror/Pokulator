@@ -27,6 +27,12 @@ class OppponentPicker: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
         return "\(row + 1)"
     }
     
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let title = NSAttributedString(string: "\(row + 1)", attributes: [NSForegroundColorAttributeName:UIColor.darkGray])
+        return title
+    }
+    
+    
     // What to do when user selects something
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         update(new_cards: nil, new_opponents: row + 1)

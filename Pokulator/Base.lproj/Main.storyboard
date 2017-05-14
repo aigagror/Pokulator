@@ -493,11 +493,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="2to-ri-LjW" userLabel="Add Card View">
-                    <rect key="frame" x="0.0" y="0.0" width="265" height="119"/>
+                    <rect key="frame" x="0.0" y="0.0" width="265" height="200"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRB-Qn-4Pn">
-                            <rect key="frame" x="0.0" y="0.0" width="265" height="119"/>
+                            <rect key="frame" x="0.0" y="0.0" width="265" height="200"/>
+                            <accessibility key="accessibilityConfiguration">
+                                <accessibilityTraits key="traits" keyboardKey="YES"/>
+                            </accessibility>
                         </pickerView>
                     </subviews>
                     <color key="backgroundColor" red="0.63401461093498601" green="0.70626268979798945" blue="0.15843269596812401" alpha="0.86025528169014087" colorSpace="custom" customColorSpace="sRGB"/>

@@ -14,7 +14,7 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     /// Indicates which card we're on. (0 is left hand, 2 is flop1 and 6 is river)
     private var card_index = 0
     
-    private var selected_card = Card(value: 1, suit: .clubs)
+    private var selected_card = Card(value: 2, suit: .clubs)
     
     /// Attempts to modify the card. May reject if the index is out of bounds of [0,6], or is at an index where previous cards have not been set yet
     ///
@@ -36,7 +36,7 @@ class CardPicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         if let selection = with_selection {
             selected_card = selection
         } else {
-            selected_card = Card(value: 1, suit: .clubs)
+            selected_card = Card(value: 2, suit: .clubs)
         }
         
         return true

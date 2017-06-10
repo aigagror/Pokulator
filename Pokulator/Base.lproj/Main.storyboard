@@ -807,19 +807,26 @@
                                     <constraint firstItem="fLS-cK-Ksa" firstAttribute="leading" secondItem="Ka7-o3-I6c" secondAttribute="leading" id="m1S-Z7-I7b"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zyY-Zm-W0H" customClass="CardPreview" customModule="Pokulator" customModuleProvider="target">
-                                <rect key="frame" x="16" y="70" width="343" height="120"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="zyY-Zm-W0H" customClass="CardPreview" customModule="Pokulator" customModuleProvider="target">
+                                <rect key="frame" x="16" y="107.5" width="343" height="72.5"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cardCount">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="cardSize">
+                                        <size key="value" width="50" height="72.599999999999994"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="zyY-Zm-W0H" firstAttribute="top" secondItem="eXc-vC-srI" secondAttribute="bottom" constant="50" id="FkB-xx-pPT"/>
                             <constraint firstItem="Ka7-o3-I6c" firstAttribute="height" secondItem="Q4Z-DC-iFm" secondAttribute="height" multiplier="0.7" id="Y21-Fz-19y"/>
                             <constraint firstItem="Ka7-o3-I6c" firstAttribute="leading" secondItem="Q4Z-DC-iFm" secondAttribute="leading" id="azN-C8-L94"/>
-                            <constraint firstItem="Ka7-o3-I6c" firstAttribute="top" secondItem="zyY-Zm-W0H" secondAttribute="bottom" constant="10" id="cmp-lJ-Uoc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="zyY-Zm-W0H" secondAttribute="trailing" id="eoU-ic-hfV"/>
+                            <constraint firstItem="Ka7-o3-I6c" firstAttribute="top" secondItem="zyY-Zm-W0H" secondAttribute="bottom" constant="20" id="cmp-lJ-Uoc"/>
+                            <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="zyY-Zm-W0H" secondAttribute="trailing" id="eoU-ic-hfV"/>
                             <constraint firstAttribute="trailing" secondItem="Ka7-o3-I6c" secondAttribute="trailing" id="naL-iD-k5p"/>
-                            <constraint firstItem="zyY-Zm-W0H" firstAttribute="leading" secondItem="Q4Z-DC-iFm" secondAttribute="leadingMargin" id="rEa-TL-bTM"/>
+                            <constraint firstItem="zyY-Zm-W0H" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Q4Z-DC-iFm" secondAttribute="leadingMargin" id="rEa-TL-bTM"/>
                             <constraint firstItem="lbS-Dh-46b" firstAttribute="top" secondItem="Ka7-o3-I6c" secondAttribute="bottom" id="y9p-Km-vlS"/>
                         </constraints>
                     </view>

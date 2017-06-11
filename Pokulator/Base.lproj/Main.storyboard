@@ -76,6 +76,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwf-If-8Rv" userLabel="straightFlush">
                                                         <rect key="frame" x="84.5" y="0.0" width="83.5" height="52"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="straightFlush"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -88,6 +89,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BoA-YM-P38" userLabel="fourOfAKind">
                                                         <rect key="frame" x="252" y="0.0" width="83" height="52"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="fourOfAKind"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -124,6 +126,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPU-mU-63b" userLabel="fullHouse">
                                                         <rect key="frame" x="84.5" y="0.0" width="83.5" height="52"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="fullHouse"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -136,6 +139,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLk-21-jCU" userLabel="flush">
                                                         <rect key="frame" x="252" y="0.0" width="83" height="52"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="flush"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -172,6 +176,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRs-fr-bz9" userLabel="straight">
                                                         <rect key="frame" x="84.5" y="0.0" width="83.5" height="51.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="straight"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -184,6 +189,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpR-dI-3bk" userLabel="threeOfAKind">
                                                         <rect key="frame" x="252" y="0.0" width="83" height="51.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="threeOfAKind"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -220,6 +226,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSZ-dq-V9G" userLabel="twoPair">
                                                         <rect key="frame" x="84.5" y="0.0" width="83.5" height="52"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="twoPair"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -232,6 +239,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JX2-4i-Y3D" userLabel="onePair">
                                                         <rect key="frame" x="252" y="0.0" width="83" height="52"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="onePair"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -268,6 +276,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCQ-YR-rcP" userLabel="highCard">
                                                         <rect key="frame" x="84.5" y="0.0" width="83.5" height="51.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="highCard"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -280,6 +289,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qt-cQ-Tqg" userLabel="win">
                                                         <rect key="frame" x="252" y="0.0" width="83" height="51.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="win"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -328,21 +338,21 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KAv-1X-Mm9">
                                                 <rect key="frame" x="0.0" y="0.0" width="201" height="78"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-8J-guU" userLabel="flop1">
+                                                    <view contentMode="scaleToFill" restorationIdentifier="flop1" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-8J-guU" userLabel="flop1">
                                                         <rect key="frame" x="0.0" y="0.0" width="53.5" height="78"/>
                                                         <color key="backgroundColor" red="0.19088001939999999" green="0.19088001939999999" blue="0.19088001939999999" alpha="0.4471830986" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="SmR-8J-guU" secondAttribute="height" multiplier="500:726" id="g1E-Xf-Fji"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LB3-cA-QqG" userLabel="flop2">
+                                                    <view contentMode="scaleToFill" restorationIdentifier="flop2" translatesAutoresizingMaskIntoConstraints="NO" id="LB3-cA-QqG" userLabel="flop2">
                                                         <rect key="frame" x="73.5" y="0.0" width="53.5" height="78"/>
                                                         <color key="backgroundColor" red="0.19088001939999999" green="0.19088001939999999" blue="0.19088001939999999" alpha="0.4471830986" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="LB3-cA-QqG" secondAttribute="height" multiplier="500:726" id="JbD-6U-cmh"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Vl-Nq-kvT" userLabel="flop3">
+                                                    <view contentMode="scaleToFill" restorationIdentifier="flop3" translatesAutoresizingMaskIntoConstraints="NO" id="5Vl-Nq-kvT" userLabel="flop3">
                                                         <rect key="frame" x="147.5" y="0.0" width="53.5" height="78"/>
                                                         <color key="backgroundColor" red="0.19088001939999999" green="0.19088001939999999" blue="0.19088001939999999" alpha="0.4471830986" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -372,7 +382,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oEV-Rk-FH6">
                                                 <rect key="frame" x="215" y="0.0" width="53" height="78"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vn7-zc-SLp" userLabel="turn">
+                                                    <view contentMode="scaleToFill" restorationIdentifier="turn" translatesAutoresizingMaskIntoConstraints="NO" id="Vn7-zc-SLp" userLabel="turn">
                                                         <rect key="frame" x="0.0" y="0.0" width="53" height="78"/>
                                                         <color key="backgroundColor" red="0.19088001939999999" green="0.19088001939999999" blue="0.19088001939999999" alpha="0.4471830986" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -395,7 +405,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezf-8a-GGI">
                                                 <rect key="frame" x="281.5" y="0.0" width="53.5" height="78"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jY5-8Y-CSA" userLabel="river">
+                                                    <view contentMode="scaleToFill" restorationIdentifier="river" translatesAutoresizingMaskIntoConstraints="NO" id="jY5-8Y-CSA" userLabel="river">
                                                         <rect key="frame" x="0.0" y="0.0" width="53.5" height="78"/>
                                                         <color key="backgroundColor" red="0.19088001939999999" green="0.19088001939999999" blue="0.19088001939999999" alpha="0.4471830986" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -432,14 +442,14 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oL9-hE-4bz">
                                                 <rect key="frame" x="84" y="0.0" width="167.5" height="97"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxM-q1-tAl" userLabel="left hand">
+                                                    <view contentMode="scaleToFill" restorationIdentifier="leftHand" translatesAutoresizingMaskIntoConstraints="NO" id="nxM-q1-tAl" userLabel="left hand">
                                                         <rect key="frame" x="0.5" y="0.0" width="66" height="97"/>
                                                         <color key="backgroundColor" red="0.19088001939999999" green="0.19088001939999999" blue="0.19088001939999999" alpha="0.4471830986" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="nxM-q1-tAl" secondAttribute="height" multiplier="500:726" id="Rke-Ky-OoU"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YCQ-Ek-yNO" userLabel="right hand">
+                                                    <view contentMode="scaleToFill" restorationIdentifier="rightHand" translatesAutoresizingMaskIntoConstraints="NO" id="YCQ-Ek-yNO" userLabel="right hand">
                                                         <rect key="frame" x="100.5" y="0.0" width="67.5" height="97"/>
                                                         <color key="backgroundColor" red="0.19088001939999999" green="0.19088001939999999" blue="0.19088001939999999" alpha="0.4471830986" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -644,7 +654,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error: Duplicate Cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13L-jp-M4z">
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can't add duplicate cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13L-jp-M4z">
                                         <rect key="frame" x="0.0" y="147" width="375" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="gnj-Pm-vei"/>

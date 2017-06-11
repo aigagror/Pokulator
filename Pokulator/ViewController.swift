@@ -57,13 +57,44 @@ class ViewController: UIViewController, StatsDelegate {
     
     
     func updateStats(handData: [GenericHand:Double], win: Double) -> Void {
-        stats[9].text = "\((win*100).rounded() / 100.0)"
-        for i in 0...8 {
-            let value = handData[GenericHand(rawValue: i)!]!
+        
+        for stat in stats {
+            let handText = stat.accessibilityIdentifier ?? ""
+            
+            var value = 0.0
+            
+            switch handText {
+            case "highCard":
+                value = handData[.highCard]!
+            case "onePair":
+                 value = handData[.onePair]!
+            case "twoPair":
+                value = handData[.twoPair]!
+            case "threeOfAKind":
+                value = handData[.threeOfAKind]!
+            case "straight":
+                value = handData[.straight]!
+            case "flush":
+                value = handData[.flush]!
+            case "fullHouse":
+                value = handData[.fullHouse]!
+            case "fourOfAKind":
+                value = handData[.fourOfAKind]!
+            case "straightFlush":
+                value = handData[.straightFlush]!
+            case "win":
+                value = win
+            default:
+                fatalError("should not be here")
+            }
+            
+            
+            
+            
             if value == 0.0 {
-                stats[i].text = "-"
+                stat.text = "-"
             } else {
-                stats[i].text = "\((value * 100).rounded() / 100.0)"
+                stat.text = "\((value * 100).rounded() / 100.0)"
             }
         }
     }
@@ -75,8 +106,11 @@ class ViewController: UIViewController, StatsDelegate {
     func updateScreen() -> Void {
         let cards = getCards()
         for i in 0...6 {
+            
+            // TODO: ensure correct UI
+            
+            
             if i < cards.count {
-                // TODO: Add card image
                 let card = cards[i]
                 
                 guard let cardImage = UIImage(named: card.getFilename()) else {
@@ -91,7 +125,6 @@ class ViewController: UIViewController, StatsDelegate {
                 
                 card_views[i].addSubview(cardImageView)
             } else {
-                // TODO: Remove card image
                 
                 let subviews = card_views[i].subviews
                 

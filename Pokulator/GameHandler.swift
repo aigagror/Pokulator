@@ -45,7 +45,6 @@ func startCalculating() -> Void {
                 if let statsDelegate = statsDelegate {
                     DispatchQueue.main.sync {
                         statsDelegate.updateStats(handData: new_data, win: winPercentage)
-                        print("HT: \(hand_trials), WT: \(win_trials), Wins: \(wins)")
                     }
                 }
                 
@@ -141,9 +140,7 @@ func monteCarlo(n: Int) {
 }
 
 fileprivate func monteCarloHelper(n: Int) {
-    
-    let start = Date()
-    
+        
     let curr_hand = getCurrentKnownHand(cards: cards)
     
     let group = DispatchGroup()
@@ -187,8 +184,6 @@ fileprivate func monteCarloHelper(n: Int) {
     
     group.wait()
     
-    let elapsed = -start.timeIntervalSinceNow
-    print("Took \((elapsed * 1000).rounded() / 1000.0) seconds")
 }
 
 /// Creates an array where the first 2 are the players hands, the next 5 are the community cards, and the rest are the opponents cards

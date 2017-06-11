@@ -164,6 +164,22 @@ fileprivate func randomFill() -> Array<Card> {
 
 
 
+/// Returns the round that we're on
+///
+/// - Returns:
+func getRound() -> Round {
+    let count = cards.count
+    if count >= 6 {
+        return .river
+    } else if count >= 5 {
+        return .turn
+    } else if count >= 2 {
+        return .flop
+    } else {
+        return .hand
+    }
+}
+
 func getCards() -> Array<Card> {
     return cards
 }

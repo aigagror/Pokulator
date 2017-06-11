@@ -135,7 +135,6 @@ import UIKit
         
     }
     
-    
     private func updateCardViewStates() -> Void {
         
         for i in 0..<cardCount {

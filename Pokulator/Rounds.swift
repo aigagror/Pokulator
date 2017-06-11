@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum Round {
-    case hand, flop, turn, river
+enum Round: String {
+    case hand = "Hand", flop = "Flop", turn = "Turn", river = "River"
 }

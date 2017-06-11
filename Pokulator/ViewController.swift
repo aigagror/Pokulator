@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     
     
     //background calculations
-    let calculatorQueue = DispatchQueue(label: "calculator_queue", qos: .background)
+    let calculatorQueue = DispatchQueue(label: "calculator_queue", qos: DispatchQoS.default)
     
 
     @IBAction func reset(_ sender: Any) {
@@ -125,31 +125,33 @@ class ViewController: UIViewController {
             fatalError("Unexpected destination: \(segue.destination)")
         }
         
-        switch (segue.identifier ?? "") {
-        case "hand":
-            os_log("Selecting for hand...", log: OSLog.default, type: .debug)
-            
-            cardSelectorViewController.round = .hand
-            
-        case "flop":
-            os_log("Selecting for flop...", log: OSLog.default, type: .debug)
-            
-            cardSelectorViewController.round = .flop
-            
-        case "turn":
-            os_log("Selecting for turn...", log: OSLog.default, type: .debug)
-            
-            cardSelectorViewController.round = .turn
-            
-            
-        case "river":
-            os_log("Selecting for river...", log: OSLog.default, type: .debug)
-            
-            cardSelectorViewController.round = .river
-            
-        default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
-        }
+        cardSelectorViewController.round = getRound()
+        
+//        switch (segue.identifier ?? "") {
+//        case "hand":
+//            os_log("Selecting for hand...", log: OSLog.default, type: .debug)
+//            
+//            cardSelectorViewController.round = .hand
+//            
+//        case "flop":
+//            os_log("Selecting for flop...", log: OSLog.default, type: .debug)
+//            
+//            cardSelectorViewController.round = .flop
+//            
+//        case "turn":
+//            os_log("Selecting for turn...", log: OSLog.default, type: .debug)
+//            
+//            cardSelectorViewController.round = .turn
+//            
+//            
+//        case "river":
+//            os_log("Selecting for river...", log: OSLog.default, type: .debug)
+//            
+//            cardSelectorViewController.round = .river
+//            
+//        default:
+//            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+//        }
         
     }
     

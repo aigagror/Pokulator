@@ -578,6 +578,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="PEg-jC-ZgO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="E0F-Gz-05U">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
@@ -591,12 +594,24 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Cancel">
-                                                    <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="cancel:" destination="XEC-5Z-GbW" eventType="touchUpInside" id="rEP-rs-Y4t"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fta-4O-7mL">
+                                                <rect key="frame" x="148" y="0.0" width="79" height="30"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Round">
+                                                        <attributes>
+                                                            <font key="NSFont" size="24" name="AmericanTypewriter-Bold"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbG-u4-Eg4">
                                                 <rect key="frame" x="275" y="0.0" width="100" height="30"/>
                                                 <constraints>
@@ -604,7 +619,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                 <state key="normal" title="Save">
-                                                    <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="mrX-Z8-zZF" kind="unwind" unwindAction="unwindToMealListWithSender:" id="P14-gd-Rgr"/>
@@ -613,7 +628,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="zyY-Zm-W0H" customClass="CardPreview" customModule="Pokulator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="59.5" width="375" height="91"/>
+                                        <rect key="frame" x="0.0" y="43" width="375" height="91"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cardCount">
                                                 <integer key="value" value="3"/>
@@ -622,15 +637,15 @@
                                                 <size key="value" width="62.5" height="90.75"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="cardBackgroundColor">
-                                                <color key="value" red="0.59999999999999998" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="cardHighlightColor">
-                                                <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Error: Duplicate Cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13L-jp-M4z">
-                                        <rect key="frame" x="0.0" y="150.5" width="375" height="0.0"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error: Duplicate Cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13L-jp-M4z">
+                                        <rect key="frame" x="0.0" y="147" width="375" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="gnj-Pm-vei"/>
                                         </constraints>
@@ -799,35 +814,23 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="ULD-UQ-mGu">
                                                         <rect key="frame" x="0.0" y="374" width="281.5" height="92.5"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3M-Dq-lje">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8LA-db-GH4">
                                                                 <rect key="frame" x="0.0" y="0.0" width="187.5" height="92.5"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8LA-db-GH4">
-                                                                        <rect key="frame" x="0.5" y="0.0" width="187.5" height="92.5"/>
-                                                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
-                                                                        <state key="normal" title="A">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="ace:" destination="XEC-5Z-GbW" eventType="touchUpInside" id="ep2-d3-qpP"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
                                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                                <constraints>
-                                                                    <constraint firstItem="8LA-db-GH4" firstAttribute="top" secondItem="a3M-Dq-lje" secondAttribute="top" id="G4a-Sf-kzw"/>
-                                                                    <constraint firstItem="8LA-db-GH4" firstAttribute="width" secondItem="a3M-Dq-lje" secondAttribute="width" id="KSu-JP-B3y"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="8LA-db-GH4" secondAttribute="bottom" id="arQ-np-lWb"/>
-                                                                    <constraint firstItem="8LA-db-GH4" firstAttribute="leading" secondItem="a3M-Dq-lje" secondAttribute="leading" id="n6v-Ek-yvD"/>
-                                                                </constraints>
-                                                            </view>
+                                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
+                                                                <state key="normal" title="A">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="ace:" destination="XEC-5Z-GbW" eventType="touchUpInside" id="ep2-d3-qpP"/>
+                                                                </connections>
+                                                            </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghi-bZ-DGy">
                                                                 <rect key="frame" x="188.5" y="0.0" width="93" height="92.5"/>
-                                                                <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="backgroundColor" red="0.80000000000000004" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
                                                                 <state key="normal" title="&lt;">
-                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="titleColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="back:" destination="XEC-5Z-GbW" eventType="touchUpInside" id="qZH-mY-5jX"/>
@@ -835,7 +838,7 @@
                                                             </button>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstItem="a3M-Dq-lje" firstAttribute="width" secondItem="ULD-UQ-mGu" secondAttribute="width" multiplier="2:3" id="VkU-PV-DAr"/>
+                                                            <constraint firstItem="8LA-db-GH4" firstAttribute="width" secondItem="ULD-UQ-mGu" secondAttribute="width" multiplier="2:3" id="onU-ZC-NH3"/>
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
@@ -889,10 +892,10 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRJ-1j-WUf">
                                                         <rect key="frame" x="0.0" y="374.5" width="92.5" height="92.5"/>
-                                                        <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.80000000000000004" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
                                                         <state key="normal" title="&gt;">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="titleColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="forward:" destination="XEC-5Z-GbW" eventType="touchUpInside" id="9Ew-9E-G4n"/>
@@ -901,7 +904,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                         <constraints>
                                             <constraint firstItem="fLS-cK-Ksa" firstAttribute="width" secondItem="Ka7-o3-I6c" secondAttribute="width" multiplier="0.75" id="00E-Cy-Cbt"/>
                                             <constraint firstItem="fLS-cK-Ksa" firstAttribute="top" secondItem="Ka7-o3-I6c" secondAttribute="top" id="4CM-tx-8Sk"/>
@@ -918,11 +921,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="PEg-jC-ZgO" firstAttribute="top" secondItem="Q4Z-DC-iFm" secondAttribute="top" id="5f6-5P-MEO"/>
                             <constraint firstItem="E0F-Gz-05U" firstAttribute="top" secondItem="eXc-vC-srI" secondAttribute="bottom" id="Bd0-OE-Pd7"/>
+                            <constraint firstItem="PEg-jC-ZgO" firstAttribute="height" secondItem="Q4Z-DC-iFm" secondAttribute="height" id="LjU-LK-bw8"/>
+                            <constraint firstAttribute="trailing" secondItem="PEg-jC-ZgO" secondAttribute="trailing" id="PnB-RK-Flr"/>
                             <constraint firstItem="lbS-Dh-46b" firstAttribute="top" secondItem="E0F-Gz-05U" secondAttribute="bottom" id="SxC-Vo-Csq"/>
                             <constraint firstItem="Ka7-o3-I6c" firstAttribute="height" secondItem="Q4Z-DC-iFm" secondAttribute="height" multiplier="0.7" id="Tsb-an-HOL"/>
                             <constraint firstItem="E0F-Gz-05U" firstAttribute="leading" secondItem="Q4Z-DC-iFm" secondAttribute="leading" id="XqK-vw-sss"/>
                             <constraint firstAttribute="trailing" secondItem="E0F-Gz-05U" secondAttribute="trailing" id="Zc4-tO-Lwh"/>
+                            <constraint firstItem="PEg-jC-ZgO" firstAttribute="leading" secondItem="Q4Z-DC-iFm" secondAttribute="leading" id="uvq-zb-66x"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Select Card" id="2K6-na-SqI">
@@ -931,6 +938,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cardPreview" destination="zyY-Zm-W0H" id="Xlz-Hm-9Hh"/>
+                        <outlet property="errorLabel" destination="13L-jp-M4z" id="XH0-wX-lbj"/>
+                        <outlet property="roundLabel" destination="fta-4O-7mL" id="ZlI-LY-kXq"/>
                         <outlet property="saveButton" destination="hbG-u4-Eg4" id="OJu-QJ-DRS"/>
                     </connections>
                 </viewController>

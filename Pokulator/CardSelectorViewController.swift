@@ -16,6 +16,8 @@ class CardSelectorViewController: UIViewController {
     @IBOutlet weak var cardPreview: CardPreview!
     
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var roundLabel: UILabel!
+    @IBOutlet weak var errorLabel: UILabel!
     
     var selectedValue: Int? = nil
     var selectedSuit: Suit? = nil
@@ -31,6 +33,17 @@ class CardSelectorViewController: UIViewController {
     
     
     // MARK: Private Methods
+    
+    private func updateSaveButtonState() {
+        switch round {
+        case .hand:
+            saveButton.isEnabled = selectedCards.count >= 2
+        case .flop:
+            saveButton.isEnabled = selectedCards.count >= 3
+        default:
+            saveButton.isEnabled = selectedCards.count >= 1
+        }
+    }
     
     func trySelectionHelper(potentialCard: Card) -> Void {
         var cardIsValid = true
@@ -63,7 +76,16 @@ class CardSelectorViewController: UIViewController {
             
             currCardIndex += 1
             cardPreview.updateCards(cards: selectedCards, currIndex: currCardIndex)
+        } else {
+            UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseOut, animations: {
+                self.errorLabel.alpha = 1
+                
+                self.errorLabel.alpha = 0
+
+            })
         }
+        
+        
     }
     
     func trySelection(value: Int? = nil, suit: Suit? = nil) -> Void {
@@ -106,6 +128,8 @@ class CardSelectorViewController: UIViewController {
                 selectedSuit = s
             }
         }
+        
+        updateSaveButtonState()
     }
     
     
@@ -198,6 +222,8 @@ class CardSelectorViewController: UIViewController {
     @IBAction func back(_ sender: Any) {
         currCardIndex = currCardIndex == 0 ? 0 : currCardIndex - 1
         cardPreview.updateCards(cards: selectedCards, currIndex: currCardIndex)
+        
+        updateSaveButtonState()
     }
     @IBAction func forward(_ sender: Any) {
         if currCardIndex == selectedCards.count {
@@ -205,6 +231,8 @@ class CardSelectorViewController: UIViewController {
         }
         currCardIndex = currCardIndex == cardPreview.cardCount ? currCardIndex : currCardIndex + 1
         cardPreview.updateCards(cards: selectedCards, currIndex: currCardIndex)
+        
+        updateSaveButtonState()
     }
     
     
@@ -215,6 +243,8 @@ class CardSelectorViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         selectedCards.removeAll()
+        
+        roundLabel.text = round.rawValue
         
         switch round {
         case .hand:

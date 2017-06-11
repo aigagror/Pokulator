@@ -8,6 +8,62 @@
 
 import Foundation
 
+
+var statsDelegate: StatsDelegate? = nil
+
+
+var isCalculating = false
+
+//background calculations
+let calculatorQueue = DispatchQueue(label: "calculator_queue", qos: DispatchQoS.default)
+
+
+func startCalculating() -> Void {
+    if !isCalculating {
+        isCalculating = true
+        // Start up the calculations
+        calculatorQueue.async {
+            var hand_trials = 0
+            var win_trials = 0
+            
+            while hand_trials < 100_000 || win_trials < 100_000 {
+                monteCarlo(n: 2_000)
+                
+                var new_data = [GenericHand:Double]()
+                
+                let hand_data = getHandData()
+                hand_trials = getHandTrials()
+                let wins = getWins()
+                win_trials = getWinTrials()
+                let winPercentage = Double(wins*100) / Double(win_trials)
+                
+                for (hand,n) in hand_data {
+                    new_data[hand] = Double(n*100) / Double(hand_trials)
+                }
+                
+                
+                if let statsDelegate = statsDelegate {
+                    DispatchQueue.main.sync {
+                        statsDelegate.updateStats(handData: new_data, win: winPercentage)
+                        print("HT: \(hand_trials), WT: \(win_trials), Wins: \(wins)")
+                    }
+                }
+                
+            }
+            
+            isCalculating = false
+        }
+    }
+    
+    
+}
+
+
+
+
+
+
+
 fileprivate let updateQueue = DispatchQueue(label: "updater")
 
 /// This queue is used to protect the critical section of all of the fileprivate variables here. Any reading/writing on these variables should be done through this queue
@@ -69,6 +125,10 @@ fileprivate func updateHelper(new_cards: Array<Card>? = nil, new_opponents: Int?
             print("refreshed win data")
         }
     }
+    
+    
+    startCalculating()
+
 }
 
 /// Performs n sample rounds and updates the hands and wins informations. Blocks until all of the data is updated

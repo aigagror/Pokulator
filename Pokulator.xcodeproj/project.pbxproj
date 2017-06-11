@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C0C4D811E9B1769009CD60A /* Hands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C4D801E9B1769009CD60A /* Hands.swift */; };
 		2C3C83D01EB1A9FA00983034 /* GameHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C83CF1EB1A9FA00983034 /* GameHandler.swift */; };
-		2C3C83D41EB6EDFC00983034 /* StatsUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C83D31EB6EDFC00983034 /* StatsUpdater.swift */; };
+		2C3C83D41EB6EDFC00983034 /* StatsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C83D31EB6EDFC00983034 /* StatsDelegate.swift */; };
 		2C4166941EEC6E3700247606 /* CardSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4166931EEC6E3700247606 /* CardSelectorViewController.swift */; };
 		2C4166961EEC8AAC00247606 /* CardPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4166951EEC8AAC00247606 /* CardPreview.swift */; };
 		2C4166981EECCFBD00247606 /* Rounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4166971EECCFBD00247606 /* Rounds.swift */; };
@@ -48,7 +48,7 @@
 /* Begin PBXFileReference section */
 		2C0C4D801E9B1769009CD60A /* Hands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hands.swift; sourceTree = "<group>"; };
 		2C3C83CF1EB1A9FA00983034 /* GameHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHandler.swift; sourceTree = "<group>"; };
-		2C3C83D31EB6EDFC00983034 /* StatsUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsUpdater.swift; sourceTree = "<group>"; };
+		2C3C83D31EB6EDFC00983034 /* StatsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsDelegate.swift; sourceTree = "<group>"; };
 		2C4166931EEC6E3700247606 /* CardSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardSelectorViewController.swift; sourceTree = "<group>"; };
 		2C4166951EEC8AAC00247606 /* CardPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPreview.swift; sourceTree = "<group>"; };
 		2C4166971EECCFBD00247606 /* Rounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rounds.swift; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 			children = (
 				2C55BF9C1E98AF1E00C8CE87 /* OpponentsPicker.swift */,
 				2C4166951EEC8AAC00247606 /* CardPreview.swift */,
-				2C3C83D31EB6EDFC00983034 /* StatsUpdater.swift */,
+				2C3C83D31EB6EDFC00983034 /* StatsDelegate.swift */,
 				2C4C2EBE1E9751E80073A377 /* CardPicker.swift */,
 			);
 			name = UI;
@@ -307,7 +307,7 @@
 				2C50606B1E9341A600B0D6DA /* ViewController.swift in Sources */,
 				2C4C2EBF1E9751E80073A377 /* CardPicker.swift in Sources */,
 				2C510CD41EA5A943006AEC26 /* ProbabilityUtilities.swift in Sources */,
-				2C3C83D41EB6EDFC00983034 /* StatsUpdater.swift in Sources */,
+				2C3C83D41EB6EDFC00983034 /* StatsDelegate.swift in Sources */,
 				2C55BF971E98AE4E00C8CE87 /* Factorial.swift in Sources */,
 				2C0C4D811E9B1769009CD60A /* Hands.swift in Sources */,
 				2C510CCB1EA08D84006AEC26 /* Utilities.swift in Sources */,

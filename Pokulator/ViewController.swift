@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, StatsDelegate {
 
     @IBOutlet weak var num_opp_picker: UIPickerView!
     
@@ -25,8 +25,7 @@ class ViewController: UIViewController {
     var card_view_array = [UIImageView]()
     
     
-    //background calculations
-    let calculatorQueue = DispatchQueue(label: "calculator_queue", qos: DispatchQoS.default)
+    
     
 
     @IBAction func reset(_ sender: Any) {
@@ -49,33 +48,28 @@ class ViewController: UIViewController {
         self.num_opp_picker.dataSource = self.opponent_picker
         
         
+        statsDelegate = self
         
-        // Start up the calculations
-        calculatorQueue.async {
-            while true {
-                monteCarlo(n: 2_000)
-                
-                var new_data = [GenericHand:Double]()
-                
-                let hand_data = getHandData()
-                let hand_trials = getHandTrials()
-                let wins = getWins()
-                let win_trials = getWinTrials()
-                let winPercentage = Double(wins*100) / Double(win_trials)
-                
-                for (hand,n) in hand_data {
-                    new_data[hand] = Double(n*100) / Double(hand_trials)
-                }
-                
-                DispatchQueue.main.sync {
-                    updateStats(stats: self.stats, handData: new_data, win: winPercentage)
-                    print("HT: \(hand_trials), WT: \(win_trials), Wins: \(wins)")
-                }
-            }
-        }
+        startCalculating()
         
         updateScreen()
     }
+    
+    
+    func updateStats(handData: [GenericHand:Double], win: Double) -> Void {
+        stats[9].text = "\((win*100).rounded() / 100.0)"
+        for i in 0...8 {
+            let value = handData[GenericHand(rawValue: i)!]!
+            if value == 0.0 {
+                stats[i].text = "-"
+            } else {
+                stats[i].text = "\((value * 100).rounded() / 100.0)"
+            }
+        }
+    }
+    
+    
+    
     
     /// Updates the cards on the screen
     func updateScreen() -> Void {

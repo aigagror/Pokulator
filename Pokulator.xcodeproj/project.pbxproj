@@ -12,6 +12,7 @@
 		2C3C83D41EB6EDFC00983034 /* StatsUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C83D31EB6EDFC00983034 /* StatsUpdater.swift */; };
 		2C4166941EEC6E3700247606 /* CardSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4166931EEC6E3700247606 /* CardSelectorViewController.swift */; };
 		2C4166961EEC8AAC00247606 /* CardPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4166951EEC8AAC00247606 /* CardPreview.swift */; };
+		2C4166981EECCFBD00247606 /* Rounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4166971EECCFBD00247606 /* Rounds.swift */; };
 		2C4C2EB81E95DE1C0073A377 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EB71E95DE1C0073A377 /* Card.swift */; };
 		2C4C2EBA1E95DFDF0073A377 /* Suits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EB91E95DFDF0073A377 /* Suits.swift */; };
 		2C4C2EBF1E9751E80073A377 /* CardPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C2EBE1E9751E80073A377 /* CardPicker.swift */; };
@@ -50,6 +51,7 @@
 		2C3C83D31EB6EDFC00983034 /* StatsUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsUpdater.swift; sourceTree = "<group>"; };
 		2C4166931EEC6E3700247606 /* CardSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardSelectorViewController.swift; sourceTree = "<group>"; };
 		2C4166951EEC8AAC00247606 /* CardPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPreview.swift; sourceTree = "<group>"; };
+		2C4166971EECCFBD00247606 /* Rounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rounds.swift; sourceTree = "<group>"; };
 		2C4C2EB71E95DE1C0073A377 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2C4C2EB91E95DFDF0073A377 /* Suits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suits.swift; sourceTree = "<group>"; };
 		2C4C2EBE1E9751E80073A377 /* CardPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPicker.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				2C0C4D801E9B1769009CD60A /* Hands.swift */,
 				2C4C2EB71E95DE1C0073A377 /* Card.swift */,
 				2C4C2EB91E95DFDF0073A377 /* Suits.swift */,
+				2C4166971EECCFBD00247606 /* Rounds.swift */,
 			);
 			name = Cards;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				2C3C83D01EB1A9FA00983034 /* GameHandler.swift in Sources */,
 				2C55BF951E98AE1000C8CE87 /* Binomial.swift in Sources */,
 				2C4C2EBA1E95DFDF0073A377 /* Suits.swift in Sources */,
+				2C4166981EECCFBD00247606 /* Rounds.swift in Sources */,
 				2C510CD21EA46834006AEC26 /* TwoPair.swift in Sources */,
 				2C4166941EEC6E3700247606 /* CardSelectorViewController.swift in Sources */,
 				2C510CBF1E9F08E6006AEC26 /* HandDetection.swift in Sources */,

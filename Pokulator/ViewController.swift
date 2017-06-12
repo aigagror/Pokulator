@@ -175,52 +175,50 @@ class ViewController: UIViewController, StatsDelegate {
         
         // all destinations lead to card selector view controller
         
-        guard let cardSelectorViewController = segue.destination as? CardSelectorViewController else {
-            fatalError("Unexpected destination: \(segue.destination)")
-        }
-        
-        let currentRound = getRound()
-        cardSelectorViewController.round = currentRound
-        
-        
-        switch (segue.identifier ?? "") {
-        case "hand":
-            os_log("Selecting for hand...", log: OSLog.default, type: .debug)
+        if let cardSelectorViewController = segue.destination as? CardSelectorViewController {
+            let currentRound = getRound()
+            cardSelectorViewController.round = currentRound
             
-            cardSelectorViewController.round = .hand
-            cardSelectorViewController.selectedCards = getCards(fromRound: .hand)
             
-        case "flop":
-            os_log("Selecting for flop...", log: OSLog.default, type: .debug)
-            
-            if currentRound != .hand {
-                cardSelectorViewController.round = .flop
-                cardSelectorViewController.selectedCards = getCards(fromRound: .flop)
+            switch (segue.identifier ?? "") {
+            case "hand":
+                os_log("Selecting for hand...", log: OSLog.default, type: .debug)
+                
+                cardSelectorViewController.round = .hand
+                cardSelectorViewController.selectedCards = getCards(fromRound: .hand)
+                
+            case "flop":
+                os_log("Selecting for flop...", log: OSLog.default, type: .debug)
+                
+                if currentRound != .hand {
+                    cardSelectorViewController.round = .flop
+                    cardSelectorViewController.selectedCards = getCards(fromRound: .flop)
+                }
+                
+                
+            case "turn":
+                os_log("Selecting for turn...", log: OSLog.default, type: .debug)
+                
+                if currentRound == .turn || currentRound == .river {
+                    cardSelectorViewController.round = .turn
+                    cardSelectorViewController.selectedCards = getCards(fromRound: .turn)
+                }
+                
+                
+                
+            case "river":
+                os_log("Selecting for river...", log: OSLog.default, type: .debug)
+                
+                if currentRound == .river {
+                    cardSelectorViewController.round = .river
+                    cardSelectorViewController.selectedCards = getCards(fromRound: .river)
+                    
+                }
+                
+            default:
+                fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "")")
             }
-            
-            
-        case "turn":
-            os_log("Selecting for turn...", log: OSLog.default, type: .debug)
-            
-            if currentRound == .turn || currentRound == .river {
-                cardSelectorViewController.round = .turn
-                cardSelectorViewController.selectedCards = getCards(fromRound: .turn)
-            }
-           
-            
-            
-        case "river":
-            os_log("Selecting for river...", log: OSLog.default, type: .debug)
-            
-            if currentRound == .river {
-                cardSelectorViewController.round = .river
-                cardSelectorViewController.selectedCards = getCards(fromRound: .river)
-
-            }
-            
-        default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "")")
-        }
+        } 
         
     }
     

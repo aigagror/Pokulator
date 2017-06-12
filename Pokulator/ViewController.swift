@@ -219,7 +219,7 @@ class ViewController: UIViewController, StatsDelegate {
             }
             
         default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "")")
         }
         
     }

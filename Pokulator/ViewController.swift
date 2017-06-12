@@ -109,6 +109,33 @@ class ViewController: UIViewController, StatsDelegate {
             
             // TODO: ensure correct UI
             
+            var viewName = ""
+            switch i {
+            case 0:
+                viewName = "leftHand"
+            case 1:
+                viewName = "rightHand"
+            case 2:
+                viewName = "flop1"
+            case 3:
+                viewName = "flop2"
+            case 4:
+                viewName = "flop3"
+            case 5:
+                viewName = "turn"
+            case 6:
+                viewName = "river"
+            default:
+                fatalError("Should not be here")
+            }
+            
+            var cardView = UIView();
+            for view in card_views {
+                if view.restorationIdentifier ?? "" == viewName {
+                    cardView = view
+                }
+            }
+            
             
             if i < cards.count {
                 let card = cards[i]
@@ -118,15 +145,15 @@ class ViewController: UIViewController, StatsDelegate {
                 }
                 
                 let cardImageView = UIImageView(image: cardImage)
-                cardImageView.frame = card_views[i].frame
-                let origin = CGPoint(x: card_views[i].frame.width / 2, y: card_views[i].frame.height / 2)
+                cardImageView.frame = cardView.frame
+                let origin = CGPoint(x: cardView.frame.width / 2, y: cardView.frame.height / 2)
                 cardImageView.center = origin
         
                 
-                card_views[i].addSubview(cardImageView)
+                cardView.addSubview(cardImageView)
             } else {
                 
-                let subviews = card_views[i].subviews
+                let subviews = cardView.subviews
                 
                 for subview in subviews {
                     subview.removeFromSuperview()
@@ -152,40 +179,55 @@ class ViewController: UIViewController, StatsDelegate {
             fatalError("Unexpected destination: \(segue.destination)")
         }
         
-        cardSelectorViewController.round = getRound()
+        let currentRound = getRound()
+        cardSelectorViewController.round = currentRound
         
-//        switch (segue.identifier ?? "") {
-//        case "hand":
-//            os_log("Selecting for hand...", log: OSLog.default, type: .debug)
-//            
-//            cardSelectorViewController.round = .hand
-//            
-//        case "flop":
-//            os_log("Selecting for flop...", log: OSLog.default, type: .debug)
-//            
-//            cardSelectorViewController.round = .flop
-//            
-//        case "turn":
-//            os_log("Selecting for turn...", log: OSLog.default, type: .debug)
-//            
-//            cardSelectorViewController.round = .turn
-//            
-//            
-//        case "river":
-//            os_log("Selecting for river...", log: OSLog.default, type: .debug)
-//            
-//            cardSelectorViewController.round = .river
-//            
-//        default:
-//            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
-//        }
+        
+        switch (segue.identifier ?? "") {
+        case "hand":
+            os_log("Selecting for hand...", log: OSLog.default, type: .debug)
+            
+            cardSelectorViewController.round = .hand
+            cardSelectorViewController.selectedCards = getCards(fromRound: .hand)
+            
+        case "flop":
+            os_log("Selecting for flop...", log: OSLog.default, type: .debug)
+            
+            if currentRound != .hand {
+                cardSelectorViewController.round = .flop
+                cardSelectorViewController.selectedCards = getCards(fromRound: .flop)
+            }
+            
+            
+        case "turn":
+            os_log("Selecting for turn...", log: OSLog.default, type: .debug)
+            
+            if currentRound == .turn || currentRound == .river {
+                cardSelectorViewController.round = .turn
+                cardSelectorViewController.selectedCards = getCards(fromRound: .turn)
+            }
+           
+            
+            
+        case "river":
+            os_log("Selecting for river...", log: OSLog.default, type: .debug)
+            
+            if currentRound == .river {
+                cardSelectorViewController.round = .river
+                cardSelectorViewController.selectedCards = getCards(fromRound: .river)
+
+            }
+            
+        default:
+            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+        }
         
     }
     
     
     // MARK: Actions
     
-    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+    @IBAction func unwindToMainMenu(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? CardSelectorViewController {
             
             let selectedCards = sourceViewController.selectedCards

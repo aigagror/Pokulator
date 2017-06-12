@@ -52,14 +52,12 @@ class CardSelectorViewController: UIViewController {
         for card in givenCards {
             if card == potentialCard {
                 cardIsValid = false
-                print("Duplicate Card")
                 break
             }
         }
         for card in selectedCards {
             if card == potentialCard {
                 cardIsValid = false
-                print("Duplicate Card")
                 break
             }
         }
@@ -75,6 +73,22 @@ class CardSelectorViewController: UIViewController {
             selectedSuit = nil
             
             currCardIndex += 1
+            switch round {
+            case .hand:
+                if currCardIndex >= 2 {
+                    currCardIndex = 1
+                }
+            case .flop:
+                if currCardIndex >= 3 {
+                    currCardIndex = 2
+                }
+            default:
+                if currCardIndex >= 1 {
+                    currCardIndex = 0
+                }
+            }
+            
+            
             cardPreview.updateCards(cards: selectedCards, currIndex: currCardIndex)
         } else {
             UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseOut, animations: {
@@ -89,7 +103,7 @@ class CardSelectorViewController: UIViewController {
     }
     
     func trySelection(value: Int? = nil, suit: Suit? = nil) -> Void {
-        
+                
         switch round {
         case .hand:
             if currCardIndex == 2 {
@@ -218,7 +232,7 @@ class CardSelectorViewController: UIViewController {
     }
     
     
-    
+    // MARK: Navigation of cards
     @IBAction func back(_ sender: Any) {
         currCardIndex = currCardIndex == 0 ? 0 : currCardIndex - 1
         cardPreview.updateCards(cards: selectedCards, currIndex: currCardIndex)
@@ -229,7 +243,7 @@ class CardSelectorViewController: UIViewController {
         if currCardIndex == selectedCards.count {
             return
         }
-        currCardIndex = currCardIndex == cardPreview.cardCount ? currCardIndex : currCardIndex + 1
+        currCardIndex = currCardIndex == cardPreview.cardCount - 1 ? currCardIndex : currCardIndex + 1
         cardPreview.updateCards(cards: selectedCards, currIndex: currCardIndex)
         
         updateSaveButtonState()
@@ -238,11 +252,17 @@ class CardSelectorViewController: UIViewController {
     
     
     
+    
+    // MARK: View Controller functions
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        cardPreview.updateCards(cards: selectedCards, currIndex: currCardIndex)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        selectedCards.removeAll()
         
         roundLabel.text = round.rawValue
         
@@ -256,6 +276,9 @@ class CardSelectorViewController: UIViewController {
         }
         
         
+        
+        
+        cardPreview.updateCards(cards: selectedCards, currIndex: currCardIndex)
     }
 
     override func didReceiveMemoryWarning() {

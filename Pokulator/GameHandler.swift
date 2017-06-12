@@ -239,6 +239,39 @@ func getCards() -> Array<Card> {
     return cards
 }
 
+func getCards(fromRound: Round) -> Array<Card> {
+    let count = cards.count
+    
+    switch fromRound {
+    case .hand:
+        if count >= 2 {
+            return [cards[0], cards[1]]
+        } else {
+            return []
+        }
+        
+    case .flop:
+        if count >= 5 {
+            return [cards[2],cards[3],cards[4]]
+        } else {
+            return []
+        }
+    case .turn:
+        if count >= 6 {
+            return [cards[5]]
+        } else {
+            return []
+        }
+    default:
+        if count >= 7 {
+            return [cards[6]]
+        } else {
+            return []
+        }
+    }
+    
+}
+
 func getHandData() -> [GenericHand:Int] {
     dataQueue.sync {
         

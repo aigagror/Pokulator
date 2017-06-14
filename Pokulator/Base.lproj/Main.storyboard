@@ -29,7 +29,7 @@
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qGc-bz-VPN">
                                 <rect key="frame" x="16" y="64.5" width="343" height="602.5"/>
-                                <mutableString key="text">Pokulator uses a Monte Carlo method, which is essentially just random sampling to calculate the probabilities of getting certain hands. Many people ask why the win percentage is slightly higher than expected (around 52% rather than 50% against one opponent). This is because it counts all ties as wins as well. Against one opponent with no cards given, the app can sample about 10,000 trials per second as tested on the iPhone 6s. In order to conserve energy, the app stops calculating after 100,000 trials. After 100,000 trials, the calculations are usually accurate to around 0.01%. (Fun Fact: The rate of converge for the error of Monte Carlo methods is usually Big O of the square root of N, where N is the number of samples). Have fun using the app. May you crush your friends in poker 😁</mutableString>
+                                <mutableString key="text">Pokulator uses a Monte Carlo method, which is essentially just random sampling to calculate the probabilities of getting certain hands. Many people ask why the win percentage is slightly higher than expected (around 52% rather than 50% against one opponent). This is because it counts all ties as wins as well. Against one opponent with no cards given, the app can sample about 25,000 trials per second as tested on the iPhone 6s. In order to conserve energy, the app stops calculating after 100,000 trials. After 100,000 trials, the calculations have a relative error of around 0.01%. (Fun Fact: The rate of converge for the error of Monte Carlo methods is usually Big O of the square root of N, where N is the number of samples). Have fun using the app. May you crush your friends in poker 😁</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -447,7 +447,7 @@
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oEV-Rk-FH6">
-                                                <rect key="frame" x="205.5" y="0.0" width="54" height="77.5"/>
+                                                <rect key="frame" x="206" y="0.0" width="54" height="77.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" restorationIdentifier="turn" translatesAutoresizingMaskIntoConstraints="NO" id="Vn7-zc-SLp" userLabel="turn">
                                                         <rect key="frame" x="0.0" y="0.0" width="54" height="77.5"/>

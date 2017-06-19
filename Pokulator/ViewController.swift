@@ -11,16 +11,14 @@ import os.log
 
 class ViewController: UIViewController, StatsDelegate {
 
-    @IBOutlet weak var num_opp_picker: UIPickerView!
     
     @IBOutlet var stats: [UILabel]!
     
     @IBOutlet weak var hand_label: UILabel!
+    @IBOutlet weak var opponent_label: UILabel!
     
     @IBOutlet var card_views: [UIView]!
-    
-    
-    let opponent_picker = OppponentPicker()
+        
     
     var card_view_array = [UIImageView]()
     
@@ -37,16 +35,20 @@ class ViewController: UIViewController, StatsDelegate {
         updateScreen()
     }
     
+    @IBAction func changed_opponent_count(_ sender: UIStepper) {
+        
+        let n = Int(sender.value)
+        
+        opponent_label.text = "\(n)"
+        
+        update(new_cards: nil, new_opponents: n)
+        
+    }
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        // Setting up the picker views
-        self.num_opp_picker.delegate = self.opponent_picker
-        self.num_opp_picker.dataSource = self.opponent_picker
-        
         
         statsDelegate = self
         
@@ -106,8 +108,6 @@ class ViewController: UIViewController, StatsDelegate {
     func updateScreen() -> Void {
         let cards = getCards()
         for i in 0...6 {
-            
-            // TODO: ensure correct UI
             
             var viewName = ""
             switch i {

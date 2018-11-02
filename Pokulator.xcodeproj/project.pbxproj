@@ -24,14 +24,7 @@
 		2C510CB71E9DCF75006AEC26 /* PokulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CB61E9DCF75006AEC26 /* PokulatorTests.swift */; };
 		2C510CBF1E9F08E6006AEC26 /* HandDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CBE1E9F08E6006AEC26 /* HandDetection.swift */; };
 		2C510CCB1EA08D84006AEC26 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CCA1EA08D84006AEC26 /* Utilities.swift */; };
-		2C510CD01EA41EF0006AEC26 /* OnePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CCF1EA41EF0006AEC26 /* OnePair.swift */; };
-		2C510CD21EA46834006AEC26 /* TwoPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CD11EA46834006AEC26 /* TwoPair.swift */; };
-		2C510CD41EA5A943006AEC26 /* ProbabilityUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C510CD31EA5A943006AEC26 /* ProbabilityUtilities.swift */; };
-		2C55BF951E98AE1000C8CE87 /* Binomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF941E98AE1000C8CE87 /* Binomial.swift */; };
-		2C55BF971E98AE4E00C8CE87 /* Factorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF961E98AE4E00C8CE87 /* Factorial.swift */; };
-		2C55BF9B1E98AEC200C8CE87 /* Factors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF9A1E98AEC200C8CE87 /* Factors.swift */; };
 		2C55BF9D1E98AF1E00C8CE87 /* OpponentsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF9C1E98AF1E00C8CE87 /* OpponentsPicker.swift */; };
-		2C55BF9F1E98AF5900C8CE87 /* Rational.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BF9E1E98AF5900C8CE87 /* Rational.swift */; };
 		2CBCB9451EC7A2B600581EC9 /* HandComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCB9441EC7A2B600581EC9 /* HandComparison.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,14 +60,7 @@
 		2C510CB81E9DCF75006AEC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C510CBE1E9F08E6006AEC26 /* HandDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandDetection.swift; sourceTree = "<group>"; };
 		2C510CCA1EA08D84006AEC26 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		2C510CCF1EA41EF0006AEC26 /* OnePair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnePair.swift; sourceTree = "<group>"; };
-		2C510CD11EA46834006AEC26 /* TwoPair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoPair.swift; sourceTree = "<group>"; };
-		2C510CD31EA5A943006AEC26 /* ProbabilityUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProbabilityUtilities.swift; sourceTree = "<group>"; };
-		2C55BF941E98AE1000C8CE87 /* Binomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binomial.swift; sourceTree = "<group>"; };
-		2C55BF961E98AE4E00C8CE87 /* Factorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factorial.swift; sourceTree = "<group>"; };
-		2C55BF9A1E98AEC200C8CE87 /* Factors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factors.swift; sourceTree = "<group>"; };
 		2C55BF9C1E98AF1E00C8CE87 /* OpponentsPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpponentsPicker.swift; sourceTree = "<group>"; };
-		2C55BF9E1E98AF5900C8CE87 /* Rational.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rational.swift; sourceTree = "<group>"; };
 		2CBCB9441EC7A2B600581EC9 /* HandComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandComparison.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,7 +123,6 @@
 				2C510CC41EA058E3006AEC26 /* UI */,
 				2C4C2EBD1E95E2290073A377 /* Cards */,
 				2C55BF931E98ADF600C8CE87 /* Math */,
-				2C510CC51EA05915006AEC26 /* Statistics */,
 				2C50606F1E9341A600B0D6DA /* Assets.xcassets */,
 				2C5060711E9341A600B0D6DA /* LaunchScreen.storyboard */,
 				2C5060741E9341A600B0D6DA /* Info.plist */,
@@ -166,32 +151,10 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
-		2C510CC51EA05915006AEC26 /* Statistics */ = {
-			isa = PBXGroup;
-			children = (
-				2C510CCE1EA41ECC006AEC26 /* Hand Probabilities */,
-			);
-			name = Statistics;
-			sourceTree = "<group>";
-		};
-		2C510CCE1EA41ECC006AEC26 /* Hand Probabilities */ = {
-			isa = PBXGroup;
-			children = (
-				2C510CD31EA5A943006AEC26 /* ProbabilityUtilities.swift */,
-				2C510CCF1EA41EF0006AEC26 /* OnePair.swift */,
-				2C510CD11EA46834006AEC26 /* TwoPair.swift */,
-			);
-			name = "Hand Probabilities";
-			sourceTree = "<group>";
-		};
 		2C55BF931E98ADF600C8CE87 /* Math */ = {
 			isa = PBXGroup;
 			children = (
 				2C510CCA1EA08D84006AEC26 /* Utilities.swift */,
-				2C55BF941E98AE1000C8CE87 /* Binomial.swift */,
-				2C55BF9E1E98AF5900C8CE87 /* Rational.swift */,
-				2C55BF961E98AE4E00C8CE87 /* Factorial.swift */,
-				2C55BF9A1E98AEC200C8CE87 /* Factors.swift */,
 			);
 			name = Math;
 			sourceTree = "<group>";
@@ -303,22 +266,15 @@
 			files = (
 				2C4166961EEC8AAC00247606 /* CardPreview.swift in Sources */,
 				2C55BF9D1E98AF1E00C8CE87 /* OpponentsPicker.swift in Sources */,
-				2C510CD01EA41EF0006AEC26 /* OnePair.swift in Sources */,
 				2C50606B1E9341A600B0D6DA /* ViewController.swift in Sources */,
 				2C4C2EBF1E9751E80073A377 /* CardPicker.swift in Sources */,
-				2C510CD41EA5A943006AEC26 /* ProbabilityUtilities.swift in Sources */,
 				2C3C83D41EB6EDFC00983034 /* StatsDelegate.swift in Sources */,
-				2C55BF971E98AE4E00C8CE87 /* Factorial.swift in Sources */,
 				2C0C4D811E9B1769009CD60A /* Hands.swift in Sources */,
 				2C510CCB1EA08D84006AEC26 /* Utilities.swift in Sources */,
-				2C55BF9F1E98AF5900C8CE87 /* Rational.swift in Sources */,
-				2C55BF9B1E98AEC200C8CE87 /* Factors.swift in Sources */,
 				2C4C2EB81E95DE1C0073A377 /* Card.swift in Sources */,
 				2C3C83D01EB1A9FA00983034 /* GameHandler.swift in Sources */,
-				2C55BF951E98AE1000C8CE87 /* Binomial.swift in Sources */,
 				2C4C2EBA1E95DFDF0073A377 /* Suits.swift in Sources */,
 				2C4166981EECCFBD00247606 /* Rounds.swift in Sources */,
-				2C510CD21EA46834006AEC26 /* TwoPair.swift in Sources */,
 				2C4166941EEC6E3700247606 /* CardSelectorViewController.swift in Sources */,
 				2C510CBF1E9F08E6006AEC26 /* HandDetection.swift in Sources */,
 				2C5060691E9341A600B0D6DA /* AppDelegate.swift in Sources */,

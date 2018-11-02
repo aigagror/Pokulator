@@ -75,8 +75,6 @@ struct Card: Hashable {
             return 2
         case .spades:
             return 3
-        default:
-            return 0
         }
     }
     
@@ -105,8 +103,6 @@ struct Card: Hashable {
             suitString = "hearts"
         case Suit.spades:
             suitString = "spades"
-        default:
-            break
         }
         
         return valueString + "_of_" + suitString
@@ -124,8 +120,6 @@ struct Card: Hashable {
             return 26 + value
         case .spades:
             return 39 + value
-        default:
-            return -1
         }
     }
     static func ==(lhs: Card, rhs: Card) -> Bool {

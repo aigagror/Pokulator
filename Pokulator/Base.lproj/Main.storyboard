@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -29,12 +29,12 @@
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qGc-bz-VPN">
                                 <rect key="frame" x="16" y="64.5" width="343" height="602.5"/>
-                                <mutableString key="text">Pokulator uses a Monte Carlo method, which is essentially just random sampling to calculate the probabilities of getting certain hands. Many people ask why the win percentage is slightly higher than expected (around 52% rather than 50% against one opponent). This is because it counts all ties as wins as well. Against one opponent with no cards given, the app can sample about 25,000 trials per second as tested on the iPhone 6s. In order to conserve energy, the app stops calculating after 100,000 trials. After 100,000 trials, the calculations have a relative error of around 0.10%. (Fun Fact: The rate of converge for the error of Monte Carlo methods is usually Big O of the square root of N, where N is the number of samples). Have fun using the app. May you crush your friends in poker 😁</mutableString>
+                                <string key="text">Pokulator uses a Monte Carlo method, which is essentially just random sampling to calculate the probabilities of getting certain hands. Many people ask why the win percentage is slightly higher than expected (around 52% rather than 50% against one opponent). This is because it counts all ties as wins as well. Against one opponent with no cards given, the app can sample about 25,000 trials per second as tested on the iPhone 6s. (Fun Fact: The rate of converge for the error of Monte Carlo methods is usually Big O of the square root of N, where N is the number of samples). Have fun using the app. May you crush your friends in poker 😁</string>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKu-5j-Teg">
-                                <rect key="frame" x="16" y="20" width="45" height="36"/>
+                                <rect key="frame" x="16" y="20" width="44" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" name="gridColor" catalog="System" colorSpace="catalog"/>

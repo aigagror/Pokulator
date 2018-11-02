@@ -266,8 +266,6 @@ class ViewController: UIViewController, StatsDelegate {
                 } else {
                     givenCards[6] = selectedCards.first!
                 }
-            default:
-                fatalError("Should not be here")
             }
             
             update(new_cards: givenCards, new_opponents: nil)

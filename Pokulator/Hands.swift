@@ -52,7 +52,6 @@ enum Hand: Hashable {
         
         let cvp = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41]
         
-        
         switch self {
         case .highCard(let c1, let c2, let c3, let c4, let c5):
             return 53 * cvp[c1-2] * cvp[c2-2] * cvp[c3-2] * cvp[c4-2] * cvp[c5-2]
@@ -72,9 +71,6 @@ enum Hand: Hashable {
             return 83 * cvp[c1-2]
         case .straightFlush(let c1):
             return 89 * cvp[c1-2]
-        default:
-            return 0
-            print("Error in Hand hash value")
         }
     }
     static func ==(lhs: Hand, rhs: Hand) -> Bool {
@@ -225,9 +221,6 @@ enum Hand: Hashable {
                 default:
                     fatalError("hands should be equal")
                 }
-            default:
-                fatalError("should not be here")
-                return false
             }
         }
     }
@@ -301,8 +294,6 @@ enum Hand: Hashable {
             default:
                 return true
             }
-        default:
-            fatalError("should not be here")
         }
     }
     
@@ -334,8 +325,6 @@ func getGeneric(_ hand: Hand) -> GenericHand {
         return .fourOfAKind
     case .straightFlush(_):
         return .straightFlush
-    default:
-        return .highCard
     }
 }
 enum GenericHand: Int {
@@ -362,7 +351,5 @@ func toString(hand: GenericHand) -> String {
         return "One Pair"
     case .highCard:
         return "High Card"
-    default:
-        return ""
     }
 }
